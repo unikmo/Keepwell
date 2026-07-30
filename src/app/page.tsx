@@ -48,7 +48,8 @@ const PLANS = [
     name: "Individual",
     price: "$29",
     tagline: "For one person. Just $2.50/month.",
-    features: ["3 covered events / year", "Digital key vault", "1 trusted contact", "Lockbox code registration"],
+    features: ["3 covered events / year", "Digital key vault", "1 trusted contact"],
+    addOns: [{ label: "Lockbox code registration", price: "$19.99" }],
     cta: "Choose Individual",
     highlighted: false,
   },
@@ -56,12 +57,7 @@ const PLANS = [
     name: "Household",
     price: "$49",
     tagline: "Everyone under your roof. About $4/month.",
-    features: [
-      "Everything in Individual",
-      "Covers full household",
-      "Free onboarding security audit",
-      "Unlimited trusted contacts",
-    ],
+    features: ["Everything in Individual", "Covers full household", "Unlimited trusted contacts"],
     cta: "Choose Household",
     highlighted: true,
     badge: "Most members choose this",
@@ -69,10 +65,10 @@ const PLANS = [
   {
     name: "Household + Smart Security",
     price: "$89",
-    tagline: "For upgrading your entry points, not just covering them.",
+    tagline: "The only tier with a guaranteed onboarding install visit.",
     features: [
       "Everything in Household",
-      "1 free smart lock install",
+      "Guaranteed visit: security audit + lockbox mount + smart lock install",
       "Annual re-audit",
       "Priority dispatch window",
     ],
@@ -223,7 +219,7 @@ export default function Home() {
                   </div>
                   <p className="mt-2 text-sm text-parchment-dim">{plan.tagline}</p>
 
-                  <ul className="mt-6 flex-1 space-y-3 text-sm">
+                  <ul className="mt-6 space-y-3 text-sm">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-2 text-parchment">
                         <span className="mt-0.5 text-verdigris">✓</span>
@@ -231,6 +227,22 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
+
+                  {plan.addOns && (
+                    <ul className="mt-3 space-y-2 border-t border-line/70 pt-3 text-sm">
+                      {plan.addOns.map((a) => (
+                        <li key={a.label} className="flex items-start justify-between gap-2 text-parchment-dim">
+                          <span className="flex items-start gap-2">
+                            <span className="mt-0.5 text-brass">+</span>
+                            {a.label}
+                          </span>
+                          <span className="font-mono text-xs text-brass whitespace-nowrap">{a.price} add-on</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <div className="flex-1" />
 
                   <Link
                     href={`/signup?plan=${encodeURIComponent(plan.name)}`}
