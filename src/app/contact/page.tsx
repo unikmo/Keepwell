@@ -5,9 +5,11 @@ import { submitContact } from "./actions";
 export default async function ContactPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; sent?: string }>;
+  searchParams: Promise<{ error?: string; sent?: string; topic?: string }>;
 }) {
-  const { error, sent } = await searchParams;
+  const { error, sent, topic } = await searchParams;
+  const topics = ["Account", "Billing", "Partnership", "Trust & safety", "Something else"];
+  const defaultTopic = topics.includes(topic ?? "") ? topic! : "Account";
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -88,14 +90,12 @@ export default async function ContactPage({
                   </label>
                   <select
                     name="topic"
-                    defaultValue="Account"
+                    defaultValue={defaultTopic}
                     className="w-full rounded-lg border border-line bg-surface-raised px-3.5 py-2.5 text-sm text-parchment focus:border-brass focus:outline-none"
                   >
-                    <option>Account</option>
-                    <option>Billing</option>
-                    <option>Partnership</option>
-                    <option>Trust & safety</option>
-                    <option>Something else</option>
+                    {topics.map((t) => (
+                      <option key={t}>{t}</option>
+                    ))}
                   </select>
                 </div>
 

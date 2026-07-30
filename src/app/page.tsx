@@ -268,7 +268,7 @@ export default function Home() {
         </section>
 
         {/* CTA */}
-        <section id="property-managers" className="py-24">
+        <section id="cta" className="py-24">
           <div className="mx-auto max-w-3xl px-6 text-center">
             <h2 className="font-display text-3xl font-medium text-parchment sm:text-4xl">
               Set it up once. Forget about it, mostly.

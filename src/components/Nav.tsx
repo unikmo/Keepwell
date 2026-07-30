@@ -13,7 +13,7 @@ export function Nav() {
         <nav className="hidden items-center gap-8 text-sm text-parchment-dim md:flex">
           <Link href="/#how-it-works" className="hover:text-parchment">How it works</Link>
           <Link href="/#pricing" className="hover:text-parchment">Pricing</Link>
-          <Link href="/#property-managers" className="hover:text-parchment">For property managers</Link>
+          <Link href="/property-managers" className="hover:text-parchment">For property managers</Link>
           <Link href="/contact" className="hover:text-parchment">Contact</Link>
         </nav>
 

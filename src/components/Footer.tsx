@@ -23,26 +23,26 @@ export function Footer() {
               { label: "How it works", href: "/#how-it-works" },
               { label: "Pricing", href: "/#pricing" },
               { label: "Digital vault", href: "/#included" },
-              { label: "For property managers", href: "/#property-managers" },
-              { label: "For real estate agents", href: "/#property-managers" },
+              { label: "For property managers", href: "/property-managers" },
+              { label: "For real estate agents", href: "/real-estate-agents" },
             ]}
           />
           <FooterColumn
             title="Support"
             links={[
               { label: "Contact us", href: "/contact" },
-              { label: "Help center", href: "/contact" },
-              { label: "Become a partner tech", href: "/contact" },
-              { label: "Trust & safety", href: "/contact" },
+              { label: "Help center", href: "/help" },
+              { label: "Become a partner tech", href: "/partner-tech" },
+              { label: "Trust & safety", href: "/trust-safety" },
             ]}
           />
           <FooterColumn
             title="Legal"
             links={[
-              { label: "Terms of service", href: "#" },
-              { label: "Privacy policy", href: "#" },
-              { label: "Member agreement", href: "#" },
-              { label: "Cookie preferences", href: "#" },
+              { label: "Terms of service", href: "/legal/terms" },
+              { label: "Privacy policy", href: "/legal/privacy" },
+              { label: "Member agreement", href: "/legal/member-agreement" },
+              { label: "Cookie preferences", href: "/legal/cookies" },
             ]}
           />
         </div>
