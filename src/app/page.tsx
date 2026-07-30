@@ -1,0 +1,291 @@
+import Link from "next/link";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
+
+const FEATURES = [
+  {
+    icon: "🔒",
+    title: "Covered dispatch",
+    body: "Locked out of your home or car? A verified local tech comes to you — no charge, no surprise invoice.",
+  },
+  {
+    icon: "🔑",
+    title: "Digital key vault",
+    body: "Every key, code, and garage password — photographed, encrypted, and stored where you can never lose it.",
+  },
+  {
+    icon: "🤝",
+    title: "Trusted access",
+    body: "Register a neighbor, family member, or locksmith you already trust so help doesn't wait on you.",
+  },
+  {
+    icon: "🛡️",
+    title: "Home security audit",
+    body: "A free once-over of your home and its weak points, with upgrade options at a locked-in member price.",
+  },
+];
+
+const STEPS = [
+  {
+    n: "01",
+    title: "Join in 3 minutes",
+    body: "Pick a plan, add your household, register a trusted contact or lockbox. No truck roll required to sign up.",
+  },
+  {
+    n: "02",
+    title: "Live your life",
+    body: "Your keys and codes live in the vault. Nothing else to track or worry about until you actually need something.",
+  },
+  {
+    n: "03",
+    title: "One tap, if it happens",
+    body: "Locked out? Open the app, tap Get help. A verified tech is on the way, phone in hand.",
+  },
+];
+
+const PLANS = [
+  {
+    name: "Individual",
+    price: "$29",
+    tagline: "For one person. Just $2.50/month.",
+    features: ["3 covered events / year", "Digital key vault", "1 trusted contact", "Lockbox code registration"],
+    cta: "Choose Individual",
+    highlighted: false,
+  },
+  {
+    name: "Household",
+    price: "$49",
+    tagline: "Everyone under your roof. About $4/month.",
+    features: [
+      "Everything in Individual",
+      "Covers full household",
+      "Free onboarding security audit",
+      "Unlimited trusted contacts",
+    ],
+    cta: "Choose Household",
+    highlighted: true,
+    badge: "Most members choose this",
+  },
+  {
+    name: "Household + Smart Security",
+    price: "$89",
+    tagline: "For upgrading your entry points, not just covering them.",
+    features: [
+      "Everything in Household",
+      "1 free smart lock install",
+      "Annual re-audit",
+      "Priority dispatch window",
+    ],
+    cta: "Choose Plus",
+    highlighted: false,
+  },
+];
+
+export default function Home() {
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Nav />
+      <main className="flex-1">
+        {/* HERO */}
+        <section className="relative overflow-hidden border-b border-line/70">
+          <div className="mx-auto max-w-4xl px-6 pb-20 pt-20 text-center sm:pt-28">
+            <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-brass/35 bg-brass/10 px-4 py-1.5 font-mono text-xs uppercase tracking-wide text-brass">
+              <span className="h-1.5 w-1.5 rounded-full bg-brass" />
+              Member in 3 minutes
+            </div>
+
+            <h1 className="font-display text-4xl font-medium leading-tight text-parchment sm:text-5xl">
+              You&rsquo;ll probably never need us.
+              <br />
+              <span className="italic text-brass">That&rsquo;s kind of the point.</span>
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-parchment-dim">
+              A small membership for the home things you hope you&rsquo;ll never deal with —
+              locked out, rekeyed, or just want your keys somewhere safer than a junk drawer.
+            </p>
+
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                href="#pricing"
+                className="rounded-full bg-brass px-6 py-3 text-sm font-medium text-ink transition hover:bg-[#dab668]"
+              >
+                See plans — from $29/yr
+              </Link>
+              <Link
+                href="#how-it-works"
+                className="rounded-full border border-line px-6 py-3 text-sm font-medium text-parchment transition hover:border-parchment-dim"
+              >
+                How it works
+              </Link>
+            </div>
+
+            <p className="mt-6 font-mono text-[11px] uppercase tracking-wide text-parchment-dim">
+              No contracts · Vetted techs · Verified local techs
+            </p>
+          </div>
+
+          <div className="border-t border-line/70 bg-surface/40">
+            <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-6 py-8 text-center sm:grid-cols-4">
+              <Stat value="4.9★" label="Avg tech rating" />
+              <Stat value="14 min" label="Avg response, metro" />
+              <Stat value="100%" label="Background-checked" />
+              <Stat value="$0" label="Covered visits" />
+            </div>
+          </div>
+        </section>
+
+        {/* INCLUDED */}
+        <section id="included" className="border-b border-line/70 py-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <div className="eyebrow">What&rsquo;s included</div>
+              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
+                One membership, four everyday reasons to keep it
+              </h2>
+              <p className="mt-4 text-parchment-dim">
+                Not just an emergency plan — the parts you&rsquo;ll actually use often.
+              </p>
+            </div>
+
+            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {FEATURES.map((f) => (
+                <div
+                  key={f.title}
+                  className="rounded-2xl border border-line bg-surface p-6 transition hover:border-brass/40"
+                >
+                  <div className="text-2xl">{f.icon}</div>
+                  <h3 className="mt-4 font-display text-lg font-medium text-parchment">{f.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{f.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* HOW IT WORKS */}
+        <section id="how-it-works" className="border-b border-line/70 bg-surface/30 py-24">
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <div className="eyebrow">How it works</div>
+              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
+                Three minutes to set up. There when you need it.
+              </h2>
+            </div>
+
+            <div className="mt-14 grid gap-8 sm:grid-cols-3">
+              {STEPS.map((s) => (
+                <div key={s.n} className="text-center sm:text-left">
+                  <div className="font-mono text-sm text-brass">{s.n}</div>
+                  <h3 className="mt-3 font-display text-xl font-medium text-parchment">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{s.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PRICING */}
+        <section id="pricing" className="border-b border-line/70 py-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <div className="eyebrow">Pricing</div>
+              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
+                Less than a streaming subscription
+              </h2>
+              <p className="mt-4 text-parchment-dim">
+                Every plan covers the whole approach — vault, trusted access, and dispatch.
+                Higher tiers widen who and what&rsquo;s covered.
+              </p>
+            </div>
+
+            <div className="mt-14 grid gap-6 lg:grid-cols-3">
+              {PLANS.map((plan) => (
+                <div
+                  key={plan.name}
+                  className={`relative flex flex-col rounded-2xl border p-8 ${
+                    plan.highlighted
+                      ? "border-brass bg-surface-raised shadow-[0_0_0_1px_rgba(201,162,75,0.4)]"
+                      : "border-line bg-surface"
+                  }`}
+                >
+                  {plan.badge && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brass px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-ink">
+                      {plan.badge}
+                    </div>
+                  )}
+                  <div className="font-mono text-xs uppercase tracking-wide text-parchment-dim">
+                    {plan.name}
+                  </div>
+                  <div className="mt-3 flex items-baseline gap-1">
+                    <span className="font-display text-4xl font-medium text-parchment">{plan.price}</span>
+                    <span className="text-sm text-parchment-dim">/year</span>
+                  </div>
+                  <p className="mt-2 text-sm text-parchment-dim">{plan.tagline}</p>
+
+                  <ul className="mt-6 flex-1 space-y-3 text-sm">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-parchment">
+                        <span className="mt-0.5 text-verdigris">✓</span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    href={`/signup?plan=${encodeURIComponent(plan.name)}`}
+                    className={`mt-8 rounded-full px-5 py-3 text-center text-sm font-medium transition ${
+                      plan.highlighted
+                        ? "bg-brass text-ink hover:bg-[#dab668]"
+                        : "border border-line text-parchment hover:border-parchment-dim"
+                    }`}
+                  >
+                    {plan.cta}
+                  </Link>
+                </div>
+              ))}
+            </div>
+
+            <div className="mx-auto mt-10 max-w-2xl rounded-xl border border-brass/20 bg-brass/[0.06] p-5 text-sm leading-relaxed text-parchment-dim">
+              <strong className="text-parchment">What counts as a &ldquo;covered event&rdquo;?</strong> A
+              home lockout, a car locked at your home address, or a standard rekey — pulled from
+              the same yearly pool. Full lock or smart-lock replacement are priced separately,
+              always shown before anyone starts work.
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section id="property-managers" className="py-24">
+          <div className="mx-auto max-w-3xl px-6 text-center">
+            <h2 className="font-display text-3xl font-medium text-parchment sm:text-4xl">
+              Set it up once. Forget about it, mostly.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-parchment-dim">
+              Join in under three minutes — no truck roll, no waiting period to add your vault
+              and trusted contacts.
+            </p>
+            <Link
+              href="/signup"
+              className="mt-8 inline-block rounded-full bg-brass px-6 py-3 text-sm font-medium text-ink transition hover:bg-[#dab668]"
+            >
+              Get covered — from $29/yr
+            </Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div>
+      <div className="font-mono text-xl text-brass sm:text-2xl">{value}</div>
+      <div className="mt-1 font-mono text-[10px] uppercase tracking-wide text-parchment-dim">
+        {label}
+      </div>
+    </div>
+  );
+}

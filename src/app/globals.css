@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #10141f;
+  --void: #05070c;
+  --surface: #1b2233;
+  --surface-raised: #232b40;
+  --line: #2e3752;
+  --parchment: #f1ece1;
+  --parchment-dim: #b9b4a9;
+  --brass: #c9a24b;
+  --brass-dim: #8c7638;
+  --verdigris: #4f9d8c;
+  --ember: #e1613d;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-void: var(--void);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-line: var(--line);
+  --color-parchment: var(--parchment);
+  --color-parchment-dim: var(--parchment-dim);
+  --color-brass: var(--brass);
+  --color-brass-dim: var(--brass-dim);
+  --color-verdigris: var(--verdigris);
+  --color-ember: var(--ember);
+
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-plex-mono);
+}
+
+body {
+  background: var(--ink);
+  color: var(--parchment);
+  font-family: var(--font-body), sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.card-border {
+  border: 1px solid var(--line);
+}
+
+::selection {
+  background: var(--brass);
+  color: var(--ink);
+}
