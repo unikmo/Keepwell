@@ -11,13 +11,16 @@ export function Nav() {
         </Link>
 
         <nav className="hidden items-center gap-8 text-sm text-parchment-dim md:flex">
-          <Link href="/#how-it-works" className="hover:text-parchment">How it works</Link>
-          <Link href="/#pricing" className="hover:text-parchment">Pricing</Link>
-          <Link href="/property-managers" className="hover:text-parchment">For property managers</Link>
+          <Link href="/how-it-works" className="hover:text-parchment">How it works</Link>
+          <Link href="/pricing" className="hover:text-parchment">Pricing</Link>
+          <Link href="/for-property-managers" className="hover:text-parchment">For property managers</Link>
           <Link href="/contact" className="hover:text-parchment">Contact</Link>
         </nav>
 
         <div className="flex items-center gap-3">
+          <Link href="/book" className="hidden text-sm text-parchment-dim hover:text-parchment sm:block">
+            Book a visit
+          </Link>
           <Link href="/login" className="hidden text-sm text-parchment-dim hover:text-parchment sm:block">
             Log in
           </Link>

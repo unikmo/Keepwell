@@ -4,7 +4,7 @@ import { LegalDoc, LegalSection } from "@/components/LegalDoc";
 export const metadata: Metadata = {
   title: "Privacy Policy — Digital Sentinel",
   description: "What Digital Sentinel collects, how it's used, and how your vault data is protected.",
-  alternates: { canonical: "/legal/privacy" },
+  alternates: { canonical: "/privacy" },
   robots: { index: false },
 };
 
@@ -64,7 +64,7 @@ export default function PrivacyPage() {
         <p>
           We use essential cookies required for the site and app to function (like keeping you
           signed in), and may use limited analytics cookies to understand product usage. See our{" "}
-          <a href="/legal/cookies" className="text-brass hover:underline">
+          <a href="/cookies" className="text-brass hover:underline">
             Cookie Preferences
           </a>{" "}
           page for details and controls.

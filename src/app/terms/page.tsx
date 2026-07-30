@@ -4,7 +4,7 @@ import { LegalDoc, LegalSection } from "@/components/LegalDoc";
 export const metadata: Metadata = {
   title: "Terms of Service — Digital Sentinel",
   description: "The terms that govern use of the Digital Sentinel membership, app, and dispatch network.",
-  alternates: { canonical: "/legal/terms" },
+  alternates: { canonical: "/terms" },
   robots: { index: false },
 };
 

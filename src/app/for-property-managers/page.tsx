@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Digital Sentinel for Property Managers — Cut Lockout Calls, Add a Resident Perk",
   description:
     "Give every resident covered lockout dispatch, a digital key vault, and trusted-access sharing — and take 2am lockout calls off your on-call staff's plate. See how portfolio partnerships work.",
-  alternates: { canonical: "/property-managers" },
+  alternates: { canonical: "/for-property-managers" },
 };
 
 const PAIN_POINTS = [
@@ -143,7 +143,7 @@ export default function PropertyManagersPage() {
           ctaLabel="Contact partnerships"
           ctaHref="/contact?topic=Partnership"
           secondaryLabel="See member pricing"
-          secondaryHref="/#pricing"
+          secondaryHref="/pricing"
         />
       </main>
       <Footer />

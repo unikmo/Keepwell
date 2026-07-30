@@ -16,9 +16,15 @@ export default async function DashboardPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const [{ data: member }, { data: vaultItems }, { data: contacts }, { data: activity }] =
+  const [{ data: member }, { data: subscription }, { data: vaultItems }, { data: contacts }, { data: activity }] =
     await Promise.all([
       supabase.from("members").select("*").eq("id", user!.id).maybeSingle(),
+      supabase
+        .from("subscriptions")
+        .select("*, plan:plans(*)")
+        .eq("member_id", user!.id)
+        .eq("status", "active")
+        .maybeSingle(),
       supabase.from("vault_items").select("id").eq("member_id", user!.id),
       supabase.from("trusted_contacts").select("id").eq("member_id", user!.id),
       supabase
@@ -30,9 +36,22 @@ export default async function DashboardPage() {
     ]);
 
   const firstName = (member?.full_name ?? user?.email ?? "there").split(" ")[0];
-  const total = member?.covered_events_total ?? 3;
-  const used = member?.covered_events_used ?? 0;
+  const plan = subscription?.plan as
+    | { id: string; name: string; covered_events_per_year: number }
+    | undefined;
+  const total = plan?.covered_events_per_year ?? member?.covered_events_total ?? 3;
+  const used = subscription?.covered_events_used ?? member?.covered_events_used ?? 0;
   const remaining = Math.max(total - used, 0);
+  const planName = plan?.name ?? member?.plan ?? "Household";
+
+  const showWelcomeVisitCta =
+    plan?.id === "household_plus" && subscription && !subscription.welcome_visit_used;
+  const lockboxLabel =
+    subscription?.lockbox_status === "installed"
+      ? "Lockbox installed"
+      : subscription?.lockbox_status === "shipped"
+        ? "Lockbox on the way"
+        : null;
 
   return (
     <div className="relative">
@@ -49,7 +68,7 @@ export default async function DashboardPage() {
           You&rsquo;re covered
         </span>
         <div className="mt-3 font-display text-lg font-medium text-parchment">
-          {member?.plan ?? "Household"} membership active
+          {planName} membership active
         </div>
         <p className="mt-1 max-w-md text-sm leading-relaxed text-parchment-dim">
           Covers the whole house — lockouts, rekeys, and car-at-home, whenever they come up.
@@ -66,6 +85,33 @@ export default async function DashboardPage() {
         <div className="mt-2 font-mono text-[10.5px] tracking-wide text-parchment-dim">
           {remaining} OF {total} COVERED EVENTS REMAINING THIS YEAR
         </div>
+
+        {(lockboxLabel || subscription?.next_reaudit_due) && (
+          <div className="mt-4 flex flex-wrap gap-2 border-t border-line/60 pt-4">
+            {lockboxLabel && (
+              <span className="rounded-full bg-verdigris/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-verdigris">
+                {lockboxLabel}
+              </span>
+            )}
+            {subscription?.next_reaudit_due && (
+              <span className="rounded-full bg-brass/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-brass">
+                Re-audit due {new Date(subscription.next_reaudit_due).toLocaleDateString()}
+              </span>
+            )}
+          </div>
+        )}
+
+        {showWelcomeVisitCta && (
+          <Link
+            href="/dashboard/welcome-visit"
+            className="mt-4 block rounded-lg border border-brass/30 bg-brass/[0.08] px-4 py-3 text-sm text-parchment transition hover:border-brass/60"
+          >
+            <span className="font-medium text-brass">Schedule your welcome visit →</span>
+            <span className="mt-0.5 block text-xs text-parchment-dim">
+              Security audit + lockbox mount + smart lock install, included with your plan.
+            </span>
+          </Link>
+        )}
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-3">

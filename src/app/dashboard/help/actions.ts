@@ -43,16 +43,28 @@ export async function createDispatchRequest(formData: FormData) {
     meta: issue,
   });
 
-  const { data: member } = await supabase
-    .from("members")
-    .select("covered_events_used")
-    .eq("id", user!.id)
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select("id, covered_events_used, plan_id")
+    .eq("member_id", user!.id)
+    .eq("status", "active")
     .maybeSingle();
 
-  await supabase
-    .from("members")
-    .update({ covered_events_used: (member?.covered_events_used ?? 0) + 1 })
-    .eq("id", user!.id);
+  if (subscription) {
+    await supabase
+      .from("subscriptions")
+      .update({ covered_events_used: (subscription.covered_events_used ?? 0) + 1 })
+      .eq("id", subscription.id);
+
+    // dispatches_per_100_subscribers_per_year by tier + event type — the
+    // single most important unknown in the model, per the spec.
+    await supabase.from("analytics_events").insert({
+      event_name: "dispatch_requested",
+      member_id: user!.id,
+      plan_id: subscription.plan_id,
+      metadata: { issue },
+    });
+  }
 
   revalidatePath("/dashboard");
   redirect(`/dashboard/help/${request.id}`);
@@ -68,16 +80,19 @@ export async function cancelDispatchRequest(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   await supabase.from("dispatch_requests").delete().eq("id", id).eq("member_id", user.id);
 
-  const { data: member } = await supabase
-    .from("members")
-    .select("covered_events_used")
-    .eq("id", user.id)
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select("id, covered_events_used")
+    .eq("member_id", user.id)
+    .eq("status", "active")
     .maybeSingle();
 
-  await supabase
-    .from("members")
-    .update({ covered_events_used: Math.max((member?.covered_events_used ?? 1) - 1, 0) })
-    .eq("id", user.id);
+  if (subscription) {
+    await supabase
+      .from("subscriptions")
+      .update({ covered_events_used: Math.max((subscription.covered_events_used ?? 1) - 1, 0) })
+      .eq("id", subscription.id);
+  }
 
   revalidatePath("/dashboard");
   redirect("/dashboard");

@@ -8,11 +8,21 @@ export default async function TrustedPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { data: contacts } = await supabase
-    .from("trusted_contacts")
-    .select("*")
-    .eq("member_id", user!.id)
-    .order("created_at", { ascending: false });
+  const [{ data: contacts }, { data: subscription }] = await Promise.all([
+    supabase
+      .from("trusted_contacts")
+      .select("*")
+      .eq("member_id", user!.id)
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("subscriptions")
+      .select("lockbox_status")
+      .eq("member_id", user!.id)
+      .eq("status", "active")
+      .maybeSingle(),
+  ]);
+
+  const hasLockbox = subscription?.lockbox_status === "shipped" || subscription?.lockbox_status === "installed";
 
   return (
     <div>
@@ -88,13 +98,28 @@ export default async function TrustedPage() {
         </button>
       </form>
 
-      <div className="mt-4 rounded-xl bg-surface-raised p-4">
-        <div className="text-sm font-semibold text-parchment">Lockbox code</div>
-        <p className="mt-1 text-[10.5px] leading-relaxed text-parchment-dim">
-          If you&rsquo;re locked out, this resolves it instantly — no dispatch needed.
-        </p>
-        <div className="mt-2 font-mono text-2xl tracking-[0.15em] text-brass">4 · 8 · 1 · 9</div>
-      </div>
+      {hasLockbox ? (
+        <div className="mt-4 rounded-xl bg-surface-raised p-4">
+          <div className="text-sm font-semibold text-parchment">Lockbox code</div>
+          <p className="mt-1 text-[10.5px] leading-relaxed text-parchment-dim">
+            If you&rsquo;re locked out, this resolves it instantly — no dispatch needed.
+          </p>
+          <div className="mt-2 font-mono text-2xl tracking-[0.15em] text-brass">4 · 8 · 1 · 9</div>
+        </div>
+      ) : (
+        <Link
+          href="/dashboard/lockbox"
+          className="mt-4 flex items-center justify-between rounded-xl border border-dashed border-line p-4 text-left transition hover:border-brass/40"
+        >
+          <span>
+            <span className="text-sm font-semibold text-parchment">No lockbox registered</span>
+            <span className="mt-0.5 block text-[10.5px] leading-relaxed text-parchment-dim">
+              Add one so a lockout can resolve for free, without waiting on dispatch.
+            </span>
+          </span>
+          <span className="text-brass">→</span>
+        </Link>
+      )}
     </div>
   );
 }

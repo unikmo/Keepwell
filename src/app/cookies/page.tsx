@@ -5,7 +5,7 @@ import { CookiePreferences } from "@/components/CookiePreferences";
 export const metadata: Metadata = {
   title: "Cookie Preferences — Digital Sentinel",
   description: "What cookies Digital Sentinel uses and how to control them.",
-  alternates: { canonical: "/legal/cookies" },
+  alternates: { canonical: "/cookies" },
   robots: { index: false },
 };
 
@@ -26,7 +26,7 @@ export default function CookiesPage() {
       <LegalSection title="More detail">
         <p>
           For the full breakdown of what we collect and why, see our{" "}
-          <a href="/legal/privacy" className="text-brass hover:underline">
+          <a href="/privacy" className="text-brass hover:underline">
             Privacy Policy
           </a>
           .

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { getPlans, planDisplay, formatUsd } from "@/lib/plans";
 
 const FEATURES = [
   {
@@ -43,41 +44,9 @@ const STEPS = [
   },
 ];
 
-const PLANS = [
-  {
-    name: "Individual",
-    price: "$29",
-    tagline: "For one person. Just $2.50/month.",
-    features: ["3 covered events / year", "Digital key vault", "1 trusted contact"],
-    addOns: [{ label: "Lockbox code registration", price: "$19.99" }],
-    cta: "Choose Individual",
-    highlighted: false,
-  },
-  {
-    name: "Household",
-    price: "$49",
-    tagline: "Everyone under your roof. About $4/month.",
-    features: ["Everything in Individual", "Covers full household", "Unlimited trusted contacts"],
-    cta: "Choose Household",
-    highlighted: true,
-    badge: "Most members choose this",
-  },
-  {
-    name: "Household + Smart Security",
-    price: "$89",
-    tagline: "The only tier with a guaranteed onboarding install visit.",
-    features: [
-      "Everything in Household",
-      "Guaranteed visit: security audit + lockbox mount + smart lock install",
-      "Annual re-audit",
-      "Priority dispatch window",
-    ],
-    cta: "Choose Plus",
-    highlighted: false,
-  },
-];
+export default async function Home() {
+  const plans = await getPlans();
 
-export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <Nav />
@@ -103,13 +72,13 @@ export default function Home() {
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
-                href="#pricing"
+                href="/pricing"
                 className="rounded-full bg-brass px-6 py-3 text-sm font-medium text-ink transition hover:bg-[#dab668]"
               >
                 See plans — from $29/yr
               </Link>
               <Link
-                href="#how-it-works"
+                href="/how-it-works"
                 className="rounded-full border border-line px-6 py-3 text-sm font-medium text-parchment transition hover:border-parchment-dim"
               >
                 How it works
@@ -196,66 +165,72 @@ export default function Home() {
             </div>
 
             <div className="mt-14 grid gap-6 lg:grid-cols-3">
-              {PLANS.map((plan) => (
-                <div
-                  key={plan.name}
-                  className={`relative flex flex-col rounded-2xl border p-8 ${
-                    plan.highlighted
-                      ? "border-brass bg-surface-raised shadow-[0_0_0_1px_rgba(201,162,75,0.4)]"
-                      : "border-line bg-surface"
-                  }`}
-                >
-                  {plan.badge && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brass px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-ink">
-                      {plan.badge}
+              {plans.map((plan) => {
+                const { features, addOns, tagline } = planDisplay(plan);
+                const highlighted = plan.id === "household";
+                return (
+                  <div
+                    key={plan.id}
+                    className={`relative flex flex-col rounded-2xl border p-8 ${
+                      highlighted
+                        ? "border-brass bg-surface-raised shadow-[0_0_0_1px_rgba(201,162,75,0.4)]"
+                        : "border-line bg-surface"
+                    }`}
+                  >
+                    {highlighted && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brass px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-ink">
+                        Most members choose this
+                      </div>
+                    )}
+                    <div className="font-mono text-xs uppercase tracking-wide text-parchment-dim">
+                      {plan.name}
                     </div>
-                  )}
-                  <div className="font-mono text-xs uppercase tracking-wide text-parchment-dim">
-                    {plan.name}
-                  </div>
-                  <div className="mt-3 flex items-baseline gap-1">
-                    <span className="font-display text-4xl font-medium text-parchment">{plan.price}</span>
-                    <span className="text-sm text-parchment-dim">/year</span>
-                  </div>
-                  <p className="mt-2 text-sm text-parchment-dim">{plan.tagline}</p>
+                    <div className="mt-3 flex items-baseline gap-1">
+                      <span className="font-display text-4xl font-medium text-parchment">
+                        {formatUsd(plan.price_cents)}
+                      </span>
+                      <span className="text-sm text-parchment-dim">/year</span>
+                    </div>
+                    <p className="mt-2 text-sm text-parchment-dim">{tagline}</p>
 
-                  <ul className="mt-6 space-y-3 text-sm">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-parchment">
-                        <span className="mt-0.5 text-verdigris">✓</span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {plan.addOns && (
-                    <ul className="mt-3 space-y-2 border-t border-line/70 pt-3 text-sm">
-                      {plan.addOns.map((a) => (
-                        <li key={a.label} className="flex items-start justify-between gap-2 text-parchment-dim">
-                          <span className="flex items-start gap-2">
-                            <span className="mt-0.5 text-brass">+</span>
-                            {a.label}
-                          </span>
-                          <span className="font-mono text-xs text-brass whitespace-nowrap">{a.price} add-on</span>
+                    <ul className="mt-6 space-y-3 text-sm">
+                      {features.map((f) => (
+                        <li key={f} className="flex items-start gap-2 text-parchment">
+                          <span className="mt-0.5 text-verdigris">✓</span>
+                          {f}
                         </li>
                       ))}
                     </ul>
-                  )}
 
-                  <div className="flex-1" />
+                    {addOns && (
+                      <ul className="mt-3 space-y-2 border-t border-line/70 pt-3 text-sm">
+                        {addOns.map((a) => (
+                          <li key={a.label} className="flex items-start justify-between gap-2 text-parchment-dim">
+                            <span className="flex items-start gap-2">
+                              <span className="mt-0.5 text-brass">+</span>
+                              {a.label}
+                            </span>
+                            <span className="font-mono text-xs text-brass whitespace-nowrap">{a.price}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
 
-                  <Link
-                    href={`/signup?plan=${encodeURIComponent(plan.name)}`}
-                    className={`mt-8 rounded-full px-5 py-3 text-center text-sm font-medium transition ${
-                      plan.highlighted
-                        ? "bg-brass text-ink hover:bg-[#dab668]"
-                        : "border border-line text-parchment hover:border-parchment-dim"
-                    }`}
-                  >
-                    {plan.cta}
-                  </Link>
-                </div>
-              ))}
+                    <div className="flex-1" />
+
+                    <Link
+                      href={`/signup?plan=${plan.id}`}
+                      className={`mt-8 rounded-full px-5 py-3 text-center text-sm font-medium transition ${
+                        highlighted
+                          ? "bg-brass text-ink hover:bg-[#dab668]"
+                          : "border border-line text-parchment hover:border-parchment-dim"
+                      }`}
+                    >
+                      Choose {plan.name}
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="mx-auto mt-10 max-w-2xl rounded-xl border border-brass/20 bg-brass/[0.06] p-5 text-sm leading-relaxed text-parchment-dim">

@@ -4,7 +4,7 @@ import { LegalDoc, LegalSection } from "@/components/LegalDoc";
 export const metadata: Metadata = {
   title: "Member Agreement — Digital Sentinel",
   description: "What's covered under your Digital Sentinel membership, plan by plan, and what isn't.",
-  alternates: { canonical: "/legal/member-agreement" },
+  alternates: { canonical: "/member-agreement" },
   robots: { index: false },
 };
 
@@ -99,7 +99,7 @@ export default function MemberAgreementPage() {
       <LegalSection title="8. Relationship to the Terms of Service">
         <p>
           This Member Agreement works alongside our{" "}
-          <a href="/legal/terms" className="text-brass hover:underline">
+          <a href="/terms" className="text-brass hover:underline">
             Terms of Service
           </a>
           . Where this Agreement describes specific plan coverage, and the Terms describe general

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Digital Sentinel for Real Estate Agents — A Closing Gift Clients Actually Use",
   description:
     "Gift new homeowners a membership that covers their first lockout, rekey, and home security audit — a closing gift that keeps your name in their pocket long after the sale. Referral partnerships available.",
-  alternates: { canonical: "/real-estate-agents" },
+  alternates: { canonical: "/for-real-estate-agents" },
 };
 
 const REASONS = [
@@ -147,7 +147,7 @@ export default function RealEstateAgentsPage() {
           ctaLabel="Contact partnerships"
           ctaHref="/contact?topic=Partnership"
           secondaryLabel="See member pricing"
-          secondaryHref="/#pricing"
+          secondaryHref="/pricing"
         />
       </main>
       <Footer />

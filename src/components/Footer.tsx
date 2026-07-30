@@ -20,11 +20,12 @@ export function Footer() {
           <FooterColumn
             title="Product"
             links={[
-              { label: "How it works", href: "/#how-it-works" },
-              { label: "Pricing", href: "/#pricing" },
+              { label: "How it works", href: "/how-it-works" },
+              { label: "Pricing", href: "/pricing" },
               { label: "Digital vault", href: "/#included" },
-              { label: "For property managers", href: "/property-managers" },
-              { label: "For real estate agents", href: "/real-estate-agents" },
+              { label: "Book a one-off visit", href: "/book" },
+              { label: "For property managers", href: "/for-property-managers" },
+              { label: "For real estate agents", href: "/for-real-estate-agents" },
             ]}
           />
           <FooterColumn
@@ -39,10 +40,10 @@ export function Footer() {
           <FooterColumn
             title="Legal"
             links={[
-              { label: "Terms of service", href: "/legal/terms" },
-              { label: "Privacy policy", href: "/legal/privacy" },
-              { label: "Member agreement", href: "/legal/member-agreement" },
-              { label: "Cookie preferences", href: "/legal/cookies" },
+              { label: "Terms of service", href: "/terms" },
+              { label: "Privacy policy", href: "/privacy" },
+              { label: "Member agreement", href: "/member-agreement" },
+              { label: "Cookie preferences", href: "/cookies" },
             ]}
           />
         </div>
