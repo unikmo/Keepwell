@@ -20,10 +20,10 @@ export async function scheduleWelcomeVisit(formData: FormData) {
     .eq("status", "active")
     .maybeSingle();
 
-  if (!subscription) redirect("/dashboard?error=No active subscription found");
+  if (!subscription) redirect("/app?error=No active subscription found");
 
   if (subscription.welcome_visit_used) {
-    redirect("/dashboard");
+    redirect("/app");
   }
 
   // One-time flag tied to signup entitlement — never reset by billing cycle.
@@ -49,11 +49,11 @@ export async function scheduleWelcomeVisit(formData: FormData) {
   });
 
   await supabase.from("analytics_events").insert({
-    event_name: "welcome_visit_completion_scheduled",
+    event_name: "welcome_visit_completed",
     member_id: user.id,
     metadata: { preferred_date: preferredDate },
   });
 
-  revalidatePath("/dashboard");
-  redirect("/dashboard?notice=Welcome+visit+scheduled");
+  revalidatePath("/app");
+  redirect("/app?notice=Welcome+visit+scheduled");
 }

@@ -19,7 +19,7 @@ export default async function WelcomeVisitPage() {
 
   return (
     <div className="flex flex-col items-center text-center">
-      <Link href="/dashboard" className="self-start text-xs text-parchment-dim hover:text-parchment">
+      <Link href="/app" className="self-start text-xs text-parchment-dim hover:text-parchment">
         ← Back
       </Link>
 

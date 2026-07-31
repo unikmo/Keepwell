@@ -51,7 +51,7 @@ export default async function LoginPage({
         )}
 
         <form action={login} className="space-y-4">
-          <input type="hidden" name="next" value={next ?? "/dashboard"} />
+          <input type="hidden" name="next" value={next ?? "/app"} />
           <div>
             <label className="mb-1.5 block text-xs font-mono uppercase tracking-wide text-parchment-dim">
               Email

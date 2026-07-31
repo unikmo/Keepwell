@@ -39,7 +39,7 @@ export default async function HelpPage({
   if (step !== "dispatch") {
     return (
       <div className="flex flex-col items-center text-center">
-        <Link href="/dashboard" className="self-start text-xs text-parchment-dim hover:text-parchment">
+        <Link href="/app" className="self-start text-xs text-parchment-dim hover:text-parchment">
           ← Back
         </Link>
 
@@ -53,7 +53,7 @@ export default async function HelpPage({
         <div className="mt-6 w-full max-w-sm space-y-3">
           {hasLockbox ? (
             <Link
-              href="/dashboard/trusted"
+              href="/app/trusted"
               className="flex items-center justify-between rounded-xl border border-verdigris/30 bg-verdigris/[0.06] p-4 text-left text-sm text-parchment transition hover:border-verdigris/60"
             >
               <span>
@@ -66,7 +66,7 @@ export default async function HelpPage({
             </Link>
           ) : (
             <Link
-              href="/dashboard/lockbox"
+              href="/app/lockbox"
               className="flex items-center justify-between rounded-xl border border-dashed border-line p-4 text-left text-sm text-parchment transition hover:border-brass/40"
             >
               <span>
@@ -81,7 +81,7 @@ export default async function HelpPage({
 
           {hasTrustedContacts ? (
             <Link
-              href="/dashboard/trusted"
+              href="/app/trusted"
               className="flex items-center justify-between rounded-xl border border-verdigris/30 bg-verdigris/[0.06] p-4 text-left text-sm text-parchment transition hover:border-verdigris/60"
             >
               <span>
@@ -95,7 +95,7 @@ export default async function HelpPage({
             </Link>
           ) : (
             <Link
-              href="/dashboard/trusted"
+              href="/app/trusted"
               className="flex items-center justify-between rounded-xl border border-dashed border-line p-4 text-left text-sm text-parchment transition hover:border-brass/40"
             >
               <span>
@@ -110,7 +110,7 @@ export default async function HelpPage({
         </div>
 
         <Link
-          href="/dashboard/help?step=dispatch"
+          href="/app/help?step=dispatch"
           className="mt-6 w-full max-w-sm rounded-full bg-ember px-6 py-3 text-center text-sm font-medium text-ink transition hover:brightness-110"
         >
           Still need help — dispatch a tech
@@ -123,7 +123,7 @@ export default async function HelpPage({
   return (
     <div className="flex flex-col items-center text-center">
       <Link
-        href="/dashboard/help"
+        href="/app/help"
         className="self-start text-xs text-parchment-dim hover:text-parchment"
       >
         ← Back

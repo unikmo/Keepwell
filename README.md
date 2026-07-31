@@ -13,18 +13,26 @@ membership. Built with Next.js (App Router), Tailwind CSS v4, and Supabase (auth
 ## Pages
 
 - `/` — marketing homepage (hero, features, how it works, pricing, CTA)
+- `/pricing`, `/how-it-works` — dedicated marketing pages, driven by the `plans` table
 - `/login`, `/signup` — Supabase-authenticated login / signup
 - `/contact` — support form, writes to `contact_messages`
-- `/dashboard` — member dashboard (membership status, vault, trusted access, activity), auth-gated
-- `/dashboard/vault` — digital key/code vault (CRUD)
-- `/dashboard/trusted` — trusted contacts + lockbox code (CRUD)
-- `/dashboard/help` → `/dashboard/help/[id]` — "Get help" dispatch request flow
+- `/book` → `/book/details` → `/book/review` → `/book/[id]` — no-signup guest booking flow ($89 flat, 15% guest discount, stubbed payment)
+- `/terms`, `/privacy`, `/member-agreement`, `/cookies` — legal pages
+- `/for-property-managers`, `/for-real-estate-agents` — B2B landing pages
+- `/app` — member dashboard (membership status, vault, trusted access, activity), auth-gated
+- `/app/vault` — digital key/code vault (CRUD)
+- `/app/trusted` — trusted contacts + lockbox code (CRUD)
+- `/app/lockbox` — lockbox add-on purchase (Individual plan, stubbed payment)
+- `/app/welcome-visit` — one-time welcome visit scheduling (Household+ plan)
+- `/app/help` → `/app/help/[id]` — lockbox-first interstitial, then "Get help" dispatch request flow
 
 ## Database schema
 
-See the `keepwell` Supabase project for the live schema (migration: `init_keepwell_schema`):
+See the `keepwell` Supabase project for the live schema (migrations: `init_keepwell_schema`,
+`plans_subscriptions_guest_booking_analytics`, `guest_bookings_public_select_and_update`):
 `members`, `vault_items`, `trusted_contacts`, `dispatch_requests`, `activity_log`,
-`contact_messages`. All member-scoped tables use RLS keyed to `auth.uid()`.
+`contact_messages`, `plans`, `subscriptions`, `lockbox_ledger`, `guest_bookings`,
+`outbound_messages`, `analytics_events`. All member-scoped tables use RLS keyed to `auth.uid()`.
 
 ## Environment variables
 

@@ -19,8 +19,8 @@ export async function addVaultItem(formData: FormData) {
     .from("activity_log")
     .insert({ member_id: user.id, title: `${name} added to vault`, meta: "by you" });
 
-  revalidatePath("/dashboard/vault");
-  revalidatePath("/dashboard");
+  revalidatePath("/app/vault");
+  revalidatePath("/app");
 }
 
 export async function removeVaultItem(formData: FormData) {
@@ -33,6 +33,6 @@ export async function removeVaultItem(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   await supabase.from("vault_items").delete().eq("id", id).eq("member_id", user.id);
 
-  revalidatePath("/dashboard/vault");
-  revalidatePath("/dashboard");
+  revalidatePath("/app/vault");
+  revalidatePath("/app");
 }

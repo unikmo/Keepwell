@@ -103,7 +103,7 @@ export default async function DashboardPage() {
 
         {showWelcomeVisitCta && (
           <Link
-            href="/dashboard/welcome-visit"
+            href="/app/welcome-visit"
             className="mt-4 block rounded-lg border border-brass/30 bg-brass/[0.08] px-4 py-3 text-sm text-parchment transition hover:border-brass/60"
           >
             <span className="font-medium text-brass">Schedule your welcome visit →</span>
@@ -116,7 +116,7 @@ export default async function DashboardPage() {
 
       <div className="mt-4 grid grid-cols-2 gap-3">
         <Link
-          href="/dashboard/vault"
+          href="/app/vault"
           className="flex flex-col gap-2 rounded-xl border border-line bg-surface p-4 text-sm font-medium text-parchment transition hover:border-brass/40"
         >
           <span className="text-lg">🔑</span>
@@ -126,7 +126,7 @@ export default async function DashboardPage() {
           </span>
         </Link>
         <Link
-          href="/dashboard/trusted"
+          href="/app/trusted"
           className="flex flex-col gap-2 rounded-xl border border-line bg-surface p-4 text-sm font-medium text-parchment transition hover:border-brass/40"
         >
           <span className="text-lg">🤝</span>
@@ -158,7 +158,7 @@ export default async function DashboardPage() {
       </div>
 
       <Link
-        href="/dashboard/help"
+        href="/app/help"
         className="fixed bottom-8 right-8 flex h-14 w-14 items-center justify-center rounded-full bg-ember shadow-[0_8px_24px_-4px_rgba(225,97,61,0.6)] transition hover:brightness-110"
         title="Get help"
       >

@@ -34,7 +34,7 @@ export async function createDispatchRequest(formData: FormData) {
     .single();
 
   if (error || !request) {
-    redirect(`/dashboard/help?error=${encodeURIComponent(error?.message ?? "Could not dispatch")}`);
+    redirect(`/app/help?error=${encodeURIComponent(error?.message ?? "Could not dispatch")}`);
   }
 
   await supabase.from("activity_log").insert({
@@ -66,8 +66,8 @@ export async function createDispatchRequest(formData: FormData) {
     });
   }
 
-  revalidatePath("/dashboard");
-  redirect(`/dashboard/help/${request.id}`);
+  revalidatePath("/app");
+  redirect(`/app/help/${request.id}`);
 }
 
 export async function cancelDispatchRequest(formData: FormData) {
@@ -94,6 +94,6 @@ export async function cancelDispatchRequest(formData: FormData) {
       .eq("id", subscription.id);
   }
 
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
+  revalidatePath("/app");
+  redirect("/app");
 }

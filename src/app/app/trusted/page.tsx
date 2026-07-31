@@ -26,7 +26,7 @@ export default async function TrustedPage() {
 
   return (
     <div>
-      <Link href="/dashboard" className="text-xs text-parchment-dim hover:text-parchment">
+      <Link href="/app" className="text-xs text-parchment-dim hover:text-parchment">
         ← Back
       </Link>
       <h1 className="mt-3 font-display text-2xl font-medium text-parchment">Trusted access</h1>
@@ -108,7 +108,7 @@ export default async function TrustedPage() {
         </div>
       ) : (
         <Link
-          href="/dashboard/lockbox"
+          href="/app/lockbox"
           className="mt-4 flex items-center justify-between rounded-xl border border-dashed border-line p-4 text-left transition hover:border-brass/40"
         >
           <span>

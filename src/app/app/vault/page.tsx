@@ -16,7 +16,7 @@ export default async function VaultPage() {
 
   return (
     <div>
-      <Link href="/dashboard" className="text-xs text-parchment-dim hover:text-parchment">
+      <Link href="/app" className="text-xs text-parchment-dim hover:text-parchment">
         ← Back
       </Link>
       <h1 className="mt-3 font-display text-2xl font-medium text-parchment">Vault</h1>

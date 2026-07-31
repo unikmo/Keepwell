@@ -21,7 +21,7 @@ export async function purchaseLockboxAddon() {
     .eq("status", "active")
     .maybeSingle();
 
-  if (!subscription) redirect("/dashboard/help?error=No active subscription found");
+  if (!subscription) redirect("/app/help?error=No active subscription found");
 
   const plan = subscription.plan as { lockbox_addon_price_cents: number | null } | null;
   const priceCents = plan?.lockbox_addon_price_cents ?? 1999;
@@ -52,7 +52,7 @@ export async function purchaseLockboxAddon() {
     member_id: user.id,
   });
 
-  revalidatePath("/dashboard");
-  revalidatePath("/dashboard/trusted");
-  redirect("/dashboard/trusted?notice=Lockbox+registered");
+  revalidatePath("/app");
+  revalidatePath("/app/trusted");
+  redirect("/app/trusted?notice=Lockbox+registered");
 }

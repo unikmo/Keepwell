@@ -25,6 +25,7 @@ export default async function BookStatusPage({ params }: { params: Promise<{ id:
   if (!booking) notFound();
 
   const completed = booking.status === "completed";
+  const isFixedPrice = booking.price_cents > 0;
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-ink px-6 py-16">
@@ -58,15 +59,19 @@ export default async function BookStatusPage({ params }: { params: Promise<{ id:
         <div className="mt-6 flex w-full items-center justify-between rounded-xl bg-surface-raised px-5 py-4">
           <div>
             <div className="font-mono text-xl text-brass">
-              {completed ? `$${(booking.price_cents / 100).toFixed(0)}` : "12 min"}
+              {completed
+                ? isFixedPrice
+                  ? `$${(booking.price_cents / 100).toFixed(0)}`
+                  : "Priced on-site"
+                : "12 min"}
             </div>
             <div className="mt-0.5 font-mono text-[10.5px] uppercase tracking-wide text-parchment-dim">
-              {completed ? "Charged on completion" : "Estimated arrival"}
+              {completed ? (isFixedPrice ? "Charged on completion" : "Final price from your tech") : "Estimated arrival"}
             </div>
           </div>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-verdigris/35 bg-verdigris/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-verdigris">
             <span className="h-1.5 w-1.5 rounded-full bg-verdigris" />
-            {completed ? "Paid" : "Verified ID"}
+            {completed ? (isFixedPrice ? "Paid" : "Assessed") : "Verified ID"}
           </span>
         </div>
 

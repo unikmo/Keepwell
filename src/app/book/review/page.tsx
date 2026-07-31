@@ -27,6 +27,10 @@ export default async function BookReviewPage({
 }) {
   const { job_type, address, phone, email, error } = await searchParams;
   const jobType = job_type && JOB_LABELS[job_type] ? job_type : "lockout";
+  // Flat $89 + 15% guest discount applies to lockout/rekey only. Lock
+  // upgrade/hardware jobs use the existing hardware-upsell pricing split
+  // with no separate guest discount — priced after an on-site assessment.
+  const isFixedPrice = jobType === "lockout" || jobType === "rekey";
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-ink px-6 py-16">
@@ -59,11 +63,13 @@ export default async function BookReviewPage({
             <span className="text-parchment">{phone || "—"}</span>
           </div>
           <div className="mt-4 flex items-baseline justify-between border-t border-line/70 pt-4">
-            <span className="text-parchment-dim">Guest price</span>
-            <span className="font-mono text-2xl text-brass">$89</span>
+            <span className="text-parchment-dim">{isFixedPrice ? "Guest price" : "Price"}</span>
+            <span className="font-mono text-2xl text-brass">{isFixedPrice ? "$89" : "TBD"}</span>
           </div>
           <p className="mt-1 text-xs text-parchment-dim">
-            Your 15% guest discount is already included. No membership required.
+            {isFixedPrice
+              ? "Your 15% guest discount is already included. No membership required."
+              : "Lock upgrades are priced on-site after your tech assesses the hardware — no guest discount applies to hardware jobs."}
           </p>
         </div>
 
@@ -76,10 +82,12 @@ export default async function BookReviewPage({
             type="submit"
             className="w-full rounded-full bg-brass px-6 py-3 text-sm font-medium text-ink transition hover:bg-[#dab668]"
           >
-            Confirm — $89, charged when the job is done
+            {isFixedPrice ? "Confirm — $89, charged when the job is done" : "Confirm — priced after assessment"}
           </button>
           <p className="mt-2 text-center text-[11px] text-parchment-dim">
-            Card is authorized now and only captured after the visit is complete.
+            {isFixedPrice
+              ? "Card is authorized now and only captured after the visit is complete."
+              : "No charge is authorized until your tech gives you a fixed price on-site."}
           </p>
         </form>
 

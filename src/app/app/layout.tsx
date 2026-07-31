@@ -7,7 +7,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="min-h-screen bg-ink">
       <header className="border-b border-line/70">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-          <Link href="/dashboard" className="flex items-center gap-2 font-display text-base font-medium text-parchment">
+          <Link href="/app" className="flex items-center gap-2 font-display text-base font-medium text-parchment">
             <Keyhole className="h-5 w-4 text-brass" />
             Digital Sentinel
           </Link>

@@ -25,7 +25,7 @@ export default async function LockboxAddonPage() {
 
   return (
     <div className="flex flex-col items-center text-center">
-      <Link href="/dashboard/trusted" className="self-start text-xs text-parchment-dim hover:text-parchment">
+      <Link href="/app/trusted" className="self-start text-xs text-parchment-dim hover:text-parchment">
         ← Back
       </Link>
 

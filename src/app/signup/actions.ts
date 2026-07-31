@@ -85,7 +85,7 @@ export async function signup(formData: FormData) {
   }
 
   if (data.session) {
-    redirect("/dashboard");
+    redirect("/app");
   }
 
   redirect("/login?notice=Check your email to confirm your account.");

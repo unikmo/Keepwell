@@ -21,8 +21,8 @@ export async function addTrustedContact(formData: FormData) {
     .from("activity_log")
     .insert({ member_id: user.id, title: `${name} added as trusted contact`, meta: "by you" });
 
-  revalidatePath("/dashboard/trusted");
-  revalidatePath("/dashboard");
+  revalidatePath("/app/trusted");
+  revalidatePath("/app");
 }
 
 export async function removeTrustedContact(formData: FormData) {
@@ -35,6 +35,6 @@ export async function removeTrustedContact(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   await supabase.from("trusted_contacts").delete().eq("id", id).eq("member_id", user.id);
 
-  revalidatePath("/dashboard/trusted");
-  revalidatePath("/dashboard");
+  revalidatePath("/app/trusted");
+  revalidatePath("/app");
 }

@@ -12,6 +12,12 @@ const TECHS = [
 const GUEST_PRICE_CENTS = 8900;
 const GUEST_DISCOUNT_PCT = 15;
 
+// Flat $89 + 15% guest discount applies to lockout/rekey only (Spec
+// Section 4). Lock upgrade/hardware jobs use the existing hardware-upsell
+// split with NO separate guest discount — priced after an on-site
+// assessment, so there's no fixed price or discount to store at booking.
+const FIXED_PRICE_JOB_TYPES = new Set(["lockout", "rekey"]);
+
 // "Not yet — build everything up to payment, stub the charge." Payment
 // authorize-at-booking / capture-on-completion is modeled via
 // payment_status transitions; no real processor is wired in yet.
@@ -27,6 +33,8 @@ export async function createGuestBooking(formData: FormData) {
     );
   }
 
+  const isFixedPrice = FIXED_PRICE_JOB_TYPES.has(jobType);
+
   const supabase = await createClient();
 
   const { data: booking, error } = await supabase
@@ -36,11 +44,12 @@ export async function createGuestBooking(formData: FormData) {
       address,
       phone,
       email,
-      price_cents: GUEST_PRICE_CENTS,
-      discount_pct: GUEST_DISCOUNT_PCT,
+      price_cents: isFixedPrice ? GUEST_PRICE_CENTS : 0,
+      discount_pct: isFixedPrice ? GUEST_DISCOUNT_PCT : 0,
       // TODO(payment): replace with a real authorize-only PaymentIntent once
-      // Stripe (or similar) is connected. "authorized" simulates a hold.
-      payment_status: "authorized",
+      // Stripe (or similar) is connected. Fixed-price jobs get a hold now;
+      // hardware jobs wait for an on-site price before anything is charged.
+      payment_status: isFixedPrice ? "authorized" : "pending_assessment",
       status: "dispatched",
     })
     .select()
@@ -80,7 +89,10 @@ export async function completeGuestBooking(formData: FormData) {
     .update({
       status: "completed",
       completed_at: new Date().toISOString(),
-      payment_status: "captured",
+      // Fixed-price jobs had a hold placed at booking and capture now.
+      // Hardware jobs get their price on-site, so this flags the final
+      // charge as ready rather than pretending a hold already exists.
+      payment_status: booking.price_cents > 0 ? "captured" : "pending_final_charge",
     })
     .eq("id", id);
 

@@ -5,14 +5,14 @@ import { Keyhole } from "@/components/Keyhole";
 export const metadata: Metadata = {
   title: "Book a Locksmith — No Membership Required | Digital Sentinel",
   description:
-    "Locked out right now? Book a verified local locksmith in minutes — no membership, no account. Fixed $89 price with your guest discount already applied.",
+    "Locked out right now? Book a verified local locksmith in minutes — no membership, no account. Fixed $89 for lockouts and rekeys, guest discount already applied.",
   alternates: { canonical: "/book" },
 };
 
 const JOB_TYPES: { id: string; label: string; icon: string; body: string }[] = [
-  { id: "lockout", label: "I'm locked out", icon: "🔒", body: "Home or car, right now." },
-  { id: "rekey", label: "Rekey my locks", icon: "🔑", body: "Standard rekey, same visit." },
-  { id: "lock_upgrade", label: "Upgrade my lock", icon: "🛡️", body: "Smart lock or hardware upgrade." },
+  { id: "lockout", label: "I'm locked out", icon: "🔒", body: "Home or car, right now. $89 flat." },
+  { id: "rekey", label: "Rekey my locks", icon: "🔑", body: "Standard rekey, same visit. $89 flat." },
+  { id: "lock_upgrade", label: "Upgrade my lock", icon: "🛡️", body: "Smart lock or hardware upgrade, priced on-site." },
 ];
 
 export default function BookPage() {
@@ -26,7 +26,8 @@ export default function BookPage() {
           </Link>
           <h1 className="mt-6 font-display text-2xl font-medium text-parchment">Book a tech — no account needed</h1>
           <p className="mt-2 text-sm text-parchment-dim">
-            $89 flat, guest discount already applied. Same vetted techs our members use.
+            $89 flat for lockouts and rekeys, guest discount already applied. Same vetted techs our
+            members use.
           </p>
         </div>
 
