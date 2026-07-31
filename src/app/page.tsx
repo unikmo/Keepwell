@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { getPlans, planDisplay, formatUsd } from "@/lib/plans";
@@ -53,41 +54,61 @@ export default async function Home() {
       <main className="flex-1">
         {/* HERO */}
         <section className="relative overflow-hidden border-b border-line/70">
-          <div className="mx-auto max-w-4xl px-6 pb-20 pt-20 text-center sm:pt-28">
-            <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-brass/35 bg-brass/10 px-4 py-1.5 font-mono text-xs uppercase tracking-wide text-brass">
-              <span className="h-1.5 w-1.5 rounded-full bg-brass" />
-              Member in 3 minutes
+          <div className="mx-auto max-w-5xl px-6 pb-16 pt-16 sm:pb-20 sm:pt-24">
+            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-16">
+              {/* MASCOT */}
+              <div className="flex justify-center lg:justify-start">
+                <div className="relative">
+                  <div className="absolute inset-0 -z-10 rounded-full bg-brass/15 blur-3xl" />
+                  <Image
+                    src="/kayo-mascot.png"
+                    alt="Kayo, the Digital Sentinel mascot — a warm brass key-shaped character"
+                    width={261}
+                    height={398}
+                    priority
+                    className="h-auto w-44 drop-shadow-[0_25px_45px_rgba(0,0,0,0.45)] sm:w-56 lg:w-full lg:max-w-[280px]"
+                  />
+                </div>
+              </div>
+
+              {/* TEXT */}
+              <div className="text-center lg:text-left">
+                <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-brass/35 bg-brass/10 px-4 py-1.5 font-mono text-xs uppercase tracking-wide text-brass lg:mx-0">
+                  <span className="h-1.5 w-1.5 rounded-full bg-brass" />
+                  Member in 3 minutes
+                </div>
+
+                <h1 className="font-display text-4xl font-medium leading-tight text-parchment sm:text-5xl">
+                  You&rsquo;ll probably never need us.
+                  <br />
+                  <span className="italic text-brass">That&rsquo;s kind of the point.</span>
+                </h1>
+
+                <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-parchment-dim lg:mx-0">
+                  A small membership for the home things you hope you&rsquo;ll never deal with —
+                  locked out, rekeyed, or just want your keys somewhere safer than a junk drawer.
+                </p>
+
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
+                  <Link
+                    href="/pricing"
+                    className="rounded-full bg-brass px-6 py-3 text-sm font-medium text-ink transition hover:bg-[#dab668]"
+                  >
+                    See plans — from $29/yr
+                  </Link>
+                  <Link
+                    href="/how-it-works"
+                    className="rounded-full border border-line px-6 py-3 text-sm font-medium text-parchment transition hover:border-parchment-dim"
+                  >
+                    How it works
+                  </Link>
+                </div>
+
+                <p className="mt-6 font-mono text-[11px] uppercase tracking-wide text-parchment-dim">
+                  No contracts · Vetted techs · Verified local techs
+                </p>
+              </div>
             </div>
-
-            <h1 className="font-display text-4xl font-medium leading-tight text-parchment sm:text-5xl">
-              You&rsquo;ll probably never need us.
-              <br />
-              <span className="italic text-brass">That&rsquo;s kind of the point.</span>
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-parchment-dim">
-              A small membership for the home things you hope you&rsquo;ll never deal with —
-              locked out, rekeyed, or just want your keys somewhere safer than a junk drawer.
-            </p>
-
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link
-                href="/pricing"
-                className="rounded-full bg-brass px-6 py-3 text-sm font-medium text-ink transition hover:bg-[#dab668]"
-              >
-                See plans — from $29/yr
-              </Link>
-              <Link
-                href="/how-it-works"
-                className="rounded-full border border-line px-6 py-3 text-sm font-medium text-parchment transition hover:border-parchment-dim"
-              >
-                How it works
-              </Link>
-            </div>
-
-            <p className="mt-6 font-mono text-[11px] uppercase tracking-wide text-parchment-dim">
-              No contracts · Vetted techs · Verified local techs
-            </p>
           </div>
 
           <div className="border-t border-line/70 bg-surface/40">
