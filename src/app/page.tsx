@@ -64,8 +64,8 @@ export default async function Home() {
                   <Image
                     src="/kayo-mascot.png"
                     alt="Kayo, the Keepwell mascot — a warm brass key-shaped character"
-                    width={261}
-                    height={398}
+                    width={785}
+                    height={1400}
                     priority
                     className="relative z-10 h-auto w-52 drop-shadow-[0_25px_45px_rgba(0,0,0,0.45)] sm:w-64 lg:w-full lg:max-w-[320px]"
                   />
