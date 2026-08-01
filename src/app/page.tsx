@@ -63,9 +63,9 @@ export default async function Home() {
                   <div className="absolute bottom-1 left-1/2 z-0 h-5 w-28 -translate-x-1/2 rounded-full bg-black/50 blur-md sm:h-6 sm:w-36 lg:w-40" />
                   <Image
                     src="/kayo-mascot.png"
-                    alt="Kayo, the Keepwell mascot — a warm brass key-shaped character"
-                    width={785}
-                    height={1400}
+                    alt="Kayo, the Keepwell mascot, gesturing toward the plans"
+                    width={694}
+                    height={990}
                     priority
                     className="relative z-10 h-auto w-52 drop-shadow-[0_25px_45px_rgba(0,0,0,0.45)] sm:w-64 lg:w-full lg:max-w-[320px]"
                   />
@@ -104,12 +104,12 @@ export default async function Home() {
                     How it works
                   </Link>
                 </div>
-
-                <p className="mt-6 font-mono text-[11px] uppercase tracking-wide text-parchment-dim">
-                  No contracts · Vetted techs · Verified local techs
-                </p>
               </div>
             </div>
+
+            <p className="mt-6 text-center font-mono text-[11px] uppercase tracking-wide text-parchment-dim">
+              No contracts · Vetted techs · Verified local techs
+            </p>
           </div>
 
           <div className="border-t border-line/70 bg-surface/40">
