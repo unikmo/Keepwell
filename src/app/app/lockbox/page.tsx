@@ -16,7 +16,7 @@ export default async function LockboxAddonPage() {
     .eq("status", "active")
     .maybeSingle();
 
-  const plan = subscription?.plan as
+  const plan = subscription?.plan as unknown as
     | { lockbox_mode: string; lockbox_addon_price_cents: number | null }
     | undefined;
 

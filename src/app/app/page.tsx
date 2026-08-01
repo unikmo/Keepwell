@@ -36,7 +36,7 @@ export default async function DashboardPage() {
     ]);
 
   const firstName = (member?.full_name ?? user?.email ?? "there").split(" ")[0];
-  const plan = subscription?.plan as
+  const plan = subscription?.plan as unknown as
     | { id: string; name: string; covered_events_per_year: number }
     | undefined;
   const total = plan?.covered_events_per_year ?? member?.covered_events_total ?? 3;

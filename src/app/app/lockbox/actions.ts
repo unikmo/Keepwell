@@ -23,7 +23,7 @@ export async function purchaseLockboxAddon() {
 
   if (!subscription) redirect("/app/help?error=No active subscription found");
 
-  const plan = subscription.plan as { lockbox_addon_price_cents: number | null } | null;
+  const plan = subscription.plan as unknown as { lockbox_addon_price_cents: number | null } | null;
   const priceCents = plan?.lockbox_addon_price_cents ?? 1999;
 
   await supabase
