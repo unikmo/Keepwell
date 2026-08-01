@@ -7,7 +7,7 @@ export function Nav() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center gap-2 font-display text-lg font-medium text-parchment">
           <Keyhole className="h-5 w-4 text-brass" />
-          Digital Sentinel
+          Keepwell
         </Link>
 
         <nav className="hidden items-center gap-8 text-sm text-parchment-dim md:flex">

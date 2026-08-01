@@ -55,18 +55,19 @@ export default async function Home() {
         {/* HERO */}
         <section className="relative overflow-hidden border-b border-line/70">
           <div className="mx-auto max-w-5xl px-6 pb-16 pt-16 sm:pb-20 sm:pt-24">
-            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-16">
+            <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-16">
               {/* MASCOT */}
               <div className="flex justify-center lg:justify-start">
                 <div className="relative">
                   <div className="absolute inset-0 -z-10 rounded-full bg-brass/15 blur-3xl" />
+                  <div className="absolute bottom-1 left-1/2 z-0 h-5 w-28 -translate-x-1/2 rounded-full bg-black/50 blur-md sm:h-6 sm:w-36 lg:w-40" />
                   <Image
                     src="/kayo-mascot.png"
-                    alt="Kayo, the Digital Sentinel mascot — a warm brass key-shaped character"
+                    alt="Kayo, the Keepwell mascot — a warm brass key-shaped character"
                     width={261}
                     height={398}
                     priority
-                    className="h-auto w-44 drop-shadow-[0_25px_45px_rgba(0,0,0,0.45)] sm:w-56 lg:w-full lg:max-w-[280px]"
+                    className="relative z-10 h-auto w-52 drop-shadow-[0_25px_45px_rgba(0,0,0,0.45)] sm:w-64 lg:w-full lg:max-w-[320px]"
                   />
                 </div>
               </div>
