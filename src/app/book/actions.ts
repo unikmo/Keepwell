@@ -2,56 +2,67 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-
-const REFERENCE_PRICE_CENTS = 8900;
-const FIXED_PRICE_JOB_TYPES = new Set(["lockout", "rekey"]);
+import { getServiceMenuItem } from "@/lib/service-menu";
 
 export async function createGuestBooking(formData: FormData) {
-  const jobType = String(formData.get("job_type") ?? "lockout");
+  const serviceId = String(formData.get("service_id") ?? "");
+  const service = getServiceMenuItem(serviceId);
   const address = String(formData.get("address") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim() || null;
 
-  if (!address || !phone) {
-    redirect(`/book/review?job_type=${encodeURIComponent(jobType)}&address=${encodeURIComponent(address)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email ?? "")}&error=${encodeURIComponent("Address and phone are required.")}`);
+  if (!service) {
+    redirect(`/book?error=${encodeURIComponent("Choose a valid service.")}`);
   }
 
-  const isReferencePrice = FIXED_PRICE_JOB_TYPES.has(jobType);
+  if (!address || !phone) {
+    redirect(
+      `/book/review?service_id=${encodeURIComponent(service.id)}&address=${encodeURIComponent(address)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email ?? "")}&error=${encodeURIComponent("Address and phone are required.")}`
+    );
+  }
+
   const supabase = await createClient();
 
   const { data: booking, error } = await supabase
     .from("guest_bookings")
     .insert({
-      job_type: jobType,
+      job_type: service.jobType,
+      service_id: service.id,
       address,
       phone,
       email,
-      price_cents: isReferencePrice ? REFERENCE_PRICE_CENTS : 0,
+      price_cents: service.customerPriceCents,
       discount_pct: 0,
       payment_status: "pending",
-      // Keep the existing database-compatible status until the marketplace
-      // state model is migrated. The UI deliberately treats this as a
-      // submitted request, not as proof that a provider has been dispatched.
+      // Legacy-compatible status. Operational state now lives in
+      // provider_job_offers until the guest_bookings status model is migrated.
       status: "dispatched",
     })
     .select()
     .single();
 
   if (error || !booking) {
-    redirect(`/book/review?job_type=${encodeURIComponent(jobType)}&address=${encodeURIComponent(address)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email ?? "")}&error=${encodeURIComponent(error?.message ?? "Could not create the request")}`);
+    redirect(
+      `/book/review?service_id=${encodeURIComponent(service.id)}&address=${encodeURIComponent(address)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email ?? "")}&error=${encodeURIComponent(error?.message ?? "Could not create the request")}`
+    );
   }
 
   await supabase.from("analytics_events").insert({
     event_name: "service_request_created",
     guest_booking_id: booking.id,
-    metadata: { job_type: jobType, payment_status: "pending" },
+    metadata: {
+      service_id: service.id,
+      job_type: service.jobType,
+      customer_price_cents: service.customerPriceCents,
+      payment_status: "pending",
+    },
   });
 
   redirect(`/book/${booking.id}`);
 }
 
-// Development / operations helper only. A real provider completion workflow
-// should replace this before production marketplace operations.
+// Development / operations helper only. Provider completion should replace
+// this before public marketplace launch.
 export async function completeGuestBooking(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   const supabase = await createClient();
@@ -68,31 +79,10 @@ export async function completeGuestBooking(formData: FormData) {
     })
     .eq("id", id);
 
-  if (booking.phone) {
-    await supabase.from("outbound_messages").insert({
-      guest_booking_id: id,
-      channel: "sms",
-      template: "guest_upsell_1hr",
-      to_address: booking.phone,
-      body: "Keepwell can keep your property access, trusted contacts and future service requests in one place. Explore membership from $29/yr.",
-      status: "queued",
-    });
-  }
-  if (booking.email) {
-    await supabase.from("outbound_messages").insert({
-      guest_booking_id: id,
-      channel: "email",
-      template: "guest_upsell_1hr",
-      to_address: booking.email,
-      body: "Keepwell can keep your property access, trusted contacts and future service requests in one place. Explore membership from $29/yr.",
-      status: "queued",
-    });
-  }
-
   await supabase.from("analytics_events").insert({
     event_name: "service_request_completed",
     guest_booking_id: id,
-    metadata: { job_type: booking.job_type },
+    metadata: { job_type: booking.job_type, service_id: booking.service_id },
   });
 
   redirect(`/book/${id}`);

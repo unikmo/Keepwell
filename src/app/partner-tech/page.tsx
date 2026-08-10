@@ -1,29 +1,16 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
-import { CTABand } from "@/components/CTABand";
+import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
 export const metadata: Metadata = {
   title: "Join the Keepwell provider network",
-  description: "Independent property-access providers can apply to receive clearly scoped Keepwell marketplace requests in the service areas they choose.",
+  description:
+    "Claim a preloaded provider profile or register a new business to receive clearly scoped Keepwell requests with fixed payout shown before acceptance.",
   alternates: { canonical: "/partner-tech" },
 };
-
-const REASONS = [
-  { title: "Clearly scoped requests", body: "See the service type and relevant property details before deciding whether to accept a request." },
-  { title: "Transparent economics", body: "Provider payout and any platform fee should be visible before acceptance, not discovered after the job." },
-  { title: "You remain independent", body: "Choose service area and availability. Keepwell is the marketplace platform, not your employer or field supervisor." },
-  { title: "Build marketplace history", body: "Completed work can build a provider record inside Keepwell once real ratings and job history exist." },
-];
-
-const REQUIREMENTS = [
-  "Identity and business verification",
-  "Applicable trade credentials where required for the service and jurisdiction",
-  "Proof of insurance where required by Keepwell's provider standards",
-  "Accurate service area and availability information",
-  "Agreement to platform pricing, conduct and completion rules",
-];
 
 export default function PartnerTechPage() {
   return (
@@ -32,56 +19,65 @@ export default function PartnerTechPage() {
       <main className="flex-1">
         <PageHero
           eyebrow="For independent providers"
-          title="Take the jobs that fit. Keep your independence."
-          body="Keepwell is building a property-access marketplace around clear requests, transparent economics and a clean handoff between customer and provider."
+          title="Your business may already be listed. Claim it, verify it, then choose the jobs you want."
+          body="Keepwell preloads public business profiles to build marketplace supply. Providers claim their profile, complete verification and use a provider dashboard to control availability and accept or decline fixed-payout requests."
         />
 
-        <section className="border-b border-line/70 py-20">
+        <section className="border-b border-line/70 py-16">
+          <div className="mx-auto grid max-w-6xl gap-4 px-6 md:grid-cols-3">
+            {[
+              ["1", "Find or create your profile", "Search the preloaded provider directory. If your business is already there, claim it instead of creating a duplicate."],
+              ["2", "Confirm ownership", "Create a provider account and submit business contact details. Keepwell reviews the claim before activation."],
+              ["3", "Use the provider dashboard", "Set availability, see the scope and fixed payout, then accept or decline each offered job."],
+            ].map(([n, title, body]) => (
+              <div key={n} className="rounded-2xl border border-line bg-surface p-6">
+                <div className="font-mono text-xs text-brass">{n.padStart(2, "0")}</div>
+                <h2 className="mt-3 font-display text-xl text-parchment">{title}</h2>
+                <p className="mt-2 text-sm leading-6 text-parchment-dim">{body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mx-auto mt-8 flex max-w-6xl flex-col gap-3 px-6 sm:flex-row">
+            <Link href="/providers/claim" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink">
+              Find & claim my profile
+            </Link>
+            <Link href="/provider" className="inline-flex min-h-12 items-center justify-center rounded-full border border-line px-6 py-3 text-sm font-semibold text-parchment">
+              Provider dashboard
+            </Link>
+          </div>
+        </section>
+
+        <section className="border-b border-line/70 bg-surface/15 py-16">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {REASONS.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-line bg-surface p-6">
-                  <h2 className="font-display text-xl text-parchment">{item.title}</h2>
-                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{item.body}</p>
-                </div>
-              ))}
+            <div className="eyebrow">Example provider economics</div>
+            <h2 className="mt-3 max-w-2xl font-display text-3xl text-parchment">Payout is shown before acceptance</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">
+              The pilot payout schedule is an operating starting point, not a promise that every service category is live in every ZIP.
+            </p>
+            <div className="mt-8 overflow-hidden rounded-2xl border border-line bg-surface">
+              <div className="divide-y divide-line">
+                {SERVICE_MENU.map((service) => (
+                  <div key={service.id} className="grid gap-2 px-5 py-4 sm:grid-cols-[1.3fr_.8fr_.7fr_.7fr] sm:items-center">
+                    <div className="text-sm font-medium text-parchment">{service.title}</div>
+                    <div className="text-xs text-parchment-dim">{service.timing}</div>
+                    <div className="text-xs text-parchment-dim">Customer {formatServicePrice(service.customerPriceCents)}</div>
+                    <div className="font-mono text-sm text-verdigris">Payout {formatServicePrice(service.providerPayoutCents)}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="border-b border-line/70 bg-surface/20 py-20">
-          <div className="mx-auto max-w-5xl px-6">
-            <div className="grid gap-8 md:grid-cols-3">
-              {[{n:"01",title:"Apply",body:"Provide your service area, business information, experience and the services you want to receive."},{n:"02",title:"Get approved",body:"Keepwell reviews the provider information and any required credentials or insurance before activation."},{n:"03",title:"Accept requests",body:"Available marketplace requests can be accepted or declined based on your own schedule and service area."}].map((step) => (
-                <div key={step.n} className="border-t border-line pt-5">
-                  <div className="font-mono text-xs text-brass">{step.n}</div>
-                  <h2 className="mt-3 font-display text-xl text-parchment">{step.title}</h2>
-                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{step.body}</p>
-                </div>
-              ))}
-            </div>
+        <section className="py-16">
+          <div className="mx-auto max-w-4xl px-6 text-center">
+            <div className="eyebrow">Provider standards</div>
+            <h2 className="mt-3 font-display text-3xl text-parchment">Verification before activation</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-parchment-dim">
+              Keepwell verifies identity/business ownership, service area, insurance where required by platform policy, and applicable credentials where the service or jurisdiction requires them. We do not invent credential requirements that do not exist.
+            </p>
           </div>
         </section>
-
-        <section className="py-20">
-          <div className="mx-auto max-w-3xl px-6">
-            <div className="eyebrow text-center">Provider standards</div>
-            <h2 className="mt-3 text-center font-display text-3xl text-parchment">What Keepwell needs before activation</h2>
-            <ul className="mx-auto mt-8 max-w-xl space-y-3 text-sm leading-6 text-parchment-dim">
-              {REQUIREMENTS.map((item) => <li key={item} className="flex gap-3"><span className="text-verdigris">✓</span><span>{item}</span></li>)}
-            </ul>
-            <p className="mx-auto mt-6 max-w-xl text-xs leading-5 text-parchment-dim/80">Requirements should be applied by service type and jurisdiction. Keepwell should not claim a credential requirement that does not actually exist in a provider's location.</p>
-          </div>
-        </section>
-
-        <CTABand
-          title="Interested in joining the provider network?"
-          body="Send your service area and business details. Keepwell can use provider applications to build supply before opening customer demand in a market."
-          ctaLabel="Apply as a provider"
-          ctaHref="/contact?topic=Provider"
-          secondaryLabel="How the platform works"
-          secondaryHref="/how-it-works"
-        />
       </main>
       <Footer />
     </div>

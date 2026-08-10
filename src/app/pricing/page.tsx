@@ -5,29 +5,31 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 import { getPlans, planDisplay, formatUsd } from "@/lib/plans";
+import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
 export const metadata: Metadata = {
-  title: "Membership pricing",
-  description: "Compare Keepwell membership options for property access tools, trusted contacts and covered-event benefits.",
+  title: "Keepwell prices — one-off service & membership",
+  description:
+    "See Keepwell's fixed one-off property-access service menu and compare membership options. No membership is required to request service.",
   alternates: { canonical: "/pricing" },
 };
 
 const FAQ = [
   {
     q: "Do I need a membership to use Keepwell?",
-    a: "No. One-off service requests remain available. Membership is for owners who want Keepwell set up before an access problem happens and who value the ongoing property-access tools and plan benefits.",
+    a: "No. One-off service requests are a core Keepwell offer. Membership is for owners who want ongoing property-access tools plus eligible covered-event benefits.",
+  },
+  {
+    q: "Is the one-off price really shown before I request service?",
+    a: "Yes for the standard scopes listed here. If the job needs excluded hardware, destructive entry, specialty locks, door repair, or another out-of-scope item, the additional price must be shown and approved before that work begins.",
   },
   {
     q: "Who performs the service work?",
-    a: "Independent local providers perform the field service. Keepwell operates the platform, request flow, property records and marketplace rules.",
+    a: "Independent local providers perform the field service. Keepwell operates the platform, request flow, property records, pricing rules, and marketplace workflow.",
   },
   {
     q: "Are providers always available?",
-    a: "No marketplace should promise that before it has a real match. Availability depends on participating providers, service type, location and time. Keepwell should only show a provider or ETA after an actual provider accepts.",
-  },
-  {
-    q: "Is membership insurance?",
-    a: "No. Keepwell membership is a service-platform membership and is not a substitute for homeowners, renters or auto insurance.",
+    a: "No. Availability depends on participating providers, service type, location, and time. Keepwell only shows provider identity or arrival timing after a real provider accepts.",
   },
 ];
 
@@ -39,21 +41,80 @@ export default async function PricingPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="Membership"
-          title="Use Keepwell once, or keep it ready year-round"
-          body="Membership adds ongoing access tools and plan benefits. One-off service requests remain available without forcing every customer into a subscription."
+          eyebrow="Transparent pricing"
+          title="Know the one-off price. Then decide whether membership is worth it."
+          body="No membership is required. Keepwell's fixed service menu is the baseline; membership should earn its place by making repeat ownership needs easier and reducing eligible event costs."
         />
 
-        <section className="border-b border-line/70 py-20">
+        <section className="border-b border-line/70 py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl">
+                <div className="eyebrow">One-off service menu</div>
+                <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
+                  Fixed standard prices, visible before the request
+                </h2>
+                <p className="mt-4 text-sm leading-6 text-parchment-dim">
+                  These are Keepwell's pilot customer prices for the standard scope shown. No bait-price service-call fee is added later.
+                </p>
+              </div>
+              <Link
+                href="/book"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink"
+              >
+                Request one-off service
+              </Link>
+            </div>
+
+            <div className="mt-10 overflow-hidden rounded-3xl border border-line bg-surface">
+              <div className="hidden grid-cols-[1.25fr_.9fr_.6fr_1.6fr] gap-4 border-b border-line bg-surface-raised px-6 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-parchment-dim md:grid">
+                <div>Service</div><div>When</div><div>Price</div><div>Standard scope</div>
+              </div>
+              <div className="divide-y divide-line">
+                {SERVICE_MENU.map((item) => (
+                  <div key={item.id} className="grid gap-3 px-5 py-5 md:grid-cols-[1.25fr_.9fr_.6fr_1.6fr] md:items-start md:gap-4 md:px-6">
+                    <div>
+                      <div className="font-medium text-parchment">{item.title}</div>
+                      <div className="mt-1 text-xs leading-5 text-verdigris">{item.memberNote}</div>
+                    </div>
+                    <div className="text-sm text-parchment-dim">{item.timing}</div>
+                    <div className="font-mono text-xl text-brass">{formatServicePrice(item.customerPriceCents)}</div>
+                    <div className="text-xs leading-5 text-parchment-dim">{item.scope}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-brass/20 bg-brass/[0.05] p-5 text-xs leading-5 text-parchment-dim">
+              <strong className="text-parchment">Price rule:</strong> if the provider discovers work outside the listed standard scope, the additional amount must be shown in Keepwell and accepted by the customer before that additional work starts.
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-line/70 bg-surface/15 py-16 sm:py-20">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="grid gap-6 lg:grid-cols-3">
+            <div className="mx-auto max-w-2xl text-center">
+              <div className="eyebrow">Membership</div>
+              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
+                Now compare the repeat-owner option
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-parchment-dim">
+                Membership is optional. The comparison only works if the one-off alternative is visible first.
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
               {plans.map((plan) => {
                 const { features, addOns, tagline } = planDisplay(plan);
                 const highlighted = plan.id === "household";
                 return (
                   <div
                     key={plan.id}
-                    className={`relative flex flex-col rounded-3xl border p-7 sm:p-8 ${highlighted ? "border-brass/70 bg-surface-raised shadow-[0_18px_60px_-32px_rgba(212,173,88,.65)]" : "border-line bg-surface"}`}
+                    className={`relative flex flex-col rounded-3xl border p-7 sm:p-8 ${
+                      highlighted
+                        ? "border-brass/70 bg-surface-raised shadow-[0_18px_60px_-32px_rgba(212,173,88,.65)]"
+                        : "border-line bg-surface"
+                    }`}
                   >
                     {highlighted && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brass px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-ink">
@@ -87,7 +148,11 @@ export default async function PricingPage() {
                     <div className="flex-1" />
                     <Link
                       href={`/signup?plan=${plan.id}`}
-                      className={`mt-8 inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${highlighted ? "bg-brass text-ink hover:brightness-110" : "border border-line text-parchment hover:border-parchment-dim"}`}
+                      className={`mt-8 inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${
+                        highlighted
+                          ? "bg-brass text-ink hover:brightness-110"
+                          : "border border-line text-parchment hover:border-parchment-dim"
+                      }`}
                     >
                       Continue with {plan.name}
                     </Link>
@@ -97,18 +162,14 @@ export default async function PricingPage() {
             </div>
 
             <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-line bg-surface/60 p-6 text-sm leading-6 text-parchment-dim">
-              <strong className="text-parchment">Platform note:</strong> covered-event benefits describe plan eligibility, not a promise that a provider is instantly available in every location. A real provider match must happen before Keepwell shows provider identity or arrival timing.
-            </div>
-
-            <div className="mt-8 text-center text-sm text-parchment-dim">
-              Need a single service instead? <Link href="/book" className="font-medium text-brass hover:underline">Request one-off service →</Link>
+              <strong className="text-parchment">Unit-economics warning:</strong> the current low annual membership prices include multiple covered events. Before accepting paid memberships at scale, Keepwell should validate actual provider payouts and expected event utilization against each tier.
             </div>
           </div>
         </section>
 
         <section className="py-20">
           <div className="mx-auto max-w-3xl px-6">
-            <h2 className="text-center font-display text-3xl font-medium text-parchment">Membership questions</h2>
+            <h2 className="text-center font-display text-3xl font-medium text-parchment">Pricing questions</h2>
             <div className="mt-10 space-y-6">
               {FAQ.map((item) => (
                 <div key={item.q} className="border-b border-line/70 pb-6">
@@ -121,10 +182,10 @@ export default async function PricingPage() {
         </section>
 
         <CTABand
-          title="Membership should make the next access problem easier"
-          body="Set up trusted access and property context before you need them, while keeping one-off service available for everyone else."
-          ctaLabel="Choose a plan"
-          ctaHref="/signup"
+          title="Need one service? Use Keepwell once."
+          body="Membership is optional. Start with the fixed one-off price and join later only if the ongoing benefits make sense."
+          ctaLabel="Request one-off service"
+          ctaHref="/book"
           secondaryLabel="How it works"
           secondaryHref="/how-it-works"
         />

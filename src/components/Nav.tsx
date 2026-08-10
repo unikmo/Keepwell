@@ -3,8 +3,8 @@ import { Keyhole } from "./Keyhole";
 
 const NAV_LINKS = [
   { label: "Services", href: "/services" },
+  { label: "Prices", href: "/pricing" },
   { label: "How it works", href: "/how-it-works" },
-  { label: "Membership", href: "/pricing" },
   { label: "Property managers", href: "/for-property-managers" },
   { label: "Providers", href: "/partner-tech" },
 ];
@@ -58,6 +58,9 @@ export function Nav() {
               ))}
               <Link href="/for-real-estate-agents" className="rounded-xl px-4 py-3 text-sm text-parchment transition hover:bg-surface">
                 Real estate professionals
+              </Link>
+              <Link href="/providers" className="rounded-xl px-4 py-3 text-sm text-parchment transition hover:bg-surface">
+                Provider directory
               </Link>
               <Link href="/login" className="rounded-xl px-4 py-3 text-sm text-parchment transition hover:bg-surface">
                 Log in
