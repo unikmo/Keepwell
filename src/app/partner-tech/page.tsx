@@ -5,46 +5,24 @@ import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "Become a Partner Tech — Locksmith & Lockout Jobs, Digital Sentinel",
-  description:
-    "Join the Digital Sentinel tech network: pre-verified lockout, rekey, and smart-lock jobs sent straight to your phone, upfront pricing, no cold-calling for work.",
+  title: "Join the Keepwell provider network",
+  description: "Independent property-access providers can apply to receive clearly scoped Keepwell marketplace requests in the service areas they choose.",
   alternates: { canonical: "/partner-tech" },
 };
 
 const REASONS = [
-  {
-    icon: "📱",
-    title: "Jobs come to you",
-    body: "Covered dispatch requests route straight to available techs near the job — no ad spend, no cold calls, no bidding against five other locksmiths for the same lead.",
-  },
-  {
-    icon: "💵",
-    title: "Fixed dispatch pay, transparent upgrade pricing",
-    body: "Covered visits pay a flat dispatch rate. Any suggested upgrade — a rekey, a lock swap, a smart lock install — has a fixed member price shown before you touch anything, so there's no haggling on-site.",
-  },
-  {
-    icon: "⭐",
-    title: "Ratings that actually follow you",
-    body: "Your job count and rating are visible to members before you even arrive, building a reputation that compounds instead of resetting with every new platform.",
-  },
-  {
-    icon: "🗓️",
-    title: "Work the hours you want",
-    body: "Set your own availability windows. Covered dispatch fills the gaps in your schedule instead of competing with your existing customer base.",
-  },
+  { title: "Clearly scoped requests", body: "See the service type and relevant property details before deciding whether to accept a request." },
+  { title: "Transparent economics", body: "Provider payout and any platform fee should be visible before acceptance, not discovered after the job." },
+  { title: "You remain independent", body: "Choose service area and availability. Keepwell is the marketplace platform, not your employer or field supervisor." },
+  { title: "Build marketplace history", body: "Completed work can build a provider record inside Keepwell once real ratings and job history exist." },
 ];
 
 const REQUIREMENTS = [
-  "Licensed locksmith or equivalent trade credential where required by your state",
-  "Pass a background check before your first dispatch",
-  "Carry liability insurance (we'll ask for proof during onboarding)",
-  "Reliable transportation and phone for real-time dispatch",
-];
-
-const STEPS = [
-  { n: "01", title: "Apply", body: "Tell us your service area, license status, and experience." },
-  { n: "02", title: "Get verified", body: "Background check and credential verification — usually a few business days." },
-  { n: "03", title: "Start getting dispatched", body: "Set your availability and covered jobs start routing to your phone." },
+  "Identity and business verification",
+  "Applicable trade credentials where required for the service and jurisdiction",
+  "Proof of insurance where required by Keepwell's provider standards",
+  "Accurate service area and availability information",
+  "Agreement to platform pricing, conduct and completion rules",
 ];
 
 export default function PartnerTechPage() {
@@ -53,45 +31,32 @@ export default function PartnerTechPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="Become a partner tech"
-          title="Lockout and rekey jobs, without chasing leads"
-          body="Join the verified tech network behind Digital Sentinel's covered dispatch — pre-qualified jobs, upfront pricing, and members who already trust the badge on your profile before you knock."
+          eyebrow="For independent providers"
+          title="Take the jobs that fit. Keep your independence."
+          body="Keepwell is building a property-access marketplace around clear requests, transparent economics and a clean handoff between customer and provider."
         />
 
         <section className="border-b border-line/70 py-20">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="mx-auto max-w-2xl text-center">
-              <div className="eyebrow">Why techs partner with us</div>
-              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
-                Less time chasing work, more time doing it
-              </h2>
-            </div>
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {REASONS.map((r) => (
-                <div key={r.title} className="rounded-2xl border border-line bg-surface p-6">
-                  <div className="text-2xl">{r.icon}</div>
-                  <h3 className="mt-4 font-display text-lg font-medium text-parchment">{r.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{r.body}</p>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {REASONS.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-line bg-surface p-6">
+                  <h2 className="font-display text-xl text-parchment">{item.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{item.body}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-b border-line/70 bg-surface/30 py-20">
+        <section className="border-b border-line/70 bg-surface/20 py-20">
           <div className="mx-auto max-w-5xl px-6">
-            <div className="mx-auto max-w-2xl text-center">
-              <div className="eyebrow">Getting started</div>
-              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
-                Three steps to your first dispatch
-              </h2>
-            </div>
-            <div className="mt-14 grid gap-8 sm:grid-cols-3">
-              {STEPS.map((s) => (
-                <div key={s.n} className="text-center sm:text-left">
-                  <div className="font-mono text-sm text-brass">{s.n}</div>
-                  <h3 className="mt-3 font-display text-xl font-medium text-parchment">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{s.body}</p>
+            <div className="grid gap-8 md:grid-cols-3">
+              {[{n:"01",title:"Apply",body:"Provide your service area, business information, experience and the services you want to receive."},{n:"02",title:"Get approved",body:"Keepwell reviews the provider information and any required credentials or insurance before activation."},{n:"03",title:"Accept requests",body:"Available marketplace requests can be accepted or declined based on your own schedule and service area."}].map((step) => (
+                <div key={step.n} className="border-t border-line pt-5">
+                  <div className="font-mono text-xs text-brass">{step.n}</div>
+                  <h2 className="mt-3 font-display text-xl text-parchment">{step.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{step.body}</p>
                 </div>
               ))}
             </div>
@@ -99,29 +64,23 @@ export default function PartnerTechPage() {
         </section>
 
         <section className="py-20">
-          <div className="mx-auto max-w-2xl px-6">
-            <div className="text-center">
-              <div className="eyebrow">Requirements</div>
-              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
-                What you'll need to apply
-              </h2>
-            </div>
-            <ul className="mx-auto mt-10 max-w-md space-y-3 text-sm">
-              {REQUIREMENTS.map((r) => (
-                <li key={r} className="flex items-start gap-2 text-parchment">
-                  <span className="mt-0.5 text-verdigris">✓</span>
-                  {r}
-                </li>
-              ))}
+          <div className="mx-auto max-w-3xl px-6">
+            <div className="eyebrow text-center">Provider standards</div>
+            <h2 className="mt-3 text-center font-display text-3xl text-parchment">What Keepwell needs before activation</h2>
+            <ul className="mx-auto mt-8 max-w-xl space-y-3 text-sm leading-6 text-parchment-dim">
+              {REQUIREMENTS.map((item) => <li key={item} className="flex gap-3"><span className="text-verdigris">✓</span><span>{item}</span></li>)}
             </ul>
+            <p className="mx-auto mt-6 max-w-xl text-xs leading-5 text-parchment-dim/80">Requirements should be applied by service type and jurisdiction. Keepwell should not claim a credential requirement that does not actually exist in a provider's location.</p>
           </div>
         </section>
 
         <CTABand
-          title="Ready to apply?"
-          body="Send us your service area and license details — we'll follow up with next steps on verification."
-          ctaLabel="Apply to join"
-          ctaHref="/contact?topic=Partnership"
+          title="Interested in joining the provider network?"
+          body="Send your service area and business details. Keepwell can use provider applications to build supply before opening customer demand in a market."
+          ctaLabel="Apply as a provider"
+          ctaHref="/contact?topic=Provider"
+          secondaryLabel="How the platform works"
+          secondaryHref="/how-it-works"
         />
       </main>
       <Footer />

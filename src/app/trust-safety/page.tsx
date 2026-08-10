@@ -5,51 +5,46 @@ import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "Trust & Safety — Digital Sentinel",
-  description:
-    "How Digital Sentinel vets techs, verifies identity before dispatch, protects your vault, and guarantees pricing before any work starts.",
+  title: "Trust and safety",
+  description: "How Keepwell separates platform responsibilities from independent provider responsibilities and handles property-access information.",
   alternates: { canonical: "/trust-safety" },
 };
 
 const PILLARS = [
   {
-    icon: "🛂",
-    title: "Every tech is background-checked",
-    body: "No one gets into the dispatch network without passing a background check and verifying trade credentials where required. It's a condition of joining, not an optional badge.",
+    title: "No fictional provider status",
+    body: "Keepwell should never show a provider name, rating, verification badge or ETA until that information comes from a real provider record and accepted request.",
   },
   {
-    icon: "🪪",
-    title: "Verified ID before dispatch, every time",
-    body: "When a tech is on the way, you see their name, photo, job count, and rating in the app before they arrive — the same identity verification shown on every dispatch screen, no exceptions.",
+    title: "Clear platform role",
+    body: "Keepwell structures requests, marketplace rules and property records. Independent providers perform field service and remain responsible for their own work.",
   },
   {
-    icon: "💲",
-    title: "Price certainty over discounts",
-    body: "Covered visits cost $0. Any suggested upgrade — a rekey, a lock swap, a smart lock install — shows a fixed price before the tech touches anything. No on-site negotiation, no surprise invoice.",
+    title: "Scope before work",
+    body: "The customer should see the requested service scope and any additional price before authorizing work beyond that scope.",
   },
   {
-    icon: "🔒",
-    title: "Your vault is encrypted, and scoped on purpose",
-    body: "Keys, codes, and photos you save are encrypted on your device. The vault is deliberately limited to everyday household access — it's never used for legal or estate documentation, and we won't expand it into that.",
+    title: "Access information stays intentional",
+    body: "The vault should be limited to property-access details and trusted-contact information, with permissions and security designed around that narrow use case.",
   },
 ];
 
-const DATA_POINTS = [
+const FAQ = [
   {
-    q: "Who can see what's in my digital vault?",
-    a: "You, and anyone you explicitly grant access to through trusted contacts. Dispatch techs never see your vault — if they need a code to get you back in, that's handled separately at the door, not through vault access.",
+    q: "Does Keepwell employ the service provider?",
+    a: "No. Keepwell is designed as a marketplace platform. Participating providers are independent businesses or professionals, not Keepwell employees.",
   },
   {
-    q: "What happens if a tech doesn't show up or something goes wrong on a visit?",
-    a: "Report it through the app or contact support directly — every dispatch is tied to a specific tech and job record, so we can investigate and act on it, including removing a tech from the network if warranted.",
+    q: "How does provider verification work?",
+    a: "The platform should verify the provider information required by its onboarding standard and the relevant service area before activation. Keepwell should only display verification claims that are actually supported by the provider record.",
   },
   {
-    q: "Is membership the same as insurance?",
-    a: "No. Digital Sentinel is a membership that covers a defined set of events (see the Member Agreement for specifics) — it isn't an insurance policy and shouldn't be treated as a substitute for homeowners or renters insurance.",
+    q: "Can a service request be unavailable?",
+    a: "Yes. Marketplace supply varies. A request is not the same thing as a confirmed provider match, and the interface should make that distinction explicit.",
   },
   {
-    q: "How is my payment and account data handled?",
-    a: "Payment processing is handled by a PCI-compliant third-party processor — we don't store full card numbers ourselves. See the Privacy Policy for the full breakdown of what we collect and how it's used.",
+    q: "Is membership insurance?",
+    a: "No. Keepwell membership is a service-platform membership and should not be treated as a substitute for property, renters or auto insurance.",
   },
 ];
 
@@ -60,47 +55,36 @@ export default function TrustSafetyPage() {
       <main className="flex-1">
         <PageHero
           eyebrow="Trust & safety"
-          title="Calm authority, not just a promise"
-          body="The systems behind every dispatch: who's allowed to show up at your door, what they can see, and what you're guaranteed before any work starts."
+          title="Trust starts with not pretending the marketplace has done more than it has"
+          body="Provider identity, timing, payment and service status should reflect real platform events — never placeholders presented as facts."
         />
-
         <section className="border-b border-line/70 py-20">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="grid gap-5 sm:grid-cols-2">
-              {PILLARS.map((p) => (
-                <div key={p.title} className="rounded-2xl border border-line bg-surface p-6">
-                  <div className="text-2xl">{p.icon}</div>
-                  <h2 className="mt-4 font-display text-lg font-medium text-parchment">{p.title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{p.body}</p>
-                </div>
-              ))}
-            </div>
+          <div className="mx-auto grid max-w-6xl gap-5 px-6 sm:grid-cols-2">
+            {PILLARS.map((pillar) => (
+              <div key={pillar.title} className="rounded-2xl border border-line bg-surface p-7">
+                <h2 className="font-display text-2xl text-parchment">{pillar.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-parchment-dim">{pillar.body}</p>
+              </div>
+            ))}
           </div>
         </section>
-
         <section className="py-20">
           <div className="mx-auto max-w-3xl px-6">
-            <div className="text-center">
-              <div className="eyebrow">Common questions</div>
-              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
-                Trust & safety FAQ
-              </h2>
-            </div>
-            <div className="mt-12 space-y-6">
-              {DATA_POINTS.map((d) => (
-                <div key={d.q} className="border-b border-line/70 pb-6">
-                  <h3 className="font-medium text-parchment">{d.q}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{d.a}</p>
+            <h2 className="text-center font-display text-3xl text-parchment">Common questions</h2>
+            <div className="mt-10 space-y-6">
+              {FAQ.map((item) => (
+                <div key={item.q} className="border-b border-line/70 pb-6">
+                  <h3 className="font-medium text-parchment">{item.q}</h3>
+                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{item.a}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
-
         <CTABand
           title="Have a trust or safety concern?"
-          body="Report an incident, ask about our vetting process, or flag anything that doesn't sit right — we take this seriously and read every message."
-          ctaLabel="Contact us"
+          body="Use the contact form for provider, account, privacy or safety concerns."
+          ctaLabel="Contact Keepwell"
           ctaHref="/contact?topic=Trust%20%26%20safety"
         />
       </main>

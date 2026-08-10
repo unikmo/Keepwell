@@ -5,40 +5,16 @@ import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "How It Works — Digital Sentinel",
-  description:
-    "How Digital Sentinel membership works: join in three minutes, store keys and codes in your digital vault, and tap Get help for covered dispatch when you need it.",
+  title: "How Keepwell works",
+  description: "See how Keepwell turns a property-access problem into a structured service request and keeps the outcome attached to the property.",
   alternates: { canonical: "/how-it-works" },
 };
 
 const STEPS = [
-  {
-    n: "01",
-    title: "Join in 3 minutes",
-    body: "Pick a plan, add your household, register a trusted contact or lockbox. No truck roll required to sign up.",
-    detail:
-      "Signup takes a name, email, and password — no site visit, no waiting period. Household+ members get their welcome visit scheduled right from the dashboard afterward.",
-  },
-  {
-    n: "02",
-    title: "Live your life",
-    body: "Your keys and codes live in the vault. Nothing else to track or worry about until you actually need something.",
-    detail:
-      "The vault holds photos and notes for everyday keys, gate codes, and lockbox combinations — encrypted, and scoped deliberately to household use, not legal or estate documents.",
-  },
-  {
-    n: "03",
-    title: "One tap, if it happens",
-    body: "Locked out? Open the app, tap Get help. A verified tech is on the way, phone in hand.",
-    detail:
-      "Before dispatching, we'll check whether a registered lockbox or trusted contact can solve it for free right now. If not, a background-checked tech is dispatched with a live ETA.",
-  },
-];
-
-const WHATS_COVERED = [
-  { title: "Home lockout", body: "Locked out of your own front door — a covered event on every plan." },
-  { title: "Car lockout, at home", body: "Locked your keys in the car in your own driveway or garage." },
-  { title: "Standard rekey", body: "Rekeying existing locks, drawn from the same yearly covered-event pool." },
+  { n: "01", title: "Choose the property and need", body: "Start a lockout, rekey or related access request. Keepwell captures the service scope and the property details needed to route it." },
+  { n: "02", title: "Check trusted access first", body: "If a registered contact or access method can solve the problem, use that path before escalating to a provider visit." },
+  { n: "03", title: "Match through the provider network", body: "When service is needed, Keepwell routes the request to participating independent providers. A provider and ETA are only shown after a real match occurs." },
+  { n: "04", title: "Keep the property record", body: "The request and outcome remain part of the property's access history, so the next event starts with context." },
 ];
 
 export default function HowItWorksPage() {
@@ -48,57 +24,51 @@ export default function HowItWorksPage() {
       <main className="flex-1">
         <PageHero
           eyebrow="How it works"
-          title="Three minutes to set up. There when you need it."
-          body="A membership built around the things you hope you'll never deal with — and a few you'll actually use often."
+          title="A clean workflow between the property owner and the provider"
+          body="Keepwell coordinates the request and property context. Independent local providers perform the field service."
         />
-
+        <section className="border-b border-line/70 py-20">
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="grid gap-8 md:grid-cols-2">
+              {STEPS.map((step) => (
+                <div key={step.n} className="rounded-2xl border border-line bg-surface p-7">
+                  <div className="font-mono text-xs text-brass">{step.n}</div>
+                  <h2 className="mt-3 font-display text-2xl text-parchment">{step.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-parchment-dim">{step.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
         <section className="py-20">
-          <div className="mx-auto max-w-4xl px-6">
-            <div className="space-y-14">
-              {STEPS.map((s) => (
-                <div key={s.n} className="grid gap-2 sm:grid-cols-[80px_1fr]">
-                  <div className="font-mono text-sm text-brass">{s.n}</div>
-                  <div>
-                    <h2 className="font-display text-xl font-medium text-parchment">{s.title}</h2>
-                    <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{s.body}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{s.detail}</p>
-                  </div>
-                </div>
-              ))}
+          <div className="mx-auto grid max-w-5xl gap-8 px-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-verdigris/25 bg-verdigris/[0.05] p-7">
+              <div className="eyebrow">Keepwell does</div>
+              <ul className="mt-5 space-y-3 text-sm leading-6 text-parchment-dim">
+                <li>Structure the service request and property context.</li>
+                <li>Route requests through the participating provider network.</li>
+                <li>Store trusted-access and property service records.</li>
+                <li>Support membership and marketplace rules.</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-line bg-surface p-7">
+              <div className="eyebrow">Independent providers do</div>
+              <ul className="mt-5 space-y-3 text-sm leading-6 text-parchment-dim">
+                <li>Accept or decline service requests.</li>
+                <li>Perform the field work using their own trade judgment.</li>
+                <li>Confirm any additional scope before work proceeds.</li>
+                <li>Remain responsible for their own credentials, insurance and workmanship.</li>
+              </ul>
             </div>
           </div>
         </section>
-
-        <section className="border-t border-line/70 bg-surface/30 py-20">
-          <div className="mx-auto max-w-4xl px-6">
-            <div className="mx-auto max-w-2xl text-center">
-              <div className="eyebrow">What&rsquo;s a covered event</div>
-              <h2 className="mt-3 font-display text-2xl font-medium text-parchment">
-                Three everyday things, one pool per year
-              </h2>
-            </div>
-            <div className="mt-10 grid gap-5 sm:grid-cols-3">
-              {WHATS_COVERED.map((c) => (
-                <div key={c.title} className="rounded-2xl border border-line bg-surface p-6">
-                  <h3 className="font-display text-lg font-medium text-parchment">{c.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{c.body}</p>
-                </div>
-              ))}
-            </div>
-            <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-parchment-dim">
-              Full lock replacement or smart-lock hardware upgrades are priced separately and always
-              shown before anyone starts work — never a surprise invoice.
-            </p>
-          </div>
-        </section>
-
         <CTABand
-          title="See what your plan includes"
-          body="Every tier covers the vault and trusted access — pricing scales with household size and guaranteed visits."
-          ctaLabel="View pricing"
-          ctaHref="/pricing"
-          secondaryLabel="Book a one-off visit"
-          secondaryHref="/book"
+          title="Start with the need you have today"
+          body="Request service once, or set up membership so access information and plan benefits are ready before the next event."
+          ctaLabel="Request service"
+          ctaHref="/book"
+          secondaryLabel="View membership"
+          secondaryHref="/pricing"
         />
       </main>
       <Footer />

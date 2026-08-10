@@ -4,62 +4,46 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 
-const TECHS = [
-  { name: "Daryl Owusu", jobs: 412, rating: "4.9" },
-  { name: "Renata Cole", jobs: 288, rating: "4.8" },
-  { name: "Sam Okafor", jobs: 601, rating: "5.0" },
-];
-
 export async function createDispatchRequest(formData: FormData) {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
   const issue = String(formData.get("issue") ?? "Locked out of my home");
-  const tech = TECHS[Math.floor(Math.random() * TECHS.length)];
-  const eta = 8 + Math.floor(Math.random() * 12);
 
   const { data: request, error } = await supabase
     .from("dispatch_requests")
     .insert({
       member_id: user!.id,
       issue,
+      // Preserve the current database shape without inventing a technician.
+      // A marketplace-state migration should replace this placeholder once
+      // provider acceptance is implemented end-to-end.
       status: "dispatched",
-      tech_name: tech.name,
-      eta_minutes: eta,
+      tech_name: "Matching provider",
+      eta_minutes: 0,
     })
     .select()
     .single();
 
   if (error || !request) {
-    redirect(`/app/help?error=${encodeURIComponent(error?.message ?? "Could not dispatch")}`);
+    redirect(`/app/help?step=dispatch&error=${encodeURIComponent(error?.message ?? "Could not create the request")}`);
   }
 
-  await supabase.from("activity_log").insert({
-    member_id: user!.id,
-    title: "Dispatch requested",
-    meta: issue,
-  });
+  await supabase.from("activity_log").insert({ member_id: user!.id, title: "Service request created", meta: issue });
 
   const { data: subscription } = await supabase
     .from("subscriptions")
-    .select("id, covered_events_used, plan_id")
+    .select("id, plan_id")
     .eq("member_id", user!.id)
     .eq("status", "active")
     .maybeSingle();
 
   if (subscription) {
-    await supabase
-      .from("subscriptions")
-      .update({ covered_events_used: (subscription.covered_events_used ?? 0) + 1 })
-      .eq("id", subscription.id);
-
-    // dispatches_per_100_subscribers_per_year by tier + event type — the
-    // single most important unknown in the model, per the spec.
+    // Do not consume the event at request creation. Consumption belongs at
+    // the real accepted/completed marketplace event once that flow exists.
     await supabase.from("analytics_events").insert({
-      event_name: "dispatch_requested",
+      event_name: "member_service_request_created",
       member_id: user!.id,
       plan_id: subscription.plan_id,
       metadata: { issue },
@@ -72,28 +56,12 @@ export async function createDispatchRequest(formData: FormData) {
 
 export async function cancelDispatchRequest(formData: FormData) {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
   const id = String(formData.get("id") ?? "");
   await supabase.from("dispatch_requests").delete().eq("id", id).eq("member_id", user.id);
-
-  const { data: subscription } = await supabase
-    .from("subscriptions")
-    .select("id, covered_events_used")
-    .eq("member_id", user.id)
-    .eq("status", "active")
-    .maybeSingle();
-
-  if (subscription) {
-    await supabase
-      .from("subscriptions")
-      .update({ covered_events_used: Math.max((subscription.covered_events_used ?? 1) - 1, 0) })
-      .eq("id", subscription.id);
-  }
-
+  await supabase.from("activity_log").insert({ member_id: user.id, title: "Service request cancelled", meta: id });
   revalidatePath("/app");
   redirect("/app");
 }

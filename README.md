@@ -1,62 +1,69 @@
-# Digital Sentinel (Keepwell)
+# Keepwell
 
-Membership marketing site + member app for Digital Sentinel — a home lockout/rekey/dispatch
-membership. Built with Next.js (App Router), Tailwind CSS v4, and Supabase (auth + database).
+Keepwell is a property-access platform for homeowners, second-home owners, landlords, property managers, real-estate professionals and independent local service providers.
+
+The product combines:
+
+- one-off property-access service requests
+- membership plans and covered-event benefits
+- trusted contacts and lockbox/access information
+- a digital property-access vault
+- property service history
+- B2B property workflows
+- an independent provider marketplace
+
+**Platform model:** Keepwell operates the software, marketplace rules and property-access records. Field services are performed by independent local providers.
 
 ## Stack
 
-- **Next.js 16** — App Router, Server Actions, TypeScript
-- **Tailwind CSS v4** — design tokens (ink/brass/parchment/verdigris/ember) in `src/app/globals.css`
-- **Supabase** — email/password auth, Postgres with row-level security
-  - project: `keepwell` (`rgyzlfezyhwisfrtoczn`, org: Dengine, region: us-east-1)
+- Next.js 16 — App Router, Server Actions, TypeScript
+- Tailwind CSS v4
+- Supabase — auth and Postgres with row-level security
 
-## Pages
+## Core routes
 
-- `/` — marketing homepage (hero, features, how it works, pricing, CTA)
-- `/pricing`, `/how-it-works` — dedicated marketing pages, driven by the `plans` table
-- `/login`, `/signup` — Supabase-authenticated login / signup
-- `/contact` — support form, writes to `contact_messages`
-- `/book` → `/book/details` → `/book/review` → `/book/[id]` — no-signup guest booking flow ($89 flat, 15% guest discount, stubbed payment)
-- `/terms`, `/privacy`, `/member-agreement`, `/cookies` — legal pages
-- `/for-property-managers`, `/for-real-estate-agents` — B2B landing pages
-- `/app` — member dashboard (membership status, vault, trusted access, activity), auth-gated
-- `/app/vault` — digital key/code vault (CRUD)
-- `/app/trusted` — trusted contacts + lockbox code (CRUD)
-- `/app/lockbox` — lockbox add-on purchase (Individual plan, stubbed payment)
-- `/app/welcome-visit` — one-time welcome visit scheduling (Household+ plan)
-- `/app/help` → `/app/help/[id]` — lockbox-first interstitial, then "Get help" dispatch request flow
-
-## Database schema
-
-See the `keepwell` Supabase project for the live schema (migrations: `init_keepwell_schema`,
-`plans_subscriptions_guest_booking_analytics`, `guest_bookings_public_select_and_update`):
-`members`, `vault_items`, `trusted_contacts`, `dispatch_requests`, `activity_log`,
-`contact_messages`, `plans`, `subscriptions`, `lockbox_ledger`, `guest_bookings`,
-`outbound_messages`, `analytics_events`. All member-scoped tables use RLS keyed to `auth.uid()`.
+- `/` — platform homepage
+- `/services` — customer service categories
+- `/book` — one-off service-request flow
+- `/pricing` — membership options
+- `/how-it-works` — platform workflow and role separation
+- `/second-homes` — second-home owner use case
+- `/landlords` — landlord use case
+- `/for-property-managers` — B2B property-management use case
+- `/for-real-estate-agents` — real-estate partnership use case
+- `/partner-tech` — independent provider acquisition
+- `/trust-safety` — platform trust model
+- `/app` — authenticated member area
 
 ## Environment variables
 
-```
-NEXT_PUBLIC_SUPABASE_URL=https://rgyzlfezyhwisfrtoczn.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_4s-Jw_LVeV5YNE9bTczYMQ_9FYhPTcj
+```bash
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+NEXT_PUBLIC_SITE_URL=https://your-production-domain.com
 ```
 
-Already set in `.env.local` for local dev — add the same two vars in the Vercel project's
-Environment Variables settings for production.
+Do not commit production secrets.
 
-## Local development
+## Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Deploy
+## Production check
 
 ```bash
-npm i -g vercel
-vercel link   # first time: creates/links the "keepwell" Vercel project
-vercel env add NEXT_PUBLIC_SUPABASE_URL production
-vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
-vercel deploy --prod
+npm run build
 ```
+
+## Launch blockers still requiring implementation
+
+The redesign intentionally removes false claims of provider assignment, ETA and payment authorization. Before paid production launch, Keepwell still needs:
+
+1. Real payment authorization / capture and membership activation.
+2. Real provider profiles, onboarding, acceptance and marketplace-status transitions.
+3. Explicit request states (`requested`, `matched`, `accepted`, `in_progress`, `completed`, `cancelled`) instead of the legacy database `dispatched` shortcut.
+4. Final provider verification rules by service type and jurisdiction.
+5. Final legal review for the actual operating entity, marketplace role and launch geography.

@@ -8,88 +8,41 @@ const PLAN_LABELS: Record<string, string> = {
   household_plus: "Household + Smart Security",
 };
 
-export default async function SignupPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ error?: string; plan?: string }>;
-}) {
+export default async function SignupPage({ searchParams }: { searchParams: Promise<{ error?: string; plan?: string }> }) {
   const { error, plan } = await searchParams;
   const planId = plan && PLAN_LABELS[plan] ? plan : "household";
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink px-6 py-16">
-      <div className="w-full max-w-sm rounded-2xl border border-line bg-surface p-8">
-        <div className="flex flex-col items-center text-center">
-          <Link href="/" className="flex items-center gap-2 font-display text-lg font-medium text-parchment">
-            <Keyhole className="h-5 w-4 text-brass" />
-            Digital Sentinel
+    <div className="flex min-h-screen items-center justify-center bg-ink px-5 py-12">
+      <div className="w-full max-w-md rounded-3xl border border-line bg-surface p-6 shadow-2xl sm:p-8">
+        <div className="text-center">
+          <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment">
+            <span className="grid h-8 w-8 place-items-center rounded-xl border border-brass/30 bg-brass/10"><Keyhole className="h-4 w-3 text-brass" /></span>
+            Keepwell
           </Link>
-          <h1 className="mt-6 font-display text-2xl font-medium text-parchment">Create your membership</h1>
-          <p className="mt-1 text-sm text-parchment-dim">
-            {PLAN_LABELS[planId]} plan · Three minutes, no truck roll required.
-          </p>
+          <div className="mt-7 font-mono text-[10px] uppercase tracking-[0.14em] text-brass">{PLAN_LABELS[planId]}</div>
+          <h1 className="mt-2 font-display text-3xl font-medium text-parchment">Create your Keepwell account</h1>
+          <p className="mt-2 text-sm leading-6 text-parchment-dim">Set up the account that holds your property access, trusted contacts and membership information.</p>
         </div>
 
-        {error && (
-          <div className="mt-6 rounded-lg border border-ember/30 bg-ember/10 px-4 py-2.5 text-sm text-ember">
-            {error}
-          </div>
-        )}
+        {error && <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 px-4 py-3 text-sm text-ember">{error}</div>}
 
-        <form action={signup} className="mt-6 space-y-4">
+        <form action={signup} className="mt-7 space-y-4">
           <input type="hidden" name="plan" value={planId} />
-          <div>
-            <label className="mb-1.5 block text-xs font-mono uppercase tracking-wide text-parchment-dim">
-              Full name
-            </label>
-            <input
-              type="text"
-              name="name"
-              required
-              placeholder="Marcus Bell"
-              className="w-full rounded-lg border border-line bg-surface-raised px-3.5 py-2.5 text-sm text-parchment placeholder:text-parchment-dim/60 focus:border-brass focus:outline-none"
-            />
-          </div>
-          <div>
-            <label className="mb-1.5 block text-xs font-mono uppercase tracking-wide text-parchment-dim">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="you@email.com"
-              className="w-full rounded-lg border border-line bg-surface-raised px-3.5 py-2.5 text-sm text-parchment placeholder:text-parchment-dim/60 focus:border-brass focus:outline-none"
-            />
-          </div>
-          <div>
-            <label className="mb-1.5 block text-xs font-mono uppercase tracking-wide text-parchment-dim">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              required
-              minLength={6}
-              placeholder="At least 6 characters"
-              className="w-full rounded-lg border border-line bg-surface-raised px-3.5 py-2.5 text-sm text-parchment placeholder:text-parchment-dim/60 focus:border-brass focus:outline-none"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full rounded-full bg-brass px-4 py-2.5 text-sm font-medium text-ink transition hover:bg-[#dab668]"
-          >
-            Create membership
-          </button>
+          <Field label="Full name"><input type="text" name="name" required autoComplete="name" placeholder="Your full name" className="input" /></Field>
+          <Field label="Email"><input type="email" name="email" required autoComplete="email" placeholder="you@email.com" className="input" /></Field>
+          <Field label="Password"><input type="password" name="password" required minLength={6} autoComplete="new-password" placeholder="At least 6 characters" className="input" /></Field>
+          <button type="submit" className="mt-2 w-full rounded-full bg-brass px-4 py-3 text-sm font-semibold text-ink transition hover:brightness-110">Create account</button>
         </form>
 
-        <p className="mt-6 text-center text-xs text-parchment-dim">
-          Already covered?{" "}
-          <Link href="/login" className="text-brass hover:underline">
-            Log in
-          </Link>
-        </p>
+        <p className="mt-5 text-center text-xs leading-5 text-parchment-dim">By continuing, you agree to the <Link href="/terms" className="text-brass hover:underline">Terms</Link> and acknowledge the <Link href="/privacy" className="text-brass hover:underline">Privacy Policy</Link>.</p>
+        <p className="mt-4 text-center text-xs text-parchment-dim">Already have an account? <Link href="/login" className="text-brass hover:underline">Log in</Link></p>
       </div>
+      <style>{`.input{width:100%;border:1px solid var(--line);background:var(--surface-raised);border-radius:.75rem;padding:.75rem .9rem;font-size:.875rem;color:var(--parchment);outline:none}.input:focus{border-color:var(--brass)}.input::placeholder{color:color-mix(in srgb,var(--parchment-dim) 60%,transparent)}`}</style>
     </div>
   );
+}
+
+function Field({ label, children }: { label: string; children?: React.ReactNode }) {
+  return <label className="block"><span className="mb-2 block font-mono text-[10px] uppercase tracking-[0.14em] text-parchment-dim">{label}</span>{children}</label>;
 }

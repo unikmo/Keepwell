@@ -1,285 +1,186 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import { getPlans, planDisplay, formatUsd } from "@/lib/plans";
+import { getPlans, formatUsd } from "@/lib/plans";
 
-const FEATURES = [
-  {
-    icon: "🔒",
-    title: "Covered dispatch",
-    body: "Locked out of your home or car? A verified local tech comes to you — no charge, no surprise invoice.",
-  },
-  {
-    icon: "🔑",
-    title: "Digital key vault",
-    body: "Every key, code, and garage password — photographed, encrypted, and stored where you can never lose it.",
-  },
-  {
-    icon: "🤝",
-    title: "Trusted access",
-    body: "Register a neighbor, family member, or locksmith you already trust so help doesn't wait on you.",
-  },
-  {
-    icon: "🛡️",
-    title: "Home security audit",
-    body: "A free once-over of your home and its weak points, with upgrade options at a locked-in member price.",
-  },
+const SERVICES = [
+  { title: "Lockout help", body: "Start a request when you cannot access your home or property." },
+  { title: "Rekey", body: "Request a standard rekey after a move, turnover, key loss or access change." },
+  { title: "Lock changes", body: "Coordinate replacement or upgrade work with clear scope before work begins." },
+  { title: "Trusted access", body: "Keep the people and access details that can solve a problem before a service visit is needed." },
+];
+
+const AUDIENCES = [
+  { title: "Homeowners", body: "One place for access help, trusted contacts and a record of what was changed at home.", href: "/services" },
+  { title: "Second-home owners", body: "Keep remote-property access organized when you are not there to solve the problem yourself.", href: "/second-homes" },
+  { title: "Landlords", body: "Coordinate rekeys and access work across rentals without rebuilding the process every time.", href: "/landlords" },
+  { title: "Property managers", body: "Give residents and teams a consistent workflow for access requests and property service records.", href: "/for-property-managers" },
 ];
 
 const STEPS = [
-  {
-    n: "01",
-    title: "Join in 3 minutes",
-    body: "Pick a plan, add your household, register a trusted contact or lockbox. No truck roll required to sign up.",
-  },
-  {
-    n: "02",
-    title: "Live your life",
-    body: "Your keys and codes live in the vault. Nothing else to track or worry about until you actually need something.",
-  },
-  {
-    n: "03",
-    title: "One tap, if it happens",
-    body: "Locked out? Open the app, tap Get help. A verified tech is on the way, phone in hand.",
-  },
+  { n: "01", title: "Tell Keepwell what happened", body: "Choose the property and service needed. You see the scope before submitting." },
+  { n: "02", title: "An independent provider accepts", body: "Keepwell routes the request through the local provider network. Availability varies by market." },
+  { n: "03", title: "Keep the record", body: "The service request, trusted access information and property history stay together for next time." },
 ];
 
 export default async function Home() {
   const plans = await getPlans();
+  const entryPlan = plans[0];
 
   return (
     <div className="flex min-h-screen flex-col">
       <Nav />
       <main className="flex-1">
-        {/* HERO */}
         <section className="relative overflow-hidden border-b border-line/70">
-          <div className="mx-auto max-w-5xl px-6 pb-16 pt-16 sm:pb-20 sm:pt-24">
-            <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-16">
-              {/* MASCOT */}
-              <div className="flex justify-center lg:justify-start">
-                <div className="relative">
-                  <div className="absolute inset-0 -z-10 rounded-full bg-brass/15 blur-3xl" />
-                  <div className="absolute bottom-1 left-1/2 z-0 h-5 w-28 -translate-x-1/2 rounded-full bg-black/50 blur-md sm:h-6 sm:w-36 lg:w-40" />
-                  <Image
-                    src="/kayo-mascot.png"
-                    alt="Kayo, the Keepwell mascot, gesturing toward the plans"
-                    width={694}
-                    height={990}
-                    priority
-                    className="relative z-10 h-auto w-52 drop-shadow-[0_25px_45px_rgba(0,0,0,0.45)] sm:w-64 lg:w-full lg:max-w-[320px]"
-                  />
-                </div>
+          <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:px-8 lg:py-24">
+            <div>
+              <div className="eyebrow">Property access, organized</div>
+              <h1 className="mt-4 max-w-3xl font-display text-5xl font-medium leading-[1.02] tracking-[-0.025em] text-parchment sm:text-6xl lg:text-7xl">
+                Property access,
+                <span className="block italic text-brass">without the scramble.</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-base leading-7 text-parchment-dim sm:text-lg">
+                Keepwell is the platform for lockouts, rekeys, trusted access and property service history. Request help from independent local providers and keep the critical details for every property in one place.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink transition hover:brightness-110">
+                  Request service
+                </Link>
+                <Link href="/pricing" className="inline-flex min-h-12 items-center justify-center rounded-full border border-line px-6 py-3 text-sm font-semibold text-parchment transition hover:border-parchment-dim">
+                  Explore membership
+                </Link>
               </div>
-
-              {/* TEXT */}
-              <div className="text-center lg:text-left">
-                <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-brass/35 bg-brass/10 px-4 py-1.5 font-mono text-xs uppercase tracking-wide text-brass lg:mx-0">
-                  <span className="h-1.5 w-1.5 rounded-full bg-brass" />
-                  Member in 3 minutes
-                </div>
-
-                <h1 className="font-display text-4xl font-medium leading-tight text-parchment sm:text-5xl">
-                  You&rsquo;ll probably never need us.
-                  <br />
-                  <span className="italic text-brass">That&rsquo;s kind of the point.</span>
-                </h1>
-
-                <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-parchment-dim lg:mx-0">
-                  A small membership for the home things you hope you&rsquo;ll never deal with —
-                  locked out, rekeyed, or just want your keys somewhere safer than a junk drawer.
-                </p>
-
-                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
-                  <Link
-                    href="/pricing"
-                    className="rounded-full bg-brass px-6 py-3 text-sm font-medium text-ink transition hover:bg-[#dab668]"
-                  >
-                    See plans — from $29/yr
-                  </Link>
-                  <Link
-                    href="/how-it-works"
-                    className="rounded-full border border-line px-6 py-3 text-sm font-medium text-parchment transition hover:border-parchment-dim"
-                  >
-                    How it works
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <p className="mt-6 text-center font-mono text-[11px] uppercase tracking-wide text-parchment-dim">
-              No contracts · Vetted techs · Verified local techs
-            </p>
-          </div>
-
-          <div className="border-t border-line/70 bg-surface/40">
-            <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-6 py-8 text-center sm:grid-cols-4">
-              <Stat value="4.9★" label="Avg tech rating" />
-              <Stat value="14 min" label="Avg response, metro" />
-              <Stat value="100%" label="Background-checked" />
-              <Stat value="$0" label="Covered visits" />
-            </div>
-          </div>
-        </section>
-
-        {/* INCLUDED */}
-        <section id="included" className="border-b border-line/70 py-24">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="mx-auto max-w-2xl text-center">
-              <div className="eyebrow">What&rsquo;s included</div>
-              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
-                One membership, four everyday reasons to keep it
-              </h2>
-              <p className="mt-4 text-parchment-dim">
-                Not just an emergency plan — the parts you&rsquo;ll actually use often.
+              <p className="mt-5 max-w-2xl text-xs leading-5 text-parchment-dim/80">
+                Keepwell operates the platform. Property services are performed by independent local providers. Provider availability varies by area.
               </p>
             </div>
 
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {FEATURES.map((f) => (
-                <div
-                  key={f.title}
-                  className="rounded-2xl border border-line bg-surface p-6 transition hover:border-brass/40"
-                >
-                  <div className="text-2xl">{f.icon}</div>
-                  <h3 className="mt-4 font-display text-lg font-medium text-parchment">{f.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{f.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* HOW IT WORKS */}
-        <section id="how-it-works" className="border-b border-line/70 bg-surface/30 py-24">
-          <div className="mx-auto max-w-5xl px-6">
-            <div className="mx-auto max-w-2xl text-center">
-              <div className="eyebrow">How it works</div>
-              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
-                Three minutes to set up. There when you need it.
-              </h2>
-            </div>
-
-            <div className="mt-14 grid gap-8 sm:grid-cols-3">
-              {STEPS.map((s) => (
-                <div key={s.n} className="text-center sm:text-left">
-                  <div className="font-mono text-sm text-brass">{s.n}</div>
-                  <h3 className="mt-3 font-display text-xl font-medium text-parchment">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{s.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PRICING */}
-        <section id="pricing" className="border-b border-line/70 py-24">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="mx-auto max-w-2xl text-center">
-              <div className="eyebrow">Pricing</div>
-              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">
-                Less than a streaming subscription
-              </h2>
-              <p className="mt-4 text-parchment-dim">
-                Every plan covers the whole approach — vault, trusted access, and dispatch.
-                Higher tiers widen who and what&rsquo;s covered.
-              </p>
-            </div>
-
-            <div className="mt-14 grid gap-6 lg:grid-cols-3">
-              {plans.map((plan) => {
-                const { features, addOns, tagline } = planDisplay(plan);
-                const highlighted = plan.id === "household";
-                return (
-                  <div
-                    key={plan.id}
-                    className={`relative flex flex-col rounded-2xl border p-8 ${
-                      highlighted
-                        ? "border-brass bg-surface-raised shadow-[0_0_0_1px_rgba(201,162,75,0.4)]"
-                        : "border-line bg-surface"
-                    }`}
-                  >
-                    {highlighted && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brass px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-ink">
-                        Most members choose this
-                      </div>
-                    )}
-                    <div className="font-mono text-xs uppercase tracking-wide text-parchment-dim">
-                      {plan.name}
-                    </div>
-                    <div className="mt-3 flex items-baseline gap-1">
-                      <span className="font-display text-4xl font-medium text-parchment">
-                        {formatUsd(plan.price_cents)}
-                      </span>
-                      <span className="text-sm text-parchment-dim">/year</span>
-                    </div>
-                    <p className="mt-2 text-sm text-parchment-dim">{tagline}</p>
-
-                    <ul className="mt-6 space-y-3 text-sm">
-                      {features.map((f) => (
-                        <li key={f} className="flex items-start gap-2 text-parchment">
-                          <span className="mt-0.5 text-verdigris">✓</span>
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-
-                    {addOns && (
-                      <ul className="mt-3 space-y-2 border-t border-line/70 pt-3 text-sm">
-                        {addOns.map((a) => (
-                          <li key={a.label} className="flex items-start justify-between gap-2 text-parchment-dim">
-                            <span className="flex items-start gap-2">
-                              <span className="mt-0.5 text-brass">+</span>
-                              {a.label}
-                            </span>
-                            <span className="font-mono text-xs text-brass whitespace-nowrap">{a.price}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-
-                    <div className="flex-1" />
-
-                    <Link
-                      href={`/signup?plan=${plan.id}`}
-                      className={`mt-8 rounded-full px-5 py-3 text-center text-sm font-medium transition ${
-                        highlighted
-                          ? "bg-brass text-ink hover:bg-[#dab668]"
-                          : "border border-line text-parchment hover:border-parchment-dim"
-                      }`}
-                    >
-                      Choose {plan.name}
-                    </Link>
+            <div className="relative mx-auto w-full max-w-xl">
+              <div className="absolute -inset-10 -z-10 rounded-full bg-brass/10 blur-3xl" />
+              <div className="rounded-[28px] border border-line bg-surface/90 p-4 shadow-2xl sm:p-6">
+                <div className="flex items-center justify-between border-b border-line/70 pb-4">
+                  <div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-parchment-dim">My property</div>
+                    <div className="mt-1 font-display text-xl text-parchment">Home access overview</div>
                   </div>
-                );
-              })}
-            </div>
-
-            <div className="mx-auto mt-10 max-w-2xl rounded-xl border border-brass/20 bg-brass/[0.06] p-5 text-sm leading-relaxed text-parchment-dim">
-              <strong className="text-parchment">What counts as a &ldquo;covered event&rdquo;?</strong> A
-              home lockout, a car locked at your home address, or a standard rekey — pulled from
-              the same yearly pool. Full lock or smart-lock replacement are priced separately,
-              always shown before anyone starts work.
+                  <span className="rounded-full border border-verdigris/30 bg-verdigris/10 px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-verdigris">Ready</span>
+                </div>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <DashboardTile label="Need help" value="Request service" detail="Lockout · rekey · lock change" emphasized />
+                  <DashboardTile label="Trusted access" value="2 contacts" detail="People who can help locally" />
+                  <DashboardTile label="Access vault" value="4 records" detail="Codes, notes and lock details" />
+                  <DashboardTile label="Property history" value="3 records" detail="Changes and service activity" />
+                </div>
+                <div className="mt-4 rounded-2xl border border-line bg-ink/45 p-4">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-parchment-dim">Platform principle</div>
+                  <p className="mt-2 text-sm leading-6 text-parchment-dim">
+                    Resolve with trusted access first. When a service visit is needed, create one clear request and keep the outcome attached to the property.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* CTA */}
-        <section id="cta" className="py-24">
-          <div className="mx-auto max-w-3xl px-6 text-center">
-            <h2 className="font-display text-3xl font-medium text-parchment sm:text-4xl">
-              Set it up once. Forget about it, mostly.
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-parchment-dim">
-              Join in under three minutes — no truck roll, no waiting period to add your vault
-              and trusted contacts.
-            </p>
-            <Link
-              href="/signup"
-              className="mt-8 inline-block rounded-full bg-brass px-6 py-3 text-sm font-medium text-ink transition hover:bg-[#dab668]"
-            >
-              Get covered — from $29/yr
-            </Link>
+        <section className="border-b border-line/70 bg-surface/25 py-8">
+          <div className="mx-auto grid max-w-7xl gap-3 px-6 text-center sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+            {["Upfront service scope", "Independent local providers", "Property access records", "Built for repeat ownership needs"].map((item) => (
+              <div key={item} className="rounded-xl border border-line/70 bg-ink/30 px-4 py-3 text-xs text-parchment-dim">{item}</div>
+            ))}
+          </div>
+        </section>
+
+        <section className="border-b border-line/70 py-20 sm:py-24">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-2xl">
+              <div className="eyebrow">Start with the need</div>
+              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">One platform for the moments access gets complicated</h2>
+              <p className="mt-4 leading-7 text-parchment-dim">The service request is only one part. Keepwell connects the immediate job to the access information and property history that make the next problem easier.</p>
+            </div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {SERVICES.map((service) => (
+                <div key={service.title} className="rounded-2xl border border-line bg-surface p-6">
+                  <div className="h-1.5 w-10 rounded-full bg-brass" />
+                  <h3 className="mt-5 font-display text-xl font-medium text-parchment">{service.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{service.body}</p>
+                </div>
+              ))}
+            </div>
+            <Link href="/services" className="mt-7 inline-flex text-sm font-medium text-brass hover:underline">See service categories →</Link>
+          </div>
+        </section>
+
+        <section className="border-b border-line/70 bg-surface/20 py-20 sm:py-24">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-2xl">
+              <div className="eyebrow">How it works</div>
+              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">One request. One property record. No mystery about who does what.</h2>
+            </div>
+            <div className="mt-12 grid gap-8 md:grid-cols-3">
+              {STEPS.map((step) => (
+                <div key={step.n} className="border-t border-line pt-5">
+                  <div className="font-mono text-xs text-brass">{step.n}</div>
+                  <h3 className="mt-3 font-display text-xl text-parchment">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{step.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-line/70 py-20 sm:py-24">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+              <div>
+                <div className="eyebrow">Built around ownership</div>
+                <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">Different properties. Same need for clean access coordination.</h2>
+              </div>
+              <p className="max-w-2xl leading-7 text-parchment-dim lg:justify-self-end">Keepwell is designed to become more useful as ownership gets more complex: more people, more keys, more properties and more service events.</p>
+            </div>
+            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {AUDIENCES.map((audience) => (
+                <Link key={audience.title} href={audience.href} className="group rounded-2xl border border-line bg-surface p-6 transition hover:-translate-y-0.5 hover:border-brass/45">
+                  <h3 className="font-display text-xl text-parchment">{audience.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-parchment-dim">{audience.body}</p>
+                  <span className="mt-5 inline-block text-sm text-brass">Explore →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-line/70 bg-surface/20 py-20 sm:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_.9fr] lg:items-center lg:px-8">
+            <div>
+              <div className="eyebrow">Membership</div>
+              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">Use Keepwell once, or keep your property protected year-round.</h2>
+              <p className="mt-4 max-w-2xl leading-7 text-parchment-dim">One-off service requests remain available. Membership adds ongoing access tools and plan benefits for owners who want Keepwell ready before something happens.</p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <Link href="/pricing" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">See membership</Link>
+                <Link href="/book" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-parchment">Request one-off service</Link>
+              </div>
+            </div>
+            <div className="rounded-3xl border border-brass/25 bg-brass/[0.06] p-7 sm:p-8">
+              <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-brass">Starting plan</div>
+              <div className="mt-3 flex items-end gap-2">
+                <span className="font-display text-5xl text-parchment">{entryPlan ? formatUsd(entryPlan.price_cents) : "$29"}</span>
+                <span className="pb-1 text-sm text-parchment-dim">/ year</span>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-parchment-dim">A low-friction entry point for owners who want access tools and covered-event benefits configured before they need them.</p>
+              <p className="mt-5 text-xs leading-5 text-parchment-dim/80">Coverage and service availability are subject to plan terms and local provider availability.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 sm:py-24">
+          <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
+            <div className="eyebrow">Start with one property</div>
+            <h2 className="mt-3 font-display text-4xl font-medium text-parchment sm:text-5xl">When access matters, the workflow should already exist.</h2>
+            <p className="mx-auto mt-5 max-w-2xl leading-7 text-parchment-dim">Request service now, or set up Keepwell before the next lockout, turnover or access change.</p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink">Request service</Link>
+              <Link href="/pricing" className="inline-flex min-h-12 items-center justify-center rounded-full border border-line px-6 py-3 text-sm font-semibold text-parchment">View membership</Link>
+            </div>
           </div>
         </section>
       </main>
@@ -288,13 +189,12 @@ export default async function Home() {
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
+function DashboardTile({ label, value, detail, emphasized = false }: { label: string; value: string; detail: string; emphasized?: boolean }) {
   return (
-    <div>
-      <div className="font-mono text-xl text-brass sm:text-2xl">{value}</div>
-      <div className="mt-1 font-mono text-[10px] uppercase tracking-wide text-parchment-dim">
-        {label}
-      </div>
+    <div className={`rounded-2xl border p-4 ${emphasized ? "border-brass/35 bg-brass/[0.07]" : "border-line bg-ink/35"}`}>
+      <div className="font-mono text-[9px] uppercase tracking-[0.15em] text-parchment-dim">{label}</div>
+      <div className={`mt-2 text-sm font-semibold ${emphasized ? "text-brass" : "text-parchment"}`}>{value}</div>
+      <div className="mt-1 text-xs leading-5 text-parchment-dim">{detail}</div>
     </div>
   );
 }

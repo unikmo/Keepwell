@@ -3,65 +3,48 @@ import Link from "next/link";
 import { Keyhole } from "@/components/Keyhole";
 
 export const metadata: Metadata = {
-  title: "Book a Locksmith — No Membership Required | Digital Sentinel",
-  description:
-    "Locked out right now? Book a verified local locksmith in minutes — no membership, no account. Fixed $89 for lockouts and rekeys, guest discount already applied.",
+  title: "Request property access service",
+  description: "Start a Keepwell request for a lockout, rekey or lock change. Independent local providers perform the field service.",
   alternates: { canonical: "/book" },
 };
 
-const JOB_TYPES: { id: string; label: string; icon: string; body: string }[] = [
-  { id: "lockout", label: "I'm locked out", icon: "🔒", body: "Home or car, right now. $89 flat." },
-  { id: "rekey", label: "Rekey my locks", icon: "🔑", body: "Standard rekey, same visit. $89 flat." },
-  { id: "lock_upgrade", label: "Upgrade my lock", icon: "🛡️", body: "Smart lock or hardware upgrade, priced on-site." },
+const JOB_TYPES = [
+  { id: "lockout", label: "I'm locked out", body: "Start a home-access request." },
+  { id: "rekey", label: "Rekey my locks", body: "Change who can use the existing locks." },
+  { id: "lock_upgrade", label: "Change or upgrade a lock", body: "Request replacement or upgraded hardware." },
 ];
 
 export default function BookPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink px-6 py-16">
-      <div className="w-full max-w-sm">
-        <div className="flex flex-col items-center text-center">
-          <Link href="/" className="flex items-center gap-2 font-display text-lg font-medium text-parchment">
-            <Keyhole className="h-5 w-4 text-brass" />
-            Digital Sentinel
+    <div className="flex min-h-screen items-center justify-center bg-ink px-5 py-12">
+      <div className="w-full max-w-lg">
+        <div className="text-center">
+          <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment">
+            <span className="grid h-8 w-8 place-items-center rounded-xl border border-brass/30 bg-brass/10"><Keyhole className="h-4 w-3 text-brass" /></span>
+            Keepwell
           </Link>
-          <h1 className="mt-6 font-display text-2xl font-medium text-parchment">Book a tech — no account needed</h1>
-          <p className="mt-2 text-sm text-parchment-dim">
-            $89 flat for lockouts and rekeys, guest discount already applied. Same vetted techs our
-            members use.
-          </p>
+          <div className="mt-7 eyebrow">Service request</div>
+          <h1 className="mt-2 font-display text-4xl font-medium text-parchment">What does the property need?</h1>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-parchment-dim">Choose the closest service type. Keepwell creates the request; an independent local provider must accept before a provider or ETA is confirmed.</p>
         </div>
 
         <div className="mt-8 space-y-3">
-          {JOB_TYPES.map((jt) => (
-            <Link
-              key={jt.id}
-              href={`/book/details?job_type=${jt.id}`}
-              className="flex items-center gap-3 rounded-xl border border-line bg-surface p-4 text-left text-sm text-parchment transition hover:border-brass/40"
-            >
-              <span className="text-xl">{jt.icon}</span>
-              <span className="flex-1">
-                <span className="block font-medium">{jt.label}</span>
-                <span className="mt-0.5 block text-xs text-parchment-dim">{jt.body}</span>
+          {JOB_TYPES.map((job) => (
+            <Link key={job.id} href={`/book/details?job_type=${job.id}`} className="group flex min-h-20 items-center justify-between gap-4 rounded-2xl border border-line bg-surface p-5 transition hover:border-brass/45">
+              <span>
+                <span className="block font-medium text-parchment">{job.label}</span>
+                <span className="mt-1 block text-xs leading-5 text-parchment-dim">{job.body}</span>
               </span>
-              <span className="text-brass">→</span>
+              <span className="text-brass transition group-hover:translate-x-0.5">→</span>
             </Link>
           ))}
         </div>
 
-        <p className="mt-6 text-center text-xs text-parchment-dim">
-          Already a member?{" "}
-          <Link href="/login" className="text-brass hover:underline">
-            Log in
-          </Link>{" "}
-          — your covered events are free.
-        </p>
-        <p className="mt-2 text-center text-xs text-parchment-dim">
-          Prefer not to pay per visit?{" "}
-          <Link href="/pricing" className="text-brass hover:underline">
-            See membership pricing
-          </Link>
-          .
-        </p>
+        <div className="mt-6 rounded-2xl border border-line bg-surface/50 p-4 text-xs leading-5 text-parchment-dim">
+          Keepwell is the platform. Services are performed by independent local providers, and availability varies by location and time.
+        </div>
+
+        <p className="mt-6 text-center text-xs text-parchment-dim">Already a member? <Link href="/login" className="text-brass hover:underline">Log in</Link> to use your member workflow.</p>
       </div>
     </div>
   );

@@ -3,75 +3,73 @@ import { Keyhole } from "./Keyhole";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line/70 bg-ink">
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <footer className="border-t border-line/70 bg-void/45">
+      <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2 font-display text-lg font-medium text-parchment">
-              <Keyhole className="h-5 w-4 text-brass" />
-              Digital Sentinel
-            </div>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-parchment-dim">
-              A membership for the home things you hope you&rsquo;ll never deal with — and the
-              everyday ones you will.
+            <Link href="/" className="flex items-center gap-2.5 font-display text-lg font-medium text-parchment">
+              <span className="grid h-8 w-8 place-items-center rounded-xl border border-brass/30 bg-brass/10">
+                <Keyhole className="h-4 w-3 text-brass" />
+              </span>
+              Keepwell
+            </Link>
+            <p className="mt-4 max-w-sm text-sm leading-6 text-parchment-dim">
+              The property-access platform for service requests, trusted access, service history and ongoing protection.
+            </p>
+            <p className="mt-4 max-w-md text-xs leading-5 text-parchment-dim/80">
+              Keepwell is a platform. Property services are performed by independent local providers. Availability and provider participation vary by area.
             </p>
           </div>
 
           <FooterColumn
-            title="Product"
+            title="For owners"
             links={[
-              { label: "How it works", href: "/how-it-works" },
-              { label: "Pricing", href: "/pricing" },
-              { label: "Digital vault", href: "/#included" },
-              { label: "Book a one-off visit", href: "/book" },
-              { label: "For property managers", href: "/for-property-managers" },
-              { label: "For real estate agents", href: "/for-real-estate-agents" },
+              { label: "Request service", href: "/book" },
+              { label: "Services", href: "/services" },
+              { label: "Second homes", href: "/second-homes" },
+              { label: "Landlords", href: "/landlords" },
+              { label: "Membership", href: "/pricing" },
             ]}
           />
           <FooterColumn
-            title="Support"
+            title="For business"
             links={[
-              { label: "Contact us", href: "/contact" },
-              { label: "Help center", href: "/help" },
-              { label: "Become a partner tech", href: "/partner-tech" },
+              { label: "Property managers", href: "/for-property-managers" },
+              { label: "Real estate professionals", href: "/for-real-estate-agents" },
+              { label: "Join as a provider", href: "/partner-tech" },
               { label: "Trust & safety", href: "/trust-safety" },
             ]}
           />
           <FooterColumn
-            title="Legal"
+            title="Company"
             links={[
-              { label: "Terms of service", href: "/terms" },
-              { label: "Privacy policy", href: "/privacy" },
+              { label: "How it works", href: "/how-it-works" },
+              { label: "Contact", href: "/contact" },
+              { label: "Terms", href: "/terms" },
+              { label: "Privacy", href: "/privacy" },
               { label: "Member agreement", href: "/member-agreement" },
-              { label: "Cookie preferences", href: "/cookies" },
             ]}
           />
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-line/70 pt-6 text-xs font-mono uppercase tracking-wide text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
-          <span>&copy; {new Date().getFullYear()} Digital Sentinel, Inc.</span>
-          <span>Membership, not insurance · See member agreement</span>
+        <div className="mt-12 flex flex-col gap-3 border-t border-line/70 pt-6 text-xs text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
+          <span>&copy; {new Date().getFullYear()} Keepwell</span>
+          <span>Platform membership, not insurance.</span>
         </div>
       </div>
     </footer>
   );
 }
 
-function FooterColumn({
-  title,
-  links,
-}: {
-  title: string;
-  links: { label: string; href: string }[];
-}) {
+function FooterColumn({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
     <div>
-      <div className="font-mono text-xs uppercase tracking-wide text-parchment-dim">{title}</div>
+      <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-parchment-dim">{title}</div>
       <ul className="mt-4 space-y-3 text-sm">
-        {links.map((l) => (
-          <li key={l.label}>
-            <Link href={l.href} className="text-parchment-dim hover:text-parchment">
-              {l.label}
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href} className="text-parchment-dim transition hover:text-parchment">
+              {link.label}
             </Link>
           </li>
         ))}

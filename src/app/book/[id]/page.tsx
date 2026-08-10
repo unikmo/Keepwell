@@ -5,105 +5,54 @@ import { Keyhole } from "@/components/Keyhole";
 import { createClient } from "@/lib/supabase/server";
 import { completeGuestBooking } from "../actions";
 
-export const metadata: Metadata = {
-  title: "Your Booking — Digital Sentinel",
-  robots: { index: false },
-};
+export const metadata: Metadata = { title: "Service request status", robots: { index: false } };
 
-const JOB_LABELS: Record<string, string> = {
-  lockout: "Lockout",
-  rekey: "Rekey",
-  lock_upgrade: "Lock upgrade",
-};
+const JOB_LABELS: Record<string, string> = { lockout: "Home lockout", rekey: "Standard rekey", lock_upgrade: "Lock change or upgrade" };
 
 export default async function BookStatusPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const supabase = await createClient();
-
   const { data: booking } = await supabase.from("guest_bookings").select("*").eq("id", id).maybeSingle();
-
   if (!booking) notFound();
 
   const completed = booking.status === "completed";
-  const isFixedPrice = booking.price_cents > 0;
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink px-6 py-16">
-      <div className="w-full max-w-sm">
-        <div className="flex flex-col items-center text-center">
-          <Link href="/" className="flex items-center gap-2 font-display text-lg font-medium text-parchment">
-            <Keyhole className="h-5 w-4 text-brass" />
-            Digital Sentinel
-          </Link>
+    <div className="flex min-h-screen items-center justify-center bg-ink px-5 py-12">
+      <div className="w-full max-w-lg rounded-3xl border border-line bg-surface p-6 text-center sm:p-8">
+        <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment"><Keyhole className="h-5 w-4 text-brass" />Keepwell</Link>
 
-          {!completed ? (
-            <>
-              <div className="mt-4 font-mono text-xs uppercase tracking-wide text-verdigris">
-                Help is on the way
-              </div>
-              <h1 className="mt-2 font-display text-2xl font-medium text-parchment">
-                A tech is headed your way
-              </h1>
-              <p className="mt-1 text-sm text-parchment-dim">{JOB_LABELS[booking.job_type]}</p>
-            </>
-          ) : (
-            <>
-              <div className="mt-4 font-mono text-xs uppercase tracking-wide text-brass">Job complete</div>
-              <h1 className="mt-2 font-display text-2xl font-medium text-parchment">
-                All set — thanks for booking
-              </h1>
-            </>
-          )}
-        </div>
+        <div className="mt-7 font-mono text-[10px] uppercase tracking-[0.14em] text-verdigris">{completed ? "Request completed" : "Request submitted"}</div>
+        <h1 className="mt-2 font-display text-3xl font-medium text-parchment">{completed ? "The service request is closed" : "Keepwell has your request"}</h1>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-parchment-dim">{completed ? "The request remains in the property service record." : "A provider has not been invented or pre-assigned. Keepwell should show provider identity and timing only after a real independent provider accepts."}</p>
 
-        <div className="mt-6 flex w-full items-center justify-between rounded-xl bg-surface-raised px-5 py-4">
-          <div>
-            <div className="font-mono text-xl text-brass">
-              {completed
-                ? isFixedPrice
-                  ? `$${(booking.price_cents / 100).toFixed(0)}`
-                  : "Priced on-site"
-                : "12 min"}
-            </div>
-            <div className="mt-0.5 font-mono text-[10.5px] uppercase tracking-wide text-parchment-dim">
-              {completed ? (isFixedPrice ? "Charged on completion" : "Final price from your tech") : "Estimated arrival"}
-            </div>
-          </div>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-verdigris/35 bg-verdigris/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-verdigris">
-            <span className="h-1.5 w-1.5 rounded-full bg-verdigris" />
-            {completed ? (isFixedPrice ? "Paid" : "Assessed") : "Verified ID"}
-          </span>
+        <div className="mt-6 rounded-2xl border border-line bg-ink/35 p-5 text-left text-sm">
+          <Row label="Service" value={JOB_LABELS[booking.job_type] ?? booking.job_type} />
+          <Row label="Request ID" value={booking.id.slice(0, 8).toUpperCase()} />
+          <Row label="Provider" value={completed ? "See completed request record" : "Waiting for a real match"} />
+          <Row label="Payment" value={booking.payment_status === "pending" ? "Not authorized in this build" : String(booking.payment_status).replaceAll("_", " ")} />
         </div>
 
         {!completed && (
+          <p className="mt-5 text-xs leading-5 text-parchment-dim">Production launch still requires the real provider-matching and payment workflow. This screen is intentionally truthful instead of showing a fake technician, rating or ETA.</p>
+        )}
+
+        {process.env.NODE_ENV !== "production" && !completed && (
           <form action={completeGuestBooking} className="mt-6">
             <input type="hidden" name="id" value={booking.id} />
-            <button
-              type="submit"
-              className="w-full rounded-full border border-line px-6 py-3 text-sm font-medium text-parchment-dim transition hover:border-parchment-dim"
-            >
-              (Ops preview) Mark job complete
-            </button>
+            <button type="submit" className="text-xs text-parchment-dim underline underline-offset-4">Developer preview: mark completed</button>
           </form>
         )}
 
-        {completed && (
-          <div className="mt-6 rounded-xl border border-brass/20 bg-brass/[0.06] p-5 text-center">
-            <div className="text-sm font-medium text-parchment">
-              Never pay per visit again
-            </div>
-            <p className="mt-1 text-xs leading-relaxed text-parchment-dim">
-              Members get covered lockouts, rekeys, and car-at-home visits for $0 — from $29/yr.
-            </p>
-            <Link
-              href="/signup"
-              className="mt-3 inline-block rounded-full bg-brass px-5 py-2.5 text-sm font-medium text-ink transition hover:bg-[#dab668]"
-            >
-              See plans
-            </Link>
-          </div>
-        )}
+        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <Link href="/" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-parchment">Back to Keepwell</Link>
+          <Link href="/pricing" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">Explore membership</Link>
+        </div>
       </div>
     </div>
   );
+}
+
+function Row({ label, value }: { label: string; value: string }) {
+  return <div className="flex items-start justify-between gap-4 py-1.5"><span className="text-parchment-dim">{label}</span><span className="max-w-[65%] text-right text-parchment">{value}</span></div>;
 }

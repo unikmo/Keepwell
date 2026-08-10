@@ -21,23 +21,54 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mykeepwell.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Digital Sentinel — The membership for the home things you hope you'll never need",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Keepwell | Property access and protection platform",
+    template: "%s | Keepwell",
+  },
   description:
-    "A small membership for the home things you hope you'll never deal with — lockouts, rekeys, or just want your keys somewhere safer than a junk drawer. Plans from $29/yr.",
+    "Request property-access services from independent local providers, keep trusted access details together, and build a clean service history for every property.",
+  applicationName: "Keepwell",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "Keepwell",
+    title: "Keepwell | Property access and protection platform",
+    description:
+      "Property access, service requests, trusted contacts and service history in one platform.",
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Keepwell | Property access and protection platform",
+    description:
+      "Property access, service requests, trusted contacts and service history in one platform.",
+  },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Keepwell",
+  url: siteUrl,
+  description:
+    "A property-access platform connecting customers with independent local service providers and organizing property access information.",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-ink text-parchment">{children}</body>
+    <html lang="en" className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} h-full antialiased`}>
+      <body className="min-h-full bg-ink text-parchment">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
