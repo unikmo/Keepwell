@@ -142,7 +142,7 @@ export default async function AdminPage({
                           <option value="">Choose verified provider</option>
                           {verifiedProviders.map((provider: any) => <option key={provider.id} value={provider.id}>{provider.business_name}{provider.is_available ? " · available" : ""}</option>)}
                         </select>
-                        <input name="payout_cents" type="number" min={100} defaultValue={6500} className="rounded-xl border border-line bg-surface-raised px-3 py-2 text-sm text-parchment" aria-label="Payout cents" />
+                        <input name="payout_cents" type="number" min={100} defaultValue={9000} className="rounded-xl border border-line bg-surface-raised px-3 py-2 text-sm text-parchment" aria-label="Payout cents" />
                         <button className="rounded-full bg-brass px-4 py-2 text-xs font-semibold text-ink">Send offer</button>
                       </form>
                     </div>

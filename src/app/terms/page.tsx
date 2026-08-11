@@ -2,117 +2,26 @@ import type { Metadata } from "next";
 import { LegalDoc, LegalSection } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Digital Sentinel",
-  description: "The terms that govern use of the Digital Sentinel membership, app, and dispatch network.",
+  title: "Terms of Service — Keepwell",
+  description: "Terms governing use of the Keepwell property-access marketplace and membership features.",
   alternates: { canonical: "/terms" },
   robots: { index: false },
 };
 
 export default function TermsPage() {
   return (
-    <LegalDoc title="Terms of Service" lastUpdated="July 30, 2026">
-      <LegalSection title="1. Acceptance of terms">
-        <p>
-          These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and use of the Digital
-          Sentinel website, mobile application, and membership services (together, the
-          &ldquo;Service&rdquo;), operated by Digital Sentinel, Inc. (&ldquo;Digital Sentinel,&rdquo;
-          &ldquo;we,&rdquo; &ldquo;us&rdquo;). By creating an account or using the Service, you agree
-          to these Terms and to our Privacy Policy and Member Agreement, which are incorporated by
-          reference.
-        </p>
-      </LegalSection>
-
-      <LegalSection title="2. Description of the service">
-        <p>
-          Digital Sentinel is a membership that provides access to covered dispatch for eligible
-          home-access events (such as lockouts and rekeys), a digital key and code vault, trusted
-          contact sharing, and related features described on our Pricing page and in the Member
-          Agreement. Dispatch services are performed by independent, background-checked technicians
-          (&ldquo;Techs&rdquo;) who are not employees of Digital Sentinel.
-        </p>
-        <p>
-          Digital Sentinel membership is <strong className="text-parchment">not insurance</strong>{" "}
-          and should not be relied on as a substitute for homeowners&rsquo;, renters&rsquo;, or
-          auto insurance.
-        </p>
-      </LegalSection>
-
-      <LegalSection title="3. Eligibility and accounts">
-        <p>
-          You must be at least 18 years old and able to form a binding contract to create an
-          account. You&rsquo;re responsible for maintaining the confidentiality of your login
-          credentials and for all activity under your account. Notify us immediately if you
-          suspect unauthorized access.
-        </p>
-      </LegalSection>
-
-      <LegalSection title="4. Membership, billing, and cancellation">
-        <p>
-          Membership plans, pricing, and included covered events are described on our Pricing
-          page at the time of signup and are billed annually unless otherwise stated. Covered
-          events reset at each renewal and do not carry over. You can cancel at any time through
-          your account or by contacting support; cancellation and refund terms are set out in the
-          Member Agreement.
-        </p>
-      </LegalSection>
-
-      <LegalSection title="5. Acceptable use">
-        <p>
-          You agree not to misuse the Service, including by submitting false dispatch requests,
-          attempting to access another member&rsquo;s vault or account, interfering with the
-          Service&rsquo;s operation, or using the Service for any unlawful purpose.
-        </p>
-      </LegalSection>
-
-      <LegalSection title="6. Third-party technicians">
-        <p>
-          Techs in the dispatch network are independent contractors, not Digital Sentinel
-          employees or agents. We take commercially reasonable steps to vet Techs, including
-          background checks, but we do not guarantee the conduct, workmanship, or availability of
-          any individual Tech. Any work performed beyond a covered event will always show a fixed
-          price before it begins.
-        </p>
-      </LegalSection>
-
-      <LegalSection title="7. Disclaimers and limitation of liability">
-        <p>
-          The Service is provided &ldquo;as is&rdquo; without warranties of any kind, express or
-          implied. To the maximum extent permitted by law, Digital Sentinel&rsquo;s total
-          liability arising out of or relating to the Service will not exceed the amount you paid
-          us in the twelve months preceding the claim. We are not liable for indirect,
-          incidental, or consequential damages.
-        </p>
-      </LegalSection>
-
-      <LegalSection title="8. Changes to these terms">
-        <p>
-          We may update these Terms from time to time. If we make material changes, we&rsquo;ll
-          provide notice through the app or by email before they take effect. Continued use of
-          the Service after changes take effect constitutes acceptance of the updated Terms.
-        </p>
-      </LegalSection>
-
-      <LegalSection title="9. Governing law">
-        <p>
-          These Terms are governed by the laws of the state in which Digital Sentinel, Inc. is
-          incorporated, without regard to conflict-of-law principles, unless a different
-          arrangement is required by local law where you reside.
-        </p>
-      </LegalSection>
-
-      <LegalSection title="10. Contact">
-        <p>
-          Questions about these Terms can be sent to{" "}
-          <a href="mailto:support@digitalsentinel.com" className="text-brass hover:underline">
-            support@digitalsentinel.com
-          </a>{" "}
-          or through our{" "}
-          <a href="/contact" className="text-brass hover:underline">
-            contact page
-          </a>
-          .
-        </p>
-      </LegalSection>
+    <LegalDoc title="Terms of Service" lastUpdated="August 10, 2026">
+      <LegalSection title="1. Keepwell platform"><p>Keepwell operates a technology platform that helps customers request property-access services from independent local providers. Keepwell does not itself perform locksmith, security-system, installation, repair, or other field work unless explicitly stated for a specific service.</p></LegalSection>
+      <LegalSection title="2. Provider availability"><p>Submitting a request does not guarantee provider availability. Provider identity and arrival timing are shown only after a real provider accepts. Arrival estimates may change because of traffic, job conditions, or provider circumstances.</p></LegalSection>
+      <LegalSection title="3. Pricing"><p>For standard one-off services, Keepwell displays the standard service price, the fixed provider travel fee, and the total before submission. The current standard provider travel fee is $25 where shown in the request flow. Out-of-scope work must be separately priced and approved before it begins.</p></LegalSection>
+      <LegalSection title="4. Membership"><p>Membership is optional. A travel-fee waiver removes one displayed $25 provider travel fee from an eligible request. It does not make the underlying field service free unless Keepwell explicitly states otherwise. Membership is not insurance.</p></LegalSection>
+      <LegalSection title="5. Customer authority"><p>Customers must have lawful authority to request access to or work on the property, vehicle, lock, or other item involved. A provider may require identification or proof of authority before work begins.</p></LegalSection>
+      <LegalSection title="6. Independent providers"><p>Participating providers are independent businesses, not Keepwell employees. Providers are responsible for field work they accept, including workmanship, tools, qualifications, licenses, permits, and legal compliance applicable to that work.</p></LegalSection>
+      <LegalSection title="7. Sensitive access information"><p>Keepwell's current access-inventory feature is for labels and records, not door codes, alarm PINs, lockbox combinations, or other access secrets. Do not enter access secrets unless Keepwell expressly introduces a secured secret-storage feature.</p></LegalSection>
+      <LegalSection title="8. Cancellations and disputes"><p>Cancellation, refund, failed-match, provider no-show, and dispute rules shown in the request flow or applicable policy form part of these Terms. Payment authorizations should be released or refunded according to the checkout terms when no service is completed.</p></LegalSection>
+      <LegalSection title="9. Acceptable use"><p>You may not submit false requests, request unauthorized entry, misuse another person's account, bypass security controls, interfere with the Service, or use Keepwell unlawfully.</p></LegalSection>
+      <LegalSection title="10. Legal review"><p>These operational terms must be supplemented before unrestricted public launch with the final operating legal entity, governing-law provisions, payment/refund terms, and any state-specific terms required for the launch market.</p></LegalSection>
+      <LegalSection title="11. Contact"><p>Questions about these Terms can be submitted through the Keepwell contact page.</p></LegalSection>
     </LegalDoc>
   );
 }

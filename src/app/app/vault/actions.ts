@@ -5,19 +5,16 @@ import { createClient } from "@/lib/supabase/server";
 
 export async function addVaultItem(formData: FormData) {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
 
-  const name = String(formData.get("name") ?? "");
+  const name = String(formData.get("name") ?? "").trim();
   const icon = String(formData.get("icon") ?? "🔑");
-  const meta = String(formData.get("meta") ?? "");
+  if (!name) return;
 
-  await supabase.from("vault_items").insert({ member_id: user.id, name, icon, meta });
-  await supabase
-    .from("activity_log")
-    .insert({ member_id: user.id, title: `${name} added to vault`, meta: "by you" });
+  // Secret storage stays disabled until application-level encryption is implemented and reviewed.
+  await supabase.from("vault_items").insert({ member_id: user.id, name, icon, meta: "" });
+  await supabase.from("activity_log").insert({ member_id: user.id, title: `${name} added to access inventory`, meta: "by you" });
 
   revalidatePath("/app/vault");
   revalidatePath("/app");
@@ -25,14 +22,11 @@ export async function addVaultItem(formData: FormData) {
 
 export async function removeVaultItem(formData: FormData) {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
 
   const id = String(formData.get("id") ?? "");
   await supabase.from("vault_items").delete().eq("id", id).eq("member_id", user.id);
-
   revalidatePath("/app/vault");
   revalidatePath("/app");
 }
