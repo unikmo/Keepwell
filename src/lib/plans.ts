@@ -12,6 +12,9 @@ export type Plan = {
   lockbox_addon_price_cents: number | null;
   guaranteed_visit: "none" | "welcome_visit";
   reaudit_cadence_years: number | null;
+  included_audit_interval_years?: number | null;
+  field_benefits_wait_days?: number;
+  digital_sentinel_enabled?: boolean;
   trusted_contacts_limit: number | null;
   priority_dispatch: boolean;
   sort_order: number;
@@ -20,23 +23,26 @@ export type Plan = {
 const FALLBACK_PLANS: Plan[] = [
   {
     id: "individual", name: "Individual", price_cents: 2900, renewal_price_cents: 2900,
-    covered_events_per_year: 0, covered_event_types: [], travel_fee_waivers_per_year: 1,
+    covered_events_per_year: 0, covered_event_types: [], travel_fee_waivers_per_year: 0,
     lockbox_mode: "optional_addon", lockbox_addon_price_cents: 1999,
-    guaranteed_visit: "none", reaudit_cadence_years: null, trusted_contacts_limit: 1,
+    guaranteed_visit: "none", reaudit_cadence_years: null, included_audit_interval_years: null,
+    field_benefits_wait_days: 14, digital_sentinel_enabled: true, trusted_contacts_limit: 1,
     priority_dispatch: false, sort_order: 1,
   },
   {
     id: "household", name: "Household", price_cents: 4900, renewal_price_cents: 4900,
-    covered_events_per_year: 0, covered_event_types: [], travel_fee_waivers_per_year: 1,
+    covered_events_per_year: 0, covered_event_types: [], travel_fee_waivers_per_year: 0,
     lockbox_mode: "included_free", lockbox_addon_price_cents: null,
-    guaranteed_visit: "none", reaudit_cadence_years: null, trusted_contacts_limit: null,
+    guaranteed_visit: "none", reaudit_cadence_years: null, included_audit_interval_years: null,
+    field_benefits_wait_days: 14, digital_sentinel_enabled: true, trusted_contacts_limit: null,
     priority_dispatch: false, sort_order: 2,
   },
   {
-    id: "household_plus", name: "Household + Priority", price_cents: 8900, renewal_price_cents: 8900,
-    covered_events_per_year: 0, covered_event_types: [], travel_fee_waivers_per_year: 2,
+    id: "household_plus", name: "Household +", price_cents: 8900, renewal_price_cents: 8900,
+    covered_events_per_year: 0, covered_event_types: [], travel_fee_waivers_per_year: 0,
     lockbox_mode: "included_free", lockbox_addon_price_cents: null,
-    guaranteed_visit: "none", reaudit_cadence_years: null, trusted_contacts_limit: null,
+    guaranteed_visit: "none", reaudit_cadence_years: 3, included_audit_interval_years: 3,
+    field_benefits_wait_days: 14, digital_sentinel_enabled: true, trusted_contacts_limit: null,
     priority_dispatch: true, sort_order: 3,
   },
 ];
@@ -57,24 +63,25 @@ export function formatUsd(cents: number) {
 }
 
 export function planDisplay(plan: Plan) {
-  const waivers = plan.travel_fee_waivers_per_year ?? (plan.id === "household_plus" ? 2 : 1);
   const features: string[] = [];
 
   if (plan.id === "individual") {
-    features.push(`${waivers} × $25 provider travel fee waived / year`);
-    features.push("Property access inventory");
-    features.push("1 trusted contact");
+    features.push("Digital Sentinel for access details, instructions and photos");
+    features.push("1 trusted key holder / emergency contact");
+    features.push("Fixed all-in Keepwell service prices");
+    features.push("Field-service benefits begin after 14 days");
   } else if (plan.id === "household") {
     features.push("Everything in Individual");
-    features.push("Covers the registered household");
-    features.push(`${waivers} × $25 provider travel fee waived / year`);
-    features.push("Free lockbox, mailed at signup (self-install)");
-    features.push("Unlimited trusted contacts");
+    features.push("Household access profiles");
+    features.push("Unlimited trusted contacts and key holders");
+    features.push("Self-install lockbox support");
+    features.push("Field-service benefits begin after 14 days");
   } else {
     features.push("Everything in Household");
-    features.push(`${waivers} × $25 provider travel fees waived / year`);
-    if (plan.priority_dispatch) features.push("Priority matching when providers are available");
-    features.push("No surprise service-call surcharge");
+    features.push("Priority provider matching when supply is available");
+    features.push("1 included Lock & Access Audit every 3 years");
+    features.push("First audit can take place after the 14-day waiting period");
+    features.push("Audit provider reports to Keepwell; Keepwell issues any follow-up offer");
   }
 
   const addOns = plan.lockbox_mode === "optional_addon" && plan.lockbox_addon_price_cents
@@ -85,7 +92,7 @@ export function planDisplay(plan: Plan) {
     ? "Prepared access for one person."
     : plan.id === "household"
       ? "Shared access readiness for the household."
-      : "More travel-fee coverage plus priority matching.";
+      : "Digital access readiness plus a professional audit every three years.";
 
   return { features, addOns, tagline };
 }
