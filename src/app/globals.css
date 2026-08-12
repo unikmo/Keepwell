@@ -1,17 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0d1320;
-  --void: #060910;
-  --surface: #171f2f;
-  --surface-raised: #202a3e;
-  --line: #303b54;
-  --parchment: #f3efe6;
-  --parchment-dim: #b8b8b1;
-  --brass: #d4ad58;
-  --brass-dim: #8f753b;
-  --verdigris: #62a896;
-  --ember: #df6847;
+  --ink: #0b2341;
+  --void: #07182e;
+  --surface: #12345a;
+  --surface-raised: #173e6b;
+  --line: #31577f;
+  --parchment: #f5f8fc;
+  --parchment-dim: #b8c7da;
+  --brass: #d6ad57;
+  --brass-dim: #96773b;
+  --verdigris: #79c5b4;
+  --ember: #ef7a5c;
+  --mist: #eaf3ff;
+  --mist-strong: #d8e8fa;
+  --navy-text: #0b2341;
+  --sky: #8db7e3;
 }
 
 @theme inline {
@@ -26,6 +30,10 @@
   --color-brass-dim: var(--brass-dim);
   --color-verdigris: var(--verdigris);
   --color-ember: var(--ember);
+  --color-mist: var(--mist);
+  --color-mist-strong: var(--mist-strong);
+  --color-navy-text: var(--navy-text);
+  --color-sky: var(--sky);
   --font-display: var(--font-fraunces);
   --font-body: var(--font-inter);
   --font-mono: var(--font-plex-mono);
@@ -36,7 +44,8 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 88% -10%, rgba(212, 173, 88, 0.09), transparent 28rem),
+    radial-gradient(circle at 86% -12%, rgba(141, 183, 227, 0.18), transparent 30rem),
+    radial-gradient(circle at 12% 18%, rgba(214, 173, 87, 0.055), transparent 22rem),
     var(--ink);
   color: var(--parchment);
   font-family: var(--font-body), sans-serif;
