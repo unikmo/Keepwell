@@ -40,6 +40,7 @@ body {
     var(--ink);
   color: var(--parchment);
   font-family: var(--font-body), sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 .font-display { font-family: var(--font-display), serif; }
@@ -47,7 +48,8 @@ body {
 
 .eyebrow {
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-size: 12px;
+  line-height: 1.4;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--brass);
