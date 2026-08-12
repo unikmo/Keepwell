@@ -14,7 +14,7 @@ export default async function DashboardPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  const [{ data: member }, { data: subscription }, { data: vaultItems }, { data: contacts }, { data: activity }] = await Promise.all([
+  const [{ data: member }, { data: subscription }, { data: sentinelItems }, { data: contacts }, { data: activity }] = await Promise.all([
     supabase.from("members").select("*").eq("id", user!.id).maybeSingle(),
     supabase.from("subscriptions").select("*, plan:plans(*)").eq("member_id", user!.id).eq("status", "active").maybeSingle(),
     supabase.from("vault_items").select("id").eq("member_id", user!.id),
@@ -23,12 +23,11 @@ export default async function DashboardPage() {
   ]);
 
   const firstName = (member?.full_name ?? user?.email ?? "there").split(" ")[0];
-  const plan = subscription?.plan as unknown as { id: string; name: string; travel_fee_waivers_per_year?: number; priority_dispatch?: boolean } | undefined;
-  const totalWaivers = plan?.travel_fee_waivers_per_year ?? (plan?.id === "household_plus" ? 2 : 1);
-  const usedWaivers = subscription?.travel_fee_waivers_used ?? 0;
-  const remainingWaivers = Math.max(totalWaivers - usedWaivers, 0);
+  const plan = subscription?.plan as unknown as { id: string; name: string; priority_dispatch?: boolean; included_audit_interval_years?: number | null } | undefined;
   const planName = plan?.name ?? member?.plan ?? "Household";
-  const lockboxLabel = subscription?.lockbox_status === "installed" ? "Lockbox installed" : subscription?.lockbox_status === "shipped" ? "Lockbox on the way" : null;
+  const benefitsDate = subscription?.benefits_eligible_at ? new Date(subscription.benefits_eligible_at) : null;
+  const benefitsReady = !benefitsDate || benefitsDate.getTime() <= Date.now();
+  const auditDate = subscription?.next_audit_eligible_at ? new Date(`${subscription.next_audit_eligible_at}T12:00:00`) : null;
 
   return (
     <div className="relative">
@@ -40,17 +39,17 @@ export default async function DashboardPage() {
       <div className="mt-6 rounded-2xl border border-line bg-gradient-to-br from-surface-raised to-surface p-6">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-verdigris/35 bg-verdigris/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-verdigris"><span className="h-1.5 w-1.5 rounded-full bg-verdigris" />Membership active</span>
         <div className="mt-3 font-display text-lg font-medium text-parchment">{planName}</div>
-        <p className="mt-1 max-w-md text-sm leading-relaxed text-parchment-dim">Membership keeps household access organized and can waive the fixed $25 provider travel fee on eligible requests. Standard service pricing remains transparent and payable.</p>
-
-        <div className="mt-5 flex gap-2">{Array.from({ length: Math.max(totalWaivers, 1) }).map((_, i) => <div key={i} className={`h-1.5 flex-1 rounded-full ${i < remainingWaivers ? "bg-brass" : "bg-line"}`} />)}</div>
-        <div className="mt-2 font-mono text-[10.5px] tracking-wide text-parchment-dim">{remainingWaivers} OF {totalWaivers} PROVIDER TRAVEL-FEE WAIVERS REMAINING THIS YEAR</div>
-
-        {lockboxLabel && <div className="mt-4 flex flex-wrap gap-2 border-t border-line/60 pt-4"><span className="rounded-full bg-verdigris/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-verdigris">{lockboxLabel}</span></div>}
+        <p className="mt-1 max-w-xl text-sm leading-relaxed text-parchment-dim">Digital Sentinel is available immediately. Keep your access details and trusted key holders ready before an emergency happens.</p>
+        <div className="mt-4 flex flex-wrap gap-2 border-t border-line/60 pt-4">
+          <span className={`rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide ${benefitsReady ? "bg-verdigris/10 text-verdigris" : "bg-brass/10 text-brass"}`}>{benefitsReady ? "Field benefits active" : `Field benefits start ${benefitsDate?.toLocaleDateString()}`}</span>
+          {plan?.id === "household_plus" && auditDate && <span className="rounded-full bg-brass/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-brass">Audit available {auditDate.toLocaleDateString()}</span>}
+        </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-2 gap-3">
-        <Link href="/app/vault" className="flex flex-col gap-2 rounded-xl border border-line bg-surface p-4 text-sm font-medium text-parchment transition hover:border-brass/40"><span className="text-lg">🔑</span>Access inventory<span className="font-mono text-[11px] font-normal text-parchment-dim">{vaultItems?.length ?? 0} saved</span></Link>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <Link href="/app/vault" className="flex flex-col gap-2 rounded-xl border border-line bg-surface p-4 text-sm font-medium text-parchment transition hover:border-brass/40"><span className="text-lg">🔐</span>Digital Sentinel<span className="font-mono text-[11px] font-normal text-parchment-dim">{sentinelItems?.length ?? 0} saved access items</span></Link>
         <Link href="/app/trusted" className="flex flex-col gap-2 rounded-xl border border-line bg-surface p-4 text-sm font-medium text-parchment transition hover:border-brass/40"><span className="text-lg">🤝</span>Trusted access<span className="font-mono text-[11px] font-normal text-parchment-dim">{contacts?.length ?? 0} people</span></Link>
+        {plan?.id === "household_plus" && <Link href="/app/audit" className="flex flex-col gap-2 rounded-xl border border-line bg-surface p-4 text-sm font-medium text-parchment transition hover:border-brass/40"><span className="text-lg">🛡️</span>Lock & Access Audit<span className="font-mono text-[11px] font-normal text-parchment-dim">Included every 3 years</span></Link>}
       </div>
 
       <div className="mt-8 font-mono text-[10.5px] uppercase tracking-wide text-parchment-dim">Recent activity</div>

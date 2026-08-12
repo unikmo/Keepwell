@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/how-it-works",
     "/pricing",
+    "/digital-sentinel",
     "/second-homes",
     "/landlords",
     "/for-property-managers",
@@ -21,6 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/services" || route === "/pricing" ? 0.9 : 0.7,
+    priority: route === "" ? 1 : route === "/services" || route === "/pricing" || route === "/digital-sentinel" ? 0.9 : 0.7,
   }));
 }

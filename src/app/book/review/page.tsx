@@ -26,11 +26,10 @@ export default async function BookReviewPage({ searchParams }: { searchParams: P
           <Row label="Address" value={address || "—"} />
           <Row label="Phone" value={phone || "—"} />
           <div className="mt-4 border-t border-line/70 pt-4">
-            <Row label="Standard service" value={formatServicePrice(service.servicePriceCents)} />
-            <Row label="Provider travel" value={formatServicePrice(service.travelFeeCents)} />
-            <div className="mt-3 flex items-end justify-between gap-4 border-t border-line/70 pt-3"><span className="font-medium text-parchment">Total before approved extras</span><span className="font-mono text-3xl text-brass">{formatServicePrice(service.customerPriceCents)}</span></div>
+            <div className="flex items-end justify-between gap-4"><span className="font-medium text-parchment">All-in standard total</span><span className="font-mono text-3xl text-brass">{formatServicePrice(service.customerPriceCents)}</span></div>
+            <p className="mt-2 text-xs leading-5 text-verdigris">Provider travel/service call is included. No second generic drive or call-out fee is added.</p>
             <p className="mt-3 text-xs leading-5 text-parchment-dim">{service.scope}</p>
-            <p className="mt-2 text-xs leading-5 text-verdigris">No additional generic service-call fee is added. Out-of-scope work must be priced and approved before it begins.</p>
+            <p className="mt-2 text-xs leading-5 text-parchment-dim">Any genuinely out-of-scope work must be priced and approved before that additional work begins.</p>
           </div>
         </div>
 
