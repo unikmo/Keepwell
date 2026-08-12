@@ -7,7 +7,7 @@ const SERVICES = [
   { title: "Lockout help", body: "Start a request when you cannot access your home or property." },
   { title: "Rekey", body: "Request a standard rekey after a move, turnover, key loss or access change." },
   { title: "Lock changes", body: "Coordinate replacement or upgrade work with clear scope before work begins." },
-  { title: "Trusted access", body: "Keep the people and access details that can solve a problem before a service visit is needed." },
+  { title: "Digital Sentinel", body: "Keep access details, key locations, reference photos and trusted people ready before a lockout becomes a paid visit." },
 ];
 
 const AUDIENCES = [
@@ -18,8 +18,8 @@ const AUDIENCES = [
 ];
 
 const STEPS = [
-  { n: "01", title: "Tell Keepwell what happened", body: "Choose the property and service needed. You see the scope before submitting." },
-  { n: "02", title: "An independent provider accepts", body: "Keepwell routes the request through the local provider network. Availability varies by market." },
+  { n: "01", title: "Check your access options", body: "Digital Sentinel and trusted key holders can resolve some access problems before a provider is needed." },
+  { n: "02", title: "Request fixed-price service if needed", body: "Keepwell shows one all-in standard price and routes the request through the independent local provider network." },
   { n: "03", title: "Keep the record", body: "The service request, trusted access information and property history stay together for next time." },
 ];
 
@@ -40,14 +40,14 @@ export default async function Home() {
                 <span className="block italic text-brass">without the scramble.</span>
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-7 text-parchment-dim sm:text-lg">
-                Keepwell is the platform for lockouts, rekeys, trusted access and property service history. Request help from independent local providers and keep the critical details for every property in one place.
+                Keepwell combines Digital Sentinel, trusted access and a fixed-price marketplace for lockouts, rekeys and property-access work. Resolve locally when you can; request an independent provider when you cannot.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink transition hover:brightness-110">
                   Request service
                 </Link>
-                <Link href="/pricing" className="inline-flex min-h-12 items-center justify-center rounded-full border border-line px-6 py-3 text-sm font-semibold text-parchment transition hover:border-parchment-dim">
-                  Explore membership
+                <Link href="/digital-sentinel" className="inline-flex min-h-12 items-center justify-center rounded-full border border-line px-6 py-3 text-sm font-semibold text-parchment transition hover:border-parchment-dim">
+                  See Digital Sentinel
                 </Link>
               </div>
               <p className="mt-5 max-w-2xl text-xs leading-5 text-parchment-dim/80">
@@ -68,13 +68,13 @@ export default async function Home() {
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   <DashboardTile label="Need help" value="Request service" detail="Lockout · rekey · lock change" emphasized />
                   <DashboardTile label="Trusted access" value="2 contacts" detail="People who can help locally" />
-                  <DashboardTile label="Access vault" value="4 records" detail="Codes, notes and lock details" />
+                  <DashboardTile label="Digital Sentinel" value="4 records" detail="Codes, key locations, photos & instructions" />
                   <DashboardTile label="Property history" value="3 records" detail="Changes and service activity" />
                 </div>
                 <div className="mt-4 rounded-2xl border border-line bg-ink/45 p-4">
                   <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-parchment-dim">Platform principle</div>
                   <p className="mt-2 text-sm leading-6 text-parchment-dim">
-                    Resolve with trusted access first. When a service visit is needed, create one clear request and keep the outcome attached to the property.
+                    Resolve with Digital Sentinel or trusted access first. When a service visit is needed, use one fixed-price request and keep the outcome attached to the property.
                   </p>
                 </div>
               </div>
@@ -84,7 +84,7 @@ export default async function Home() {
 
         <section className="border-b border-line/70 bg-surface/25 py-8">
           <div className="mx-auto grid max-w-7xl gap-3 px-6 text-center sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
-            {["Upfront service scope", "Independent local providers", "Property access records", "Built for repeat ownership needs"].map((item) => (
+            {["All-in standard prices", "Independent local providers", "Digital Sentinel access records", "Built for repeat ownership needs"].map((item) => (
               <div key={item} className="rounded-xl border border-line/70 bg-ink/30 px-4 py-3 text-xs text-parchment-dim">{item}</div>
             ))}
           </div>
@@ -95,7 +95,7 @@ export default async function Home() {
             <div className="max-w-2xl">
               <div className="eyebrow">Start with the need</div>
               <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">One platform for the moments access gets complicated</h2>
-              <p className="mt-4 leading-7 text-parchment-dim">The service request is only one part. Keepwell connects the immediate job to the access information and property history that make the next problem easier.</p>
+              <p className="mt-4 leading-7 text-parchment-dim">The provider request is only one part. Keepwell connects the immediate job to the access information and property history that can make the next problem cheaper or avoid a service call entirely.</p>
             </div>
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {SERVICES.map((service) => (
@@ -106,7 +106,7 @@ export default async function Home() {
                 </div>
               ))}
             </div>
-            <Link href="/services" className="mt-7 inline-flex text-sm font-medium text-brass hover:underline">See service categories →</Link>
+            <div className="mt-7 flex flex-wrap gap-5"><Link href="/services" className="inline-flex text-sm font-medium text-brass hover:underline">See service categories →</Link><Link href="/digital-sentinel" className="inline-flex text-sm font-medium text-brass hover:underline">Explore Digital Sentinel →</Link></div>
           </div>
         </section>
 
@@ -114,7 +114,7 @@ export default async function Home() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-2xl">
               <div className="eyebrow">How it works</div>
-              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">One request. One property record. No mystery about who does what.</h2>
+              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">Use the free access paths first. Pay for field service only when you need it.</h2>
             </div>
             <div className="mt-12 grid gap-8 md:grid-cols-3">
               {STEPS.map((step) => (
@@ -153,8 +153,8 @@ export default async function Home() {
           <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_.9fr] lg:items-center lg:px-8">
             <div>
               <div className="eyebrow">Membership</div>
-              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">Use Keepwell once, or keep your property protected year-round.</h2>
-              <p className="mt-4 max-w-2xl leading-7 text-parchment-dim">One-off service requests remain available. Membership adds ongoing access tools and plan benefits for owners who want Keepwell ready before something happens.</p>
+              <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">Keepwell becomes useful before the emergency.</h2>
+              <p className="mt-4 max-w-2xl leading-7 text-parchment-dim">One-off service remains available. Membership adds Digital Sentinel and trusted-access tools; Household+ adds priority matching and an included Lock & Access Audit every three years.</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link href="/pricing" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">See membership</Link>
                 <Link href="/book" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-parchment">Request one-off service</Link>
@@ -166,8 +166,8 @@ export default async function Home() {
                 <span className="font-display text-5xl text-parchment">{entryPlan ? formatUsd(entryPlan.price_cents) : "$29"}</span>
                 <span className="pb-1 text-sm text-parchment-dim">/ year</span>
               </div>
-              <p className="mt-3 text-sm leading-6 text-parchment-dim">A low-friction entry point for owners who want access tools and covered-event benefits configured before they need them.</p>
-              <p className="mt-5 text-xs leading-5 text-parchment-dim/80">Coverage and service availability are subject to plan terms and local provider availability.</p>
+              <p className="mt-3 text-sm leading-6 text-parchment-dim">A low-friction entry point for owners who want Digital Sentinel and trusted-access tools configured before they need them.</p>
+              <p className="mt-5 text-xs leading-5 text-parchment-dim/80">Digital Sentinel activates immediately. Field-service membership benefits begin after the applicable waiting period.</p>
             </div>
           </div>
         </section>
