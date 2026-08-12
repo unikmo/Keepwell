@@ -3,9 +3,8 @@ import { Keyhole } from "./Keyhole";
 
 const NAV_LINKS = [
   { label: "Services", href: "/services" },
-  { label: "Prices", href: "/pricing" },
   { label: "Digital Sentinel", href: "/digital-sentinel" },
-  { label: "How it works", href: "/how-it-works" },
+  { label: "Membership", href: "/pricing" },
   { label: "Property managers", href: "/for-property-managers" },
   { label: "Providers", href: "/partner-tech" },
 ];
@@ -15,10 +14,11 @@ export function Nav() {
     <header className="sticky top-0 z-50 border-b border-line/70 bg-ink/94 backdrop-blur-xl">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-5 px-5 py-3.5 sm:px-8 lg:px-10">
         <Link href="/" className="flex min-h-11 items-center gap-3 font-display text-xl font-medium text-parchment">
-          <span className="grid h-9 w-9 place-items-center rounded-xl border border-brass/30 bg-brass/10"><Keyhole className="h-4 w-3 text-brass" /></span><span>Keepwell</span>
+          <span className="grid h-9 w-9 place-items-center rounded-xl border border-brass/30 bg-brass/10"><Keyhole className="h-4 w-3 text-brass" /></span>
+          <span>Keepwell</span>
         </Link>
-        <nav className="hidden items-center gap-6 text-[15px] text-parchment-dim xl:flex" aria-label="Primary navigation">
-          {NAV_LINKS.map((item)=><Link key={item.href} href={item.href} className="transition hover:text-parchment">{item.label}</Link>)}
+        <nav className="hidden items-center gap-7 text-[15px] text-parchment-dim xl:flex" aria-label="Primary navigation">
+          {NAV_LINKS.map((item) => <Link key={item.href} href={item.href} className="transition hover:text-parchment">{item.label}</Link>)}
         </nav>
         <div className="hidden items-center gap-4 sm:flex">
           <Link href="/login" className="min-h-11 px-2 py-3 text-[15px] text-parchment-dim transition hover:text-parchment">Log in</Link>
@@ -31,9 +31,8 @@ export function Nav() {
           </summary>
           <div className="absolute right-0 mt-3 w-[min(88vw,340px)] rounded-2xl border border-line bg-surface-raised p-3 shadow-2xl">
             <nav className="grid" aria-label="Mobile navigation">
-              {NAV_LINKS.map((item)=><Link key={item.href} href={item.href} className="rounded-xl px-4 py-3 text-[15px] text-parchment transition hover:bg-surface">{item.label}</Link>)}
+              {NAV_LINKS.map((item) => <Link key={item.href} href={item.href} className="rounded-xl px-4 py-3 text-[15px] text-parchment transition hover:bg-surface">{item.label}</Link>)}
               <Link href="/for-real-estate-agents" className="rounded-xl px-4 py-3 text-[15px] text-parchment transition hover:bg-surface">Real estate professionals</Link>
-              <Link href="/providers" className="rounded-xl px-4 py-3 text-[15px] text-parchment transition hover:bg-surface">Provider directory</Link>
               <Link href="/login" className="rounded-xl px-4 py-3 text-[15px] text-parchment transition hover:bg-surface">Log in</Link>
               <Link href="/book" className="mt-2 rounded-xl bg-brass px-4 py-3 text-center text-[15px] font-semibold text-ink">Request service</Link>
             </nav>
