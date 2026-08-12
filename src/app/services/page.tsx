@@ -8,7 +8,7 @@ import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 export const metadata: Metadata = {
   title: "Property access services & fixed prices",
   description:
-    "See fixed Keepwell prices for home lockouts, rekeys, lock changes and smart-lock installation through independent local providers.",
+    "See fixed all-in Keepwell prices for home lockouts, rekeys, lock changes and smart-lock installation through independent local providers.",
   alternates: { canonical: "/services" },
 };
 
@@ -20,7 +20,7 @@ export default function ServicesPage() {
         <PageHero
           eyebrow="Services & prices"
           title="Start with a real price, not a $19 bait quote"
-          body="Keepwell publishes the standard customer price before the request. Independent providers see their fixed payout before they accept."
+          body="Keepwell publishes one all-in standard customer price before the request. Provider travel/service call is included, and independent providers see their fixed payout before they accept."
         />
 
         <section className="border-b border-line/70 py-16 sm:py-20">
@@ -31,6 +31,7 @@ export default function ServicesPage() {
                   <div className="font-mono text-[10px] uppercase tracking-[0.13em] text-parchment-dim">{service.timing}</div>
                   <h2 className="mt-3 font-display text-2xl font-medium text-parchment">{service.title}</h2>
                   <div className="mt-3 font-mono text-3xl text-brass">{formatServicePrice(service.customerPriceCents)}</div>
+                  <div className="mt-1 text-[11px] text-verdigris">All-in · travel/service call included</div>
                   <p className="mt-4 text-xs leading-5 text-parchment-dim">{service.scope}</p>
                   <p className="mt-4 border-t border-line/70 pt-4 text-xs leading-5 text-verdigris">{service.memberNote}</p>
                   <div className="flex-1" />
@@ -57,7 +58,7 @@ export default function ServicesPage() {
               Compare membership against prices you can actually see
             </h2>
             <p className="mx-auto mt-4 max-w-2xl leading-7 text-parchment-dim">
-              You never need a membership to request service. Membership is the repeat-owner layer: access records, trusted contacts and eligible covered-event benefits.
+              You never need a membership to request service. Membership is the repeat-owner layer: Digital Sentinel, trusted contacts and trusted-access benefits.
             </p>
             <Link href="/pricing" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">
               Compare one-off & membership
