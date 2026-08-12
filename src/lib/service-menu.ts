@@ -3,100 +3,119 @@ export type ServiceMenuItem = {
   jobType: "lockout" | "rekey" | "lock_upgrade";
   title: string;
   timing: string;
+  /** Legacy-compatible field: now equals the all-in customer price. */
   servicePriceCents: number;
+  /** Kept for compatibility only. Customer pricing no longer separates travel. */
   travelFeeCents: number;
+  /** One all-in standard price shown to the customer. */
   customerPriceCents: number;
+  /** Legacy-compatible field: now equals the complete provider payout. */
   providerServicePayoutCents: number;
+  /** Complete fixed payout shown to the provider before acceptance. */
   providerPayoutCents: number;
   scope: string;
   memberNote: string;
 };
 
-export const PROVIDER_TRAVEL_FEE_CENTS = 2500;
-
-function withTravelFee(
-  item: Omit<ServiceMenuItem, "travelFeeCents" | "customerPriceCents" | "providerPayoutCents">
-): ServiceMenuItem {
+function allIn(item: {
+  id: ServiceMenuItem["id"];
+  jobType: ServiceMenuItem["jobType"];
+  title: string;
+  timing: string;
+  customerPriceCents: number;
+  providerPayoutCents: number;
+  scope: string;
+  memberNote?: string;
+}): ServiceMenuItem {
   return {
     ...item,
-    travelFeeCents: PROVIDER_TRAVEL_FEE_CENTS,
-    customerPriceCents: item.servicePriceCents + PROVIDER_TRAVEL_FEE_CENTS,
-    providerPayoutCents: item.providerServicePayoutCents + PROVIDER_TRAVEL_FEE_CENTS,
+    servicePriceCents: item.customerPriceCents,
+    travelFeeCents: 0,
+    providerServicePayoutCents: item.providerPayoutCents,
+    memberNote: item.memberNote ?? "All-in standard price. Provider travel/service call is included.",
   };
 }
 
+/**
+ * Boston launch menu.
+ * Customer prices are deliberately positioned below credible published all-in
+ * starting prices for comparable standard work. Provider payouts are complete
+ * job payouts; Keepwell supplies the ready-to-buy lead and marketplace flow.
+ */
 export const SERVICE_MENU: ServiceMenuItem[] = [
-  withTravelFee({
+  allIn({
     id: "home_lockout_day",
     jobType: "lockout",
     title: "Home lockout",
     timing: "Weekdays, 8am–6pm",
-    servicePriceCents: 8900,
-    providerServicePayoutCents: 6500,
-    scope: "Standard residential entry. Destructive entry, high-security hardware, repairs, and replacement hardware are excluded.",
-    memberNote: "Members may use an available annual travel-fee waiver; the fixed service price still applies.",
+    customerPriceCents: 9900,
+    providerPayoutCents: 6000,
+    scope: "Standard residential entry. Provider travel/service call is included. Destructive entry, high-security hardware, repairs, and replacement hardware are excluded.",
   }),
-  withTravelFee({
+  allIn({
     id: "home_lockout_evening_weekend",
     jobType: "lockout",
     title: "Home lockout",
     timing: "Evenings 6pm–11pm & weekends",
-    servicePriceCents: 11900,
-    providerServicePayoutCents: 8500,
-    scope: "Standard residential entry. Destructive entry, high-security hardware, repairs, and replacement hardware are excluded.",
-    memberNote: "Members may use an available annual travel-fee waiver; the fixed service price still applies.",
+    customerPriceCents: 12900,
+    providerPayoutCents: 6500,
+    scope: "Standard residential entry. Provider travel/service call is included. Destructive entry, high-security hardware, repairs, and replacement hardware are excluded.",
   }),
-  withTravelFee({
+  allIn({
     id: "home_lockout_overnight_holiday",
     jobType: "lockout",
     title: "Home lockout",
     timing: "11pm–8am & major holidays",
-    servicePriceCents: 14900,
-    providerServicePayoutCents: 11000,
-    scope: "Standard residential entry. Destructive entry, high-security hardware, repairs, and replacement hardware are excluded.",
-    memberNote: "Members may use an available annual travel-fee waiver; the fixed service price still applies.",
+    customerPriceCents: 13900,
+    providerPayoutCents: 7800,
+    scope: "Standard residential entry. Provider travel/service call is included. Destructive entry, high-security hardware, repairs, and replacement hardware are excluded.",
+    memberNote: "All-in standard price. Overnight/holiday provider payout is higher to support acceptance outside normal hours.",
   }),
-  withTravelFee({
+  allIn({
     id: "car_lockout_at_property",
     jobType: "lockout",
     title: "Car lockout at the property",
     timing: "Standard service window",
-    servicePriceCents: 9900,
-    providerServicePayoutCents: 7200,
-    scope: "Standard vehicle entry at the service property. Key cutting, programming, high-security systems, and damage repair are excluded.",
-    memberNote: "Members may use an available annual travel-fee waiver when the vehicle is at the registered property.",
+    customerPriceCents: 10900,
+    providerPayoutCents: 6000,
+    scope: "Standard vehicle entry at the service property. Provider travel/service call is included. Key cutting, programming, high-security systems, and damage repair are excluded.",
   }),
-  withTravelFee({
+  allIn({
     id: "standard_rekey",
     jobType: "rekey",
     title: "Standard rekey",
     timing: "Scheduled service",
-    servicePriceCents: 9900,
-    providerServicePayoutCents: 7200,
-    scope: "Includes the service visit and first standard cylinder. Additional standard cylinders are $29 each. Specialty/high-security cylinders are quoted before work.",
-    memberNote: "Members may use an available annual travel-fee waiver; additional cylinders remain separately priced.",
+    customerPriceCents: 7500,
+    providerPayoutCents: 5500,
+    scope: "Provider travel/service call plus the first standard cylinder rekey. Additional standard cylinders are $29 each. Specialty/high-security cylinders require approval before work.",
   }),
-  withTravelFee({
+  allIn({
     id: "standard_lock_change",
     jobType: "lock_upgrade",
     title: "Standard lock change",
     timing: "Scheduled service",
-    servicePriceCents: 12900,
-    providerServicePayoutCents: 9000,
-    scope: "Labor for one standard residential lock replacement. Hardware is separate and must be approved before installation.",
-    memberNote: "Members may use an available annual travel-fee waiver. Hardware is always separate.",
+    customerPriceCents: 8900,
+    providerPayoutCents: 6000,
+    scope: "Provider travel/service call and labor for one standard residential lock replacement. Hardware is separate and must be priced and approved before installation.",
   }),
-  withTravelFee({
+  allIn({
     id: "smart_lock_install",
     jobType: "lock_upgrade",
     title: "Smart lock installation",
     timing: "Scheduled service",
-    servicePriceCents: 14900,
-    providerServicePayoutCents: 10500,
-    scope: "Labor to install and set up one compatible customer-supplied smart lock. Hardware, door modification, electrical work, network troubleshooting, or work outside the provider's verified scope are separate.",
-    memberNote: "Members may use an available annual travel-fee waiver. Hardware and out-of-scope work are separate.",
+    customerPriceCents: 12900,
+    providerPayoutCents: 7000,
+    scope: "Provider travel/service call and labor to install/setup one compatible customer-supplied smart lock. Hardware, door modification, electrical work, network troubleshooting, or work outside the provider's verified scope are separate.",
   }),
 ];
+
+export const LOCK_AUDIT = {
+  id: "lock_access_audit",
+  title: "Lock & Access Audit",
+  customerPriceCents: 8900,
+  providerPayoutCents: 5200,
+  scope: "Scheduled inspection and standardized report only. The provider does not quote or sell remedial work during the visit. Keepwell issues any official follow-up offer after reviewing the report.",
+};
 
 export function getServiceMenuItem(id?: string | null) {
   if (!id) return undefined;
@@ -114,5 +133,5 @@ export function formatServicePrice(cents: number) {
 }
 
 export function servicePriceBreakdown(item: ServiceMenuItem) {
-  return `${formatServicePrice(item.servicePriceCents)} service + ${formatServicePrice(item.travelFeeCents)} provider travel`;
+  return `${formatServicePrice(item.customerPriceCents)} total · provider travel/service call included`;
 }
