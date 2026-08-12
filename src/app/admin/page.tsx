@@ -50,11 +50,14 @@ export default async function AdminPage({
       <Nav />
       <main className="flex-1 py-10">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="eyebrow">Internal operations</div>
-          <h1 className="mt-2 font-display text-4xl text-parchment">Keepwell network dashboard</h1>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-parchment-dim">
-            Manual pilot control: provider claims, supply availability, service requests, fixed-payout offers and accepted jobs.
-          </p>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <div className="eyebrow">Internal operations</div>
+              <h1 className="mt-2 font-display text-4xl text-parchment">Keepwell network dashboard</h1>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-parchment-dim">Manual pilot control: provider claims, supply availability, service requests, fixed-payout offers and accepted jobs.</p>
+            </div>
+            <a href="/admin/v4" className="text-sm text-brass">Audit & B2B operations →</a>
+          </div>
 
           {notice && <div className="mt-6 rounded-xl border border-verdigris/30 bg-verdigris/10 p-3 text-sm text-verdigris">{notice}</div>}
           {error && <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 p-3 text-sm text-ember">{error}</div>}
@@ -103,7 +106,7 @@ export default async function AdminPage({
                     <div className="grid gap-5 xl:grid-cols-[1.1fr_.9fr]">
                       <div>
                         <div className="font-medium text-parchment">{service.title} · {formatServicePrice(request.price_cents || service.customerPriceCents)}</div>
-                        <div className="mt-1 text-xs text-parchment-dim">{request.address} · {request.id.slice(0,8).toUpperCase()}</div>
+                        <div className="mt-1 text-xs text-parchment-dim">{request.address} · {request.id.slice(0,8).toUpperCase()}{request.priority_requested ? " · HOUSEHOLD+ PRIORITY" : ""}</div>
                         <div className="mt-2 text-xs text-parchment-dim">{existing.length} provider offer(s) · {existing.filter((o:any)=>o.status==="accepted").length} accepted</div>
                       </div>
                       <form action={offerJob} className="grid gap-2 sm:grid-cols-[1fr_120px_auto]">
@@ -124,9 +127,9 @@ export default async function AdminPage({
           </section>
 
           <section className="mt-10">
-            <SectionTitle title="Open member requests" count={openMember.length} />
+            <SectionTitle title="Legacy member requests" count={openMember.length} />
             <div className="mt-3 space-y-3">
-              {openMember.length === 0 ? <Empty>No open member requests.</Empty> : openMember.map((request: any) => {
+              {openMember.length === 0 ? <Empty>No legacy member requests.</Empty> : openMember.map((request: any) => {
                 const existing = (offers ?? []).filter((offer: any) => offer.request_type === "member_dispatch" && offer.request_id === request.id);
                 return (
                   <div key={request.id} className="rounded-2xl border border-line bg-surface p-5">
@@ -142,7 +145,7 @@ export default async function AdminPage({
                           <option value="">Choose verified provider</option>
                           {verifiedProviders.map((provider: any) => <option key={provider.id} value={provider.id}>{provider.business_name}{provider.is_available ? " · available" : ""}</option>)}
                         </select>
-                        <input name="payout_cents" type="number" min={100} defaultValue={9000} className="rounded-xl border border-line bg-surface-raised px-3 py-2 text-sm text-parchment" aria-label="Payout cents" />
+                        <input name="payout_cents" type="number" min={100} defaultValue={6000} className="rounded-xl border border-line bg-surface-raised px-3 py-2 text-sm text-parchment" aria-label="Payout cents" />
                         <button className="rounded-full bg-brass px-4 py-2 text-xs font-semibold text-ink">Send offer</button>
                       </form>
                     </div>
