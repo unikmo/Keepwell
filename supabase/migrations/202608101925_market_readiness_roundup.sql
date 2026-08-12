@@ -1,35 +1,13 @@
+-- Keepwell v3 migration retained for history only.
+--
+-- This migration originally introduced a separate provider travel-fee waiver
+-- model. Keepwell v4 replaced that model with one all-in customer price and
+-- Digital Sentinel / Household+ audit entitlements.
+--
+-- The v4 migration (202608112100_v4_market_loop.sql) is intentionally written
+-- to work whether this historical migration was ever applied or not. Keeping
+-- this file as a no-op lets environments with older migration history advance
+-- safely without reintroducing obsolete travel-fee logic.
+
 begin;
-
-alter table public.plans
-  add column if not exists travel_fee_waivers_per_year integer not null default 0;
-
-alter table public.subscriptions
-  add column if not exists travel_fee_waivers_used integer not null default 0;
-
-update public.plans
-set travel_fee_waivers_per_year = 1,
-    guaranteed_visit = 'none',
-    reaudit_cadence_years = null
-where id = 'individual';
-
-update public.plans
-set travel_fee_waivers_per_year = 1,
-    guaranteed_visit = 'none',
-    reaudit_cadence_years = null,
-    lockbox_mode = 'included_free'
-where id = 'household';
-
-update public.plans
-set name = 'Household + Priority',
-    travel_fee_waivers_per_year = 2,
-    guaranteed_visit = 'none',
-    reaudit_cadence_years = null,
-    lockbox_mode = 'included_free',
-    priority_dispatch = true
-where id = 'household_plus';
-
 commit;
-
-select id, name, price_cents, travel_fee_waivers_per_year, lockbox_mode, guaranteed_visit, priority_dispatch
-from public.plans
-order by sort_order;
