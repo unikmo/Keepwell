@@ -3,12 +3,14 @@ import { Keyhole } from "./Keyhole";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line/70 bg-void/45">
+    <footer className="border-t border-line/70 bg-void">
       <div className="mx-auto max-w-[1400px] px-6 py-10 sm:px-8 lg:px-10">
         <div className="grid gap-8 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <Link href="/" className="flex items-center gap-3 font-display text-xl font-medium text-parchment">
-              <span className="grid h-9 w-9 place-items-center rounded-xl border border-brass/30 bg-brass/10"><Keyhole className="h-4 w-3 text-brass" /></span>
+              <span className="grid h-9 w-9 place-items-center rounded-xl border border-sky/20 bg-surface-raised/70">
+                <Keyhole className="h-4 w-3 text-brass" />
+              </span>
               Keepwell
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
