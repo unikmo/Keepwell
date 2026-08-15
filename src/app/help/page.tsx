@@ -5,65 +5,64 @@ import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "Help Center — Digital Sentinel",
-  description:
-    "Answers to common questions about Digital Sentinel membership: what's covered, how dispatch works, billing, canceling, vault security, and trusted access.",
+  title: "Help Center",
+  description: "Answers about Keepwell Digital Access, service requests, provider matching, membership and trusted access.",
   alternates: { canonical: "/help" },
 };
 
 const SECTIONS = [
   {
-    title: "Coverage & dispatch",
+    title: "Service requests",
     items: [
       {
-        q: "What actually counts as a covered event?",
-        a: "A home lockout, a car locked out at your home address, or a standard rekey. All three draw from the same yearly pool of covered events on your plan. Full lock replacement or smart-lock hardware are priced separately and always shown before anyone starts work.",
+        q: "Do I need a membership to request service?",
+        a: "No. One-off service requests are available without membership. Keepwell shows the standard service price before you submit the request.",
       },
       {
-        q: "How do I request help if I'm locked out right now?",
-        a: "Open the app and tap Get help — don't use the website contact form for an active lockout, since it isn't monitored in real time. The app dispatches a verified local tech and shows you their name, rating, and ETA immediately.",
+        q: "Does submitting a request mean a provider is already assigned?",
+        a: "No. A request is submitted first. A provider name and ETA appear only after a participating independent provider actually accepts the request.",
       },
       {
-        q: "How fast is response time?",
-        a: "Our current average is 14 minutes in metro areas. Actual time depends on tech availability nearby, and you'll see a live ETA the moment a tech is assigned.",
+        q: "Who performs the field work?",
+        a: "Independent local providers perform field service. Keepwell operates the platform, request flow, pricing rules and property-access records.",
       },
       {
-        q: "What if I run out of covered events for the year?",
-        a: "You can still request dispatch — you'll just see the flat per-visit price before confirming, the same price-certainty promise as covered visits, just billed instead of pooled.",
+        q: "Can a provider add charges after arriving?",
+        a: "Only when the job is genuinely outside the published standard scope. Any additional work and price should be shown and approved before that additional work starts.",
       },
     ],
   },
   {
-    title: "Billing & membership",
+    title: "Digital Access",
     items: [
       {
-        q: "How is billing structured?",
-        a: "Annual membership, billed once a year per the plan you choose. Covered events refresh at renewal, unused events don't carry over, and add-ons like lockbox registration are billed once at signup.",
+        q: "What is Digital Access?",
+        a: "Digital Access keeps access codes, spare-key details, trusted key holders, recovery instructions and reference photos together for the property so you can check your own backup options first.",
       },
       {
-        q: "Can I upgrade or downgrade my plan?",
-        a: "Yes, from your account settings — changes take effect at your next renewal so you're never charged twice for the same coverage period.",
+        q: "Can a trusted person see all my saved codes?",
+        a: "No. A person can be recorded as holding a spare key or being able to help without automatically receiving access to your saved sensitive details.",
       },
       {
-        q: "How do I cancel?",
-        a: "Contact us through the form below or the in-app support line and we'll process it — see the Member Agreement for the full cancellation and refund policy.",
+        q: "How are sensitive access details stored?",
+        a: "Sensitive text is stored as server-encrypted ciphertext. Reference photos use private storage with time-limited signed access. Keepwell does not describe this as zero-knowledge or end-to-end encryption.",
       },
     ],
   },
   {
-    title: "Vault & trusted access",
+    title: "Membership",
     items: [
       {
-        q: "Is my vault actually secure?",
-        a: "Everything you store — key photos, gate codes, lockbox combinations — is encrypted on your device. We deliberately scope the vault to everyday household keys and codes only; it's never used for legal or estate documentation.",
+        q: "What does membership add?",
+        a: "Membership adds Digital Access and plan-specific benefits such as household access profiles, trusted-contact capacity and, on Household+, priority matching and the included Lock & Access Audit on its stated cadence.",
       },
       {
-        q: "Who can see what's in my trusted contacts?",
-        a: "Only you. Trusted contacts you add can be granted \"key holder\" or \"can authorize\" permissions, but they don't get visibility into your vault contents unless you explicitly share something with them.",
+        q: "When do field-service membership benefits begin?",
+        a: "Digital Access is available immediately. Field-service membership benefits use the waiting period shown on the pricing page. One-off service can still be requested separately.",
       },
       {
-        q: "What's a lockbox code, and how is it different from dispatch?",
-        a: "It's a physical lockbox code you register with us. If you're locked out, using the code resolves it immediately with no dispatch, no wait, and no cost — it's the fastest path back inside if you've set one up.",
+        q: "Does creating an account charge my card?",
+        a: "No. Account creation stores your profile and selected plan. Payment activation is handled separately through checkout once payment processing is enabled.",
       },
     ],
   },
@@ -76,20 +75,20 @@ export default function HelpCenterPage() {
       <main className="flex-1">
         <PageHero
           eyebrow="Help center"
-          title="Answers to the questions we hear most"
-          body="If you're locked out right now, open the app and tap Get help instead of reading this page. Everything else lives here."
+          title="Clear answers before you request help"
+          body="Understand Digital Access, provider matching, pricing and membership without having to decode marketplace jargon."
         />
 
-        <section className="py-20">
+        <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-3xl px-6">
             {SECTIONS.map((section) => (
-              <div key={section.title} className="mb-16 last:mb-0">
+              <div key={section.title} className="mb-14 last:mb-0">
                 <h2 className="font-display text-2xl font-medium text-parchment">{section.title}</h2>
-                <div className="mt-8 space-y-6">
+                <div className="mt-7 space-y-6">
                   {section.items.map((item) => (
                     <div key={item.q} className="border-b border-line/70 pb-6">
                       <h3 className="font-medium text-parchment">{item.q}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-parchment-dim">{item.a}</p>
+                      <p className="mt-2 text-sm leading-6 text-parchment-dim">{item.a}</p>
                     </div>
                   ))}
                 </div>
@@ -99,10 +98,12 @@ export default function HelpCenterPage() {
         </section>
 
         <CTABand
-          title="Still stuck?"
-          body="For account, billing, or anything not covered here, reach the member support team directly."
-          ctaLabel="Contact support"
+          title="Still need help?"
+          body="Use the contact form for account, provider, privacy or general support questions."
+          ctaLabel="Contact Keepwell"
           ctaHref="/contact"
+          secondaryLabel="View services"
+          secondaryHref="/services"
         />
       </main>
       <Footer />
