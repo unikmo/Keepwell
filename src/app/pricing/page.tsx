@@ -7,10 +7,22 @@ import { CTABand } from "@/components/CTABand";
 import { getPlans, planDisplay, formatUsd } from "@/lib/plans";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
+const metaDescription = "Compare upfront Keepwell prices for home lockouts, rekeys, lock changes and smart-lock installation with optional Digital Access memberships.";
+
 export const metadata: Metadata = {
-  title: "Pricing | Lockout, Rekey, Lock Change & Membership",
-  description: "Compare Keepwell standard prices for home lockouts, rekeys, lock changes and smart-lock installation with optional Digital Access memberships.",
+  title: "Pricing | Locksmith Services & Digital Access Membership",
+  description: metaDescription,
   alternates: { canonical: "/pricing" },
+  openGraph: {
+    title: "Keepwell pricing | One-off service or optional membership",
+    description: metaDescription,
+    url: "/pricing",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Keepwell pricing | One-off service or optional membership",
+    description: metaDescription,
+  },
 };
 
 const FAQ = [
