@@ -66,7 +66,7 @@ export function planDisplay(plan: Plan) {
   const features: string[] = [];
 
   if (plan.id === "individual") {
-    features.push("Digital Sentinel for access details, instructions and photos");
+    features.push("Digital Access for codes, key details, instructions and photos");
     features.push("1 trusted key holder / emergency contact");
     features.push("Fixed all-in Keepwell service prices");
     features.push("Field-service benefits begin after 14 days");
