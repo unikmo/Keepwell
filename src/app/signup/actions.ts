@@ -22,14 +22,14 @@ export async function signup(formData: FormData) {
         full_name: fullName,
         plan: planRow?.name ?? planId,
         plan_id: planId,
-        membership_signup: true,
+        // Do not provision an active paid subscription before a real Stripe
+        // checkout/webhook confirms payment.
+        membership_signup: false,
       },
     },
   });
 
   if (error) redirect(`/signup?error=${encodeURIComponent(error.message)}`);
-  // Account and plan metadata are provisioned by the auth trigger. Payment activation
-  // will be connected separately through the real checkout flow.
   if (data.session) redirect("/app");
   redirect("/login?notice=Check your email to confirm your account. Your selected plan has been saved.");
 }
