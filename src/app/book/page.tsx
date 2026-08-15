@@ -4,9 +4,9 @@ import { Keyhole } from "@/components/Keyhole";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
 export const metadata: Metadata = {
-  title: "Request property access service",
+  title: "Request Home Lockout, Rekey or Lock Service",
   description:
-    "Choose a fixed-price Keepwell service request. Independent local providers perform the field service.",
+    "Choose a home lockout, rekey, lock change or smart-lock service and see the standard Keepwell price before you submit a request.",
   alternates: { canonical: "/book" },
 };
 
@@ -21,10 +21,10 @@ export default function BookPage() {
             </span>
             Keepwell
           </Link>
-          <div className="mt-7 eyebrow">One-off service</div>
-          <h1 className="mt-2 font-display text-4xl font-medium text-parchment">Choose the service and see the price first</h1>
+          <div className="mt-7 eyebrow">Request service</div>
+          <h1 className="mt-2 font-display text-4xl font-medium text-parchment">What do you need help with?</h1>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-parchment-dim">
-            No membership required. The listed price covers the standard scope. Any excluded work must be priced and approved before it begins.
+            Choose the service to see the standard total before you continue. Provider travel/service call is included. No membership required.
           </p>
         </div>
 
@@ -37,7 +37,8 @@ export default function BookPage() {
             >
               <span>
                 <span className="block font-medium text-parchment">{service.title}</span>
-                <span className="mt-1 block text-xs leading-5 text-parchment-dim">{service.timing} · {service.scope}</span>
+                <span className="mt-1 block text-xs leading-5 text-parchment-dim">{service.timing}</span>
+                <span className="mt-1 block text-xs leading-5 text-parchment-dim/80">{service.scope}</span>
               </span>
               <span className="flex items-center gap-3">
                 <span className="font-mono text-xl text-brass">{formatServicePrice(service.customerPriceCents)}</span>
@@ -48,12 +49,12 @@ export default function BookPage() {
         </div>
 
         <div className="mt-6 rounded-2xl border border-line bg-surface/50 p-4 text-xs leading-5 text-parchment-dim">
-          Keepwell is the platform. Services are performed by independent local providers, and availability varies by location and time.
+          Availability varies by location and time. A provider name and ETA appear only after a participating independent provider accepts your request.
         </div>
 
         <p className="mt-6 text-center text-xs text-parchment-dim">
-          Already a member? <Link href="/login" className="text-brass hover:underline">Log in</Link> to use your member workflow. ·{" "}
-          <Link href="/pricing" className="text-brass hover:underline">Compare membership</Link>
+          Already have a Keepwell account? <Link href="/login" className="text-brass hover:underline">Log in</Link> ·{" "}
+          <Link href="/digital-access" className="text-brass hover:underline">Explore Digital Access</Link>
         </p>
       </div>
     </div>
