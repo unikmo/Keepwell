@@ -30,8 +30,8 @@ export default async function Home() {
                 Check the access you already have. If you still need help, request an independent local provider at one fixed all-in standard price.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/digital-sentinel" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-[15px] font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.16)] transition hover:brightness-110">
-                  Set up Digital Sentinel
+                <Link href="/digital-access" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-[15px] font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.16)] transition hover:brightness-110">
+                  Set up Digital Access
                 </Link>
                 <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/35 px-7 py-3 text-[15px] font-semibold text-parchment transition hover:border-sky/55 hover:bg-surface/55">
                   Request service
@@ -47,7 +47,7 @@ export default async function Home() {
               <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/10 bg-ink/90 p-5 backdrop-blur-md sm:inset-x-6 sm:bottom-6">
                 <div className="font-mono text-[10px] uppercase tracking-[.16em] text-brass">Before you call anyone</div>
                 <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="font-display text-2xl text-parchment">Check Digital Sentinel first.</div>
+                  <div className="font-display text-2xl text-parchment">Check Digital Access first.</div>
                   <span className="text-sm text-parchment-dim">Codes · spare keys · trusted people</span>
                 </div>
               </div>
@@ -76,12 +76,12 @@ export default async function Home() {
               <img src={KEY_IMAGE} alt="House keys held near an open front door" className="h-[420px] w-full object-cover sm:h-[500px]" loading="lazy" />
             </div>
             <div className="max-w-xl">
-              <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">Digital Sentinel</div>
+              <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">Digital Access</div>
               <h2 className="mt-4 font-display text-4xl font-medium leading-[1.04] tracking-[-.025em] text-navy-text sm:text-5xl">
                 Solve the lockout before it becomes a service call.
               </h2>
               <p className="mt-5 text-lg leading-8 text-[#46617f]">
-                Keep the few access details that matter attached to the property, ready when you need them.
+                Keep access codes, spare-key details, trusted key holders and recovery instructions attached to the property, ready when you need them.
               </p>
               <div className="mt-7 divide-y divide-[#c7d9ec] border-y border-[#c7d9ec]">
                 {[
@@ -98,8 +98,8 @@ export default async function Home() {
                   </div>
                 ))}
               </div>
-              <Link href="/digital-sentinel" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink shadow-[0_8px_22px_rgba(150,119,59,0.18)] transition hover:brightness-105">
-                Explore Digital Sentinel
+              <Link href="/digital-access" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink shadow-[0_8px_22px_rgba(150,119,59,0.18)] transition hover:brightness-105">
+                Explore Digital Access
               </Link>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default async function Home() {
               <div className="max-w-lg">
                 <div className="eyebrow">Membership</div>
                 <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Useful before the emergency.</h2>
-                <p className="mt-4 text-base leading-7 text-parchment-dim">Digital Sentinel activates immediately. One-off service remains available without membership.</p>
+                <p className="mt-4 text-base leading-7 text-parchment-dim">Digital Access is available immediately. One-off service remains available without membership.</p>
                 <Link href="/pricing" className="mt-6 inline-flex text-sm font-semibold text-brass hover:underline">Compare membership →</Link>
               </div>
               <div className="grid gap-4 md:grid-cols-3">
@@ -149,7 +149,7 @@ export default async function Home() {
                       <span className="pb-1 text-xs text-parchment-dim">/year</span>
                     </div>
                     <div className="mt-4 text-sm leading-6 text-parchment-dim">
-                      {plan.id === "individual" && "Digital Sentinel + 1 trusted key holder."}
+                      {plan.id === "individual" && "Digital Access + 1 trusted key holder."}
                       {plan.id === "household" && "Household profiles + unlimited trusted contacts."}
                       {plan.id === "household_plus" && "Priority matching + Lock & Access Audit every 3 years."}
                     </div>
@@ -181,7 +181,7 @@ export default async function Home() {
               Organize access now, or use Keepwell to request an independent local provider when you need one.
             </p>
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/digital-sentinel" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.14)]">Set up Digital Sentinel</Link>
+              <Link href="/digital-access" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.14)]">Set up Digital Access</Link>
               <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/30 px-7 py-3 text-sm font-semibold text-parchment transition hover:border-sky/55">Request service</Link>
             </div>
           </div>
