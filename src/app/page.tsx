@@ -7,6 +7,14 @@ import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 const HERO_IMAGE = "https://images.unsplash.com/photo-1711098256657-f40961037781?auto=format&fit=crop&fm=jpg&q=82&w=1800";
 const KEY_IMAGE = "https://images.unsplash.com/photo-1733244766159-f58f4184fd38?auto=format&fit=crop&fm=jpg&q=82&w=1800";
 const QUICK_SERVICE_IDS = ["home_lockout_day", "standard_rekey", "standard_lock_change"];
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mykeepwell.vercel.app";
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Keepwell",
+  url: siteUrl,
+};
 
 export default async function Home() {
   const plans = await getPlans();
@@ -16,18 +24,19 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <Nav />
       <main className="flex-1">
         <section className="border-b border-line/70">
           <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-14 sm:px-8 sm:py-18 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-16 lg:px-10 lg:py-20">
             <div className="max-w-2xl">
-              <div className="eyebrow">Home lockouts · rekeys · lock changes</div>
+              <div className="eyebrow">Lockouts · rekeys · lock changes · smart locks</div>
               <h1 className="mt-5 font-display text-5xl font-medium leading-[.98] tracking-[-.035em] text-parchment sm:text-6xl lg:text-[72px]">
                 Property access,
                 <span className="block italic text-brass">without the scramble.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-parchment-dim">
-                See the standard price before you request service. Travel is included. And if a saved code, spare key or trusted person can solve the problem first, Digital Access keeps those options ready.
+                See the standard price before you request a provider. Travel is included. Digital Access keeps codes, spare keys and trusted people ready for problems you may be able to solve without a service call.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-[15px] font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.16)] transition hover:brightness-110">
@@ -48,9 +57,9 @@ export default async function Home() {
         <section className="border-b border-line/70 bg-surface/55">
           <div className="mx-auto grid max-w-[1400px] gap-5 px-6 py-6 sm:grid-cols-3 sm:px-8 lg:px-10">
             {[
-              ["Fixed standard price", "Know the total before you request service"],
-              ["Travel included", "No separate generic service-call fee"],
-              ["Scope before work", "Approve any additional work before it starts"],
+              ["Price shown upfront", "Know the standard total before you request service"],
+              ["Travel included", "No separate travel or service-call fee"],
+              ["Extras need approval", "Approve additional work before it starts"],
             ].map(([title, body]) => (
               <div key={title} className="rounded-xl border border-sky/10 bg-ink/10 px-4 py-3 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0">
                 <div className="text-sm font-semibold text-parchment">{title}</div>
@@ -99,7 +108,7 @@ export default async function Home() {
           <div className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-10">
             <div className="max-w-2xl">
               <div className="eyebrow">On-site help</div>
-              <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Need a provider? See the price before you request one.</h2>
+              <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Need a locksmith? See the price before you request one.</h2>
               <p className="mt-4 text-base leading-7 text-parchment-dim">Start with a published standard total for the job you need. Provider travel/service call is included.</p>
             </div>
 
