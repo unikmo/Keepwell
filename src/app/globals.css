@@ -16,6 +16,9 @@
   --mist-strong: #d8e8fa;
   --navy-text: #0b2341;
   --sky: #8db7e3;
+  --font-display: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  --font-body: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 @theme inline {
@@ -34,9 +37,9 @@
   --color-mist-strong: var(--mist-strong);
   --color-navy-text: var(--navy-text);
   --color-sky: var(--sky);
-  --font-display: var(--font-fraunces);
-  --font-body: var(--font-inter);
-  --font-mono: var(--font-plex-mono);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 * { box-sizing: border-box; }
@@ -48,15 +51,15 @@ body {
     radial-gradient(circle at 12% 18%, rgba(214, 173, 87, 0.055), transparent 22rem),
     var(--ink);
   color: var(--parchment);
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-body);
   text-rendering: optimizeLegibility;
 }
 
-.font-display { font-family: var(--font-display), serif; }
-.font-mono { font-family: var(--font-mono), monospace; }
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
 
 .eyebrow {
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.4;
   letter-spacing: 0.14em;
