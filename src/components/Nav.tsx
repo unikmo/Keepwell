@@ -3,7 +3,7 @@ import { Keyhole } from "./Keyhole";
 
 const NAV_LINKS = [
   { label: "Services", href: "/services" },
-  { label: "Digital Sentinel", href: "/digital-sentinel" },
+  { label: "Digital Access", href: "/digital-access" },
   { label: "Membership", href: "/pricing" },
   { label: "Property managers", href: "/for-property-managers" },
   { label: "Providers", href: "/partner-tech" },
