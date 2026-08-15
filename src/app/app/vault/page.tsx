@@ -24,7 +24,7 @@ export default async function VaultPage({ searchParams }: { searchParams: Promis
         try {
           revealedSecret = decryptSentinelSecret(item.secret_ciphertext);
           revealedItemId = item.id;
-          await supabase.from("activity_log").insert({ member_id: user!.id, title: "Digital Sentinel secret revealed", meta: item.name });
+          await supabase.from("activity_log").insert({ member_id: user!.id, title: "Digital Access secret revealed", meta: item.name });
         } catch {
           revealedSecret = "Unable to decrypt this item.";
           revealedItemId = item.id;
@@ -42,14 +42,14 @@ export default async function VaultPage({ searchParams }: { searchParams: Promis
   return (
     <div>
       <Link href="/app" className="text-xs text-parchment-dim hover:text-parchment">← Back</Link>
-      <div className="mt-3 font-mono text-[10px] uppercase tracking-[.13em] text-brass">Digital Sentinel</div>
-      <h1 className="mt-2 font-display text-3xl font-medium text-parchment">Your private access box</h1>
+      <div className="mt-3 font-mono text-[10px] uppercase tracking-[.13em] text-brass">Digital Access</div>
+      <h1 className="mt-2 font-display text-3xl font-medium text-parchment">Your private access details</h1>
       <p className="mt-2 max-w-2xl text-sm leading-6 text-parchment-dim">Store access instructions, key locations, lockbox or keypad codes and supporting photos. Sensitive codes are stored as server-encrypted ciphertext. Revealing a secret requires password re-verification and uses a two-minute server-signed reveal token bound to your account and item. Reference photos are kept in a private bucket with short-lived signed access.</p>
 
       {notice && <div className="mt-5 rounded-xl border border-verdigris/30 bg-verdigris/10 p-3 text-sm text-verdigris">{notice}</div>}
       {error && <div className="mt-5 rounded-xl border border-ember/30 bg-ember/10 p-3 text-sm text-ember">{error}</div>}
 
-      <div className="mt-7 divide-y divide-line rounded-xl border border-line bg-surface px-4">
+      <div className="mt-7 divide-y divide-line rounded-xl border border-sky/15 bg-surface px-4">
         {items && items.length > 0 ? items.map((item: any) => (
           <div key={item.id} className="py-4">
             <div className="flex items-start gap-3">
@@ -66,7 +66,7 @@ export default async function VaultPage({ searchParams }: { searchParams: Promis
               </div>
             </div>
           </div>
-        )) : <div className="py-8 text-center text-sm text-parchment-dim">No Digital Sentinel items saved yet.</div>}
+        )) : <div className="py-8 text-center text-sm text-parchment-dim">No Digital Access items saved yet.</div>}
       </div>
 
       <form action={addVaultItem} className="mt-6 space-y-3 rounded-xl border border-dashed border-line p-4">
@@ -80,10 +80,10 @@ export default async function VaultPage({ searchParams }: { searchParams: Promis
         </div>
         <textarea name="notes" maxLength={1200} rows={3} placeholder="Instructions, spare-key location, who can help, etc." className="w-full rounded-lg border border-line bg-surface-raised px-3 py-2 text-sm text-parchment placeholder:text-parchment-dim/60" />
         <label className="block rounded-lg border border-line bg-surface-raised px-3 py-2 text-xs text-parchment-dim">Optional reference photo<input type="file" name="photo" accept="image/*" className="mt-2 block w-full text-xs" /></label>
-        <button type="submit" className="w-full rounded-lg border border-dashed border-line py-2.5 text-sm font-medium text-brass hover:border-brass">+ Save to Digital Sentinel</button>
+        <button type="submit" className="w-full rounded-lg border border-dashed border-line py-2.5 text-sm font-medium text-brass hover:border-brass">+ Save to Digital Access</button>
       </form>
 
-      <div className="mt-4 rounded-xl border border-brass/20 bg-brass/[0.06] p-4 text-xs leading-relaxed text-parchment-dim"><strong className="text-parchment">Access-control rule:</strong> trusted contacts are recorded separately. A neighbor or family member can be marked as a spare-key holder without automatically receiving access to your saved Digital Sentinel secrets.</div>
+      <div className="mt-4 rounded-xl border border-brass/20 bg-brass/[0.06] p-4 text-xs leading-relaxed text-parchment-dim"><strong className="text-parchment">Access-control rule:</strong> trusted people are recorded separately. A neighbor or family member can be marked as a spare-key holder without automatically receiving access to your saved Digital Access secrets.</div>
     </div>
   );
 }
