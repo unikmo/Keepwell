@@ -32,15 +32,14 @@ function allIn(item: {
     servicePriceCents: item.customerPriceCents,
     travelFeeCents: 0,
     providerServicePayoutCents: item.providerPayoutCents,
-    memberNote: item.memberNote ?? "All-in standard price. Provider travel/service call is included.",
+    memberNote: item.memberNote ?? "Standard all-in price. Provider travel/service call is included.",
   };
 }
 
 /**
- * Boston launch menu.
- * Customer prices are deliberately positioned below credible published all-in
- * starting prices for comparable standard work. Provider payouts are complete
- * job payouts; Keepwell supplies the ready-to-buy lead and marketplace flow.
+ * Launch service menu.
+ * Customer prices are shown as one standard total before a request is submitted.
+ * Provider payouts are complete job payouts shown before acceptance.
  */
 export const SERVICE_MENU: ServiceMenuItem[] = [
   allIn({
@@ -69,7 +68,7 @@ export const SERVICE_MENU: ServiceMenuItem[] = [
     customerPriceCents: 13900,
     providerPayoutCents: 7800,
     scope: "Standard residential entry. Provider travel/service call is included. Destructive entry, high-security hardware, repairs, and replacement hardware are excluded.",
-    memberNote: "All-in standard price. Overnight/holiday provider payout is higher to support acceptance outside normal hours.",
+    memberNote: "Standard all-in overnight/holiday price. Provider travel/service call is included.",
   }),
   allIn({
     id: "car_lockout_at_property",
@@ -87,7 +86,7 @@ export const SERVICE_MENU: ServiceMenuItem[] = [
     timing: "Scheduled service",
     customerPriceCents: 7500,
     providerPayoutCents: 5500,
-    scope: "Provider travel/service call plus the first standard cylinder rekey. Additional standard cylinders are $29 each. Specialty/high-security cylinders require approval before work.",
+    scope: "Provider travel/service call plus the first standard cylinder rekey. Additional standard cylinders are $29 each. Specialty or high-security cylinders require a separate price and approval before work.",
   }),
   allIn({
     id: "standard_lock_change",
@@ -105,7 +104,7 @@ export const SERVICE_MENU: ServiceMenuItem[] = [
     timing: "Scheduled service",
     customerPriceCents: 12900,
     providerPayoutCents: 7000,
-    scope: "Provider travel/service call and labor to install/setup one compatible customer-supplied smart lock. Hardware, door modification, electrical work, network troubleshooting, or work outside the provider's verified scope are separate.",
+    scope: "Provider travel/service call and labor to install and set up one compatible customer-supplied smart lock. Hardware, door modification, electrical work, network troubleshooting, or other out-of-scope work is separate.",
   }),
 ];
 
