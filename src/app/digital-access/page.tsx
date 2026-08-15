@@ -5,10 +5,22 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
+const metaDescription = "Keep access codes, spare-key locations, trusted key holders, photos and recovery instructions together so you can check backup options before a lockout becomes a service call.";
+
 export const metadata: Metadata = {
-  title: "Digital Access for Homeowners | Codes, Spare Keys & Trusted Contacts",
-  description: "Keep access codes, spare-key locations, trusted key holders, photos and recovery instructions together so you can check backup options before a lockout becomes a service call.",
+  title: "Digital Access | Codes, Spare Keys & Trusted Contacts",
+  description: metaDescription,
   alternates: { canonical: "/digital-access" },
+  openGraph: {
+    title: "Digital Access | Your property-access backup plan",
+    description: metaDescription,
+    url: "/digital-access",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digital Access | Your property-access backup plan",
+    description: metaDescription,
+  },
 };
 
 const ITEMS = [
