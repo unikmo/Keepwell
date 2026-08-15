@@ -28,8 +28,8 @@ export async function signup(formData: FormData) {
   });
 
   if (error) redirect(`/signup?error=${encodeURIComponent(error.message)}`);
-  // Membership provisioning is handled by the database auth trigger. This is
-  // reliable even when email confirmation means signUp does not return a session.
+  // Account and plan metadata are provisioned by the auth trigger. Payment activation
+  // will be connected separately through the real checkout flow.
   if (data.session) redirect("/app");
-  redirect("/login?notice=Check your email to confirm your account. Your membership setup is reserved from signup.");
+  redirect("/login?notice=Check your email to confirm your account. Your selected plan has been saved.");
 }
