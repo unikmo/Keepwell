@@ -6,9 +6,9 @@ import { PageHero } from "@/components/PageHero";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
 export const metadata: Metadata = {
-  title: "Property access services & fixed prices",
+  title: "Home Lockout, Rekey & Lock Change Prices",
   description:
-    "See fixed all-in Keepwell prices for home lockouts, rekeys, lock changes and smart-lock installation through independent local providers.",
+    "See standard all-in prices for home lockouts, rekeys, lock changes and smart-lock installation before you request an independent local provider through Keepwell.",
   alternates: { canonical: "/services" },
 };
 
@@ -18,9 +18,9 @@ export default function ServicesPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="Services & prices"
-          title="Start with a real price, not a $19 bait quote"
-          body="Keepwell publishes one all-in standard customer price before the request. Provider travel/service call is included, and independent providers see their fixed payout before they accept."
+          eyebrow="Home access services"
+          title="Clear prices for lockouts, rekeys and lock changes."
+          body="See the standard total and service scope before you request a provider. Provider travel/service call is included in every standard price shown."
         />
 
         <section className="border-b border-line/70 py-16 sm:py-20">
@@ -31,7 +31,7 @@ export default function ServicesPage() {
                   <div className="font-mono text-[10px] uppercase tracking-[0.13em] text-parchment-dim">{service.timing}</div>
                   <h2 className="mt-3 font-display text-2xl font-medium text-parchment">{service.title}</h2>
                   <div className="mt-3 font-mono text-3xl text-brass">{formatServicePrice(service.customerPriceCents)}</div>
-                  <div className="mt-1 text-[11px] text-verdigris">All-in · travel/service call included</div>
+                  <div className="mt-1 text-[11px] text-verdigris">Standard total · travel included</div>
                   <p className="mt-4 text-xs leading-5 text-parchment-dim">{service.scope}</p>
                   <p className="mt-4 border-t border-line/70 pt-4 text-xs leading-5 text-verdigris">{service.memberNote}</p>
                   <div className="flex-1" />
@@ -46,22 +46,22 @@ export default function ServicesPage() {
             </div>
 
             <div className="mt-8 rounded-2xl border border-line bg-surface/50 p-6 text-sm leading-6 text-parchment-dim">
-              <strong className="text-parchment">Keepwell's role:</strong> Keepwell operates the platform, publishes the standard scope and routes requests. Field work is performed by independent local providers. Provider identity and timing appear only after a provider actually accepts.
+              <strong className="text-parchment">What happens after you request:</strong> Keepwell routes the request through participating independent providers. A provider name and ETA appear only after a real provider accepts. If the job needs work outside the published standard scope, you see and approve the additional price before that work begins.
             </div>
           </div>
         </section>
 
         <section className="py-16">
           <div className="mx-auto max-w-4xl px-6 text-center">
-            <div className="eyebrow">Optional membership</div>
+            <div className="eyebrow">Digital Access</div>
             <h2 className="mt-3 font-display text-3xl font-medium text-parchment">
-              Compare membership against prices you can actually see
+              Make the next access problem easier before it happens.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl leading-7 text-parchment-dim">
-              You never need a membership to request service. Membership is the repeat-owner layer: Digital Sentinel, trusted contacts and trusted-access benefits.
+              Membership adds Digital Access for codes, spare-key details and trusted people. One-off service remains available without membership.
             </p>
             <Link href="/pricing" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">
-              Compare one-off & membership
+              Compare membership
             </Link>
           </div>
         </section>
