@@ -6,8 +6,8 @@ import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "Digital Access",
-  description: "Keep access codes, spare-key details, trusted key holders, photos and recovery instructions ready before a lockout becomes a service call.",
+  title: "Digital Access for Homeowners | Codes, Spare Keys & Trusted Contacts",
+  description: "Keep access codes, spare-key locations, trusted key holders, photos and recovery instructions together so you can check backup options before a lockout becomes a service call.",
   alternates: { canonical: "/digital-access" },
 };
 
@@ -25,8 +25,8 @@ export default function DigitalAccessPage() {
       <main className="flex-1">
         <PageHero
           eyebrow="Digital Access"
-          title="Your backup plan for getting into your property."
-          body="Keep access codes, spare-key details, trusted key holders and recovery instructions in one place, ready before you need them."
+          title="Your backup plan for getting back in."
+          body="Keep codes, spare-key details, trusted people and recovery instructions together so your first response to an access problem is not automatically a service call."
         />
 
         <section className="border-b border-[#c7d9ec] bg-mist py-16 text-navy-text sm:py-20">
@@ -45,16 +45,16 @@ export default function DigitalAccessPage() {
         <section className="border-b border-line/70 py-16 sm:py-20">
           <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
             <div>
-              <div className="eyebrow">When access goes wrong</div>
-              <h2 className="mt-3 font-display text-3xl text-parchment sm:text-4xl">Check the access you already have before paying for a visit.</h2>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-parchment-dim">Digital Access puts your own backup options first. If none works, Keepwell can take you into the fixed-price provider request flow.</p>
+              <div className="eyebrow">Before you request service</div>
+              <h2 className="mt-3 font-display text-3xl text-parchment sm:text-4xl">Check the access you already have.</h2>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-parchment-dim">Digital Access turns scattered codes, key locations and trusted contacts into a simple backup plan. If none of those options works, you can continue into Keepwell's clearly priced service-request flow.</p>
             </div>
             <div className="space-y-3">
               {[
-                ["01", "Check your saved access", "Review codes, recovery instructions and access notes."],
+                ["01", "Check saved access", "Review keypad, lockbox, smart-lock or garage access details."],
                 ["02", "Reach a trusted key holder", "Contact the person you recorded as holding a spare."],
-                ["03", "Use physical backup access", "Follow your saved lockbox or spare-key instructions."],
-                ["04", "Still need help?", "Request an independent provider through Keepwell at the published standard price."],
+                ["03", "Use physical backup access", "Follow the spare-key location or recovery instructions you saved."],
+                ["04", "Still need on-site help?", "See the standard service price and request an independent provider through Keepwell."],
               ].map(([n, title, body]) => (
                 <div key={n} className="grid grid-cols-[42px_1fr] gap-3 rounded-2xl border border-sky/15 bg-surface/65 p-4">
                   <div className="font-mono text-xs text-brass">{n}</div>
@@ -72,7 +72,7 @@ export default function DigitalAccessPage() {
           <div className="mx-auto max-w-4xl px-6">
             <div className="rounded-3xl border border-sky/20 bg-surface/55 p-8 sm:p-10">
               <div className="eyebrow">Privacy by role</div>
-              <h2 className="mt-3 font-display text-3xl text-parchment">A trusted person does not automatically see your saved codes.</h2>
+              <h2 className="mt-3 font-display text-3xl text-parchment">Trusted people do not automatically see your saved codes.</h2>
               <p className="mt-4 text-sm leading-6 text-parchment-dim">Someone can be recorded as holding a spare key without being given access to sensitive Digital Access details. Sensitive text is stored as server-encrypted ciphertext and reference photos use private storage with time-limited signed access.</p>
               <Link href="/privacy" className="mt-5 inline-flex text-sm font-semibold text-brass hover:underline">Read the privacy approach →</Link>
             </div>
@@ -80,11 +80,11 @@ export default function DigitalAccessPage() {
         </section>
 
         <CTABand
-          title="Set up access before you need it"
+          title="Set up the backup plan before you need it"
           body="Digital Access is included with Keepwell membership. One-off service remains available without membership."
           ctaLabel="Compare membership"
           ctaHref="/pricing"
-          secondaryLabel="Request one-off service"
+          secondaryLabel="Request service"
           secondaryHref="/book"
         />
       </main>
