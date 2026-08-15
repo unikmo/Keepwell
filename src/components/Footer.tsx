@@ -14,7 +14,7 @@ export function Footer() {
               Keepwell
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Property access organized around Digital Access, trusted people and fixed-price service requests.
+              Clear prices when you need property-access help. Digital Access when you want a backup plan before you need it.
             </p>
             <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim/75">
               Keepwell operates the platform. Field work is performed by independent local providers.
@@ -24,11 +24,11 @@ export function Footer() {
           <FooterColumn
             title="Use Keepwell"
             links={[
-              { label: "Digital Access", href: "/digital-access" },
               { label: "Request service", href: "/book" },
               { label: "Services & prices", href: "/services" },
+              { label: "Digital Access", href: "/digital-access" },
               { label: "Membership", href: "/pricing" },
-              { label: "Join as a provider", href: "/partner-tech" },
+              { label: "For providers", href: "/partner-tech" },
             ]}
           />
           <FooterColumn
@@ -38,7 +38,7 @@ export function Footer() {
               { label: "Real estate professionals", href: "/for-real-estate-agents" },
               { label: "Trust & safety", href: "/trust-safety" },
               { label: "Contact", href: "/contact" },
-              { label: "Terms & privacy", href: "/terms" },
+              { label: "Terms", href: "/terms" },
             ]}
           />
         </div>
