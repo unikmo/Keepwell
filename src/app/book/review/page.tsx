@@ -15,8 +15,8 @@ export default async function BookReviewPage({ searchParams }: { searchParams: P
       <div className="w-full max-w-lg rounded-3xl border border-line bg-surface p-6 sm:p-8">
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment"><Keyhole className="h-5 w-4 text-brass" />Keepwell</Link>
-          <h1 className="mt-7 font-display text-3xl font-medium text-parchment">Review the request</h1>
-          <p className="mt-2 text-sm leading-6 text-parchment-dim">Submitting creates a marketplace request. A provider and ETA appear only after a real independent provider accepts.</p>
+          <h1 className="mt-7 font-display text-3xl font-medium text-parchment">Review before you submit</h1>
+          <p className="mt-2 text-sm leading-6 text-parchment-dim">Check the service, address and standard total. A provider is shown only after a participating independent provider accepts the request.</p>
         </div>
         {error && <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 px-4 py-3 text-sm text-ember">{error}</div>}
 
@@ -26,10 +26,10 @@ export default async function BookReviewPage({ searchParams }: { searchParams: P
           <Row label="Address" value={address || "—"} />
           <Row label="Phone" value={phone || "—"} />
           <div className="mt-4 border-t border-line/70 pt-4">
-            <div className="flex items-end justify-between gap-4"><span className="font-medium text-parchment">All-in standard total</span><span className="font-mono text-3xl text-brass">{formatServicePrice(service.customerPriceCents)}</span></div>
+            <div className="flex items-end justify-between gap-4"><span className="font-medium text-parchment">Standard total</span><span className="font-mono text-3xl text-brass">{formatServicePrice(service.customerPriceCents)}</span></div>
             <p className="mt-2 text-xs leading-5 text-verdigris">Provider travel/service call is included. No second generic drive or call-out fee is added.</p>
             <p className="mt-3 text-xs leading-5 text-parchment-dim">{service.scope}</p>
-            <p className="mt-2 text-xs leading-5 text-parchment-dim">Any genuinely out-of-scope work must be priced and approved before that additional work begins.</p>
+            <p className="mt-2 text-xs leading-5 text-parchment-dim">If the actual job needs work outside this standard scope, the additional work and price must be shown and approved before it begins.</p>
           </div>
         </div>
 
@@ -40,7 +40,8 @@ export default async function BookReviewPage({ searchParams }: { searchParams: P
           <input type="hidden" name="email" value={email ?? ""} />
           <button type="submit" className="w-full rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink">Submit service request</button>
         </form>
-        <p className="mt-5 text-center text-xs text-parchment-dim"><Link href={`/book/details?service_id=${service.id}`} className="hover:text-parchment">← Edit details</Link></p>
+        <p className="mt-3 text-center text-[11px] leading-5 text-parchment-dim">Submitting a request does not guarantee provider availability.</p>
+        <p className="mt-4 text-center text-xs text-parchment-dim"><Link href={`/book/details?service_id=${service.id}`} className="hover:text-parchment">← Edit details</Link></p>
       </div>
     </div>
   );
