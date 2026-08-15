@@ -49,16 +49,16 @@ export default function OpenGraphImage() {
           >
             ●
           </div>
-          Keepwell
+          <span>Keepwell</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 900 }}>
-          <div style={{ fontSize: 72, lineHeight: 1.02, letterSpacing: "-2.2px", fontWeight: 650 }}>
-            Property access,
-            <span style={{ color: "#D6AD57" }}> without the scramble.</span>
+          <div style={{ display: "flex", flexWrap: "wrap", fontSize: 72, lineHeight: 1.02, letterSpacing: "-2.2px", fontWeight: 650 }}>
+            <span>Property access,</span>
+            <span style={{ color: "#D6AD57", marginLeft: 14 }}>without the scramble.</span>
           </div>
-          <div style={{ fontSize: 27, lineHeight: 1.4, color: "#B8C7DA" }}>
-            Upfront locksmith prices · Digital Access · Trusted people
+          <div style={{ display: "flex", fontSize: 27, lineHeight: 1.4, color: "#B8C7DA" }}>
+            <span>Upfront locksmith prices · Digital Access · Trusted people</span>
           </div>
         </div>
 
