@@ -42,15 +42,8 @@ export default async function Home() {
               </p>
             </div>
 
-            <div className="relative overflow-hidden rounded-[34px] border border-sky/20 bg-surface-raised shadow-[0_28px_70px_rgba(3,18,37,0.32)]">
+            <div className="overflow-hidden rounded-[34px] border border-sky/20 bg-surface-raised shadow-[0_28px_70px_rgba(3,18,37,0.32)]">
               <img src={HERO_IMAGE} alt="Modern residential front entrance" className="h-[430px] w-full object-cover sm:h-[520px]" loading="eager" />
-              <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/10 bg-ink/90 p-5 backdrop-blur-md sm:inset-x-6 sm:bottom-6">
-                <div className="font-mono text-[10px] uppercase tracking-[.16em] text-brass">Before you call anyone</div>
-                <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="font-display text-2xl text-parchment">Check Digital Access first.</div>
-                  <span className="text-sm text-parchment-dim">Codes · spare keys · trusted people</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
