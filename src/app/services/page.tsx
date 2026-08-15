@@ -5,11 +5,22 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
+const metaDescription = "See upfront standard prices for home lockouts, rekeys, lock changes and smart-lock installation before you request an independent local provider through Keepwell.";
+
 export const metadata: Metadata = {
-  title: "Home Lockout, Rekey & Lock Change Prices",
-  description:
-    "See standard all-in prices for home lockouts, rekeys, lock changes and smart-lock installation before you request an independent local provider through Keepwell.",
+  title: "Locksmith Prices | Home Lockout, Rekey & Lock Change",
+  description: metaDescription,
   alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Locksmith service prices without the call-out surprise",
+    description: metaDescription,
+    url: "/services",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Locksmith service prices without the call-out surprise",
+    description: metaDescription,
+  },
 };
 
 export default function ServicesPage() {
@@ -18,9 +29,9 @@ export default function ServicesPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="Home access services"
-          title="Clear prices for lockouts, rekeys and lock changes."
-          body="See the standard total and service scope before you request a provider. Provider travel/service call is included in every standard price shown."
+          eyebrow="Locksmith services & prices"
+          title="Clear prices for common locksmith services."
+          body="See the standard total and service scope before you request an independent provider. Provider travel/service call is included in every standard price shown."
         />
 
         <section className="border-b border-line/70 py-16 sm:py-20">
