@@ -26,26 +26,26 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mykeepwell.vercel.a
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Keepwell | Property access and protection platform",
+    default: "Keepwell | Fixed-Price Lockout, Rekey & Property Access",
     template: "%s | Keepwell",
   },
   description:
-    "Request property-access services from independent local providers, keep trusted access details together, and build a clean service history for every property.",
+    "See the standard price before you request home lockout, rekey, lock change or smart-lock service. Keep Digital Access backup details ready for the next access problem.",
   applicationName: "Keepwell",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "Keepwell",
-    title: "Keepwell | Property access and protection platform",
+    title: "Keepwell | Property access without the pricing scramble",
     description:
-      "Property access, service requests, trusted contacts and service history in one platform.",
+      "Fixed standard prices for home access services, plus Digital Access for codes, spare keys and trusted people.",
     url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Keepwell | Property access and protection platform",
+    title: "Keepwell | Property access without the pricing scramble",
     description:
-      "Property access, service requests, trusted contacts and service history in one platform.",
+      "Fixed standard prices for home access services, plus Digital Access for codes, spare keys and trusted people.",
   },
   robots: { index: true, follow: true },
 };
@@ -56,7 +56,7 @@ const organizationSchema = {
   name: "Keepwell",
   url: siteUrl,
   description:
-    "A property-access platform connecting customers with independent local service providers and organizing property access information.",
+    "Keepwell helps customers organize property access and request clearly scoped home lockout, rekey, lock change and smart-lock services from independent local providers.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
