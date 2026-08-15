@@ -26,11 +26,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mykeepwell.vercel.a
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Keepwell | Fixed-Price Lockout, Rekey & Property Access",
+    default: "Keepwell | Locksmith Prices, Lockouts, Rekeys & Digital Access",
     template: "%s | Keepwell",
   },
   description:
-    "See the standard price before you request home lockout, rekey, lock change or smart-lock service. Keep Digital Access backup details ready for the next access problem.",
+    "See upfront standard prices for home lockouts, rekeys, lock changes and smart-lock installation before you request an independent local provider.",
   applicationName: "Keepwell",
   alternates: { canonical: "/" },
   openGraph: {
@@ -38,14 +38,14 @@ export const metadata: Metadata = {
     siteName: "Keepwell",
     title: "Keepwell | Property access without the pricing scramble",
     description:
-      "Fixed standard prices for home access services, plus Digital Access for codes, spare keys and trusted people.",
+      "Upfront standard prices for locksmith services, plus Digital Access for codes, spare keys and trusted people.",
     url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
     title: "Keepwell | Property access without the pricing scramble",
     description:
-      "Fixed standard prices for home access services, plus Digital Access for codes, spare keys and trusted people.",
+      "Upfront standard prices for locksmith services, plus Digital Access for codes, spare keys and trusted people.",
   },
   robots: { index: true, follow: true },
 };
