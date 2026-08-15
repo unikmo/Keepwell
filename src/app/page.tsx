@@ -21,25 +21,22 @@ export default async function Home() {
         <section className="border-b border-line/70">
           <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-14 sm:px-8 sm:py-18 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-16 lg:px-10 lg:py-20">
             <div className="max-w-2xl">
-              <div className="eyebrow">Property access, organized</div>
+              <div className="eyebrow">Home lockouts · rekeys · lock changes</div>
               <h1 className="mt-5 font-display text-5xl font-medium leading-[.98] tracking-[-.035em] text-parchment sm:text-6xl lg:text-[72px]">
                 Property access,
                 <span className="block italic text-brass">without the scramble.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-parchment-dim">
-                Check the access you already have. If you still need help, request an independent local provider at one fixed all-in standard price.
+                See the standard price before you request service. Travel is included. And if a saved code, spare key or trusted person can solve the problem first, Digital Access keeps those options ready.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/digital-access" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-[15px] font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.16)] transition hover:brightness-110">
-                  Set up Digital Access
-                </Link>
-                <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/35 px-7 py-3 text-[15px] font-semibold text-parchment transition hover:border-sky/55 hover:bg-surface/55">
+                <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-[15px] font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.16)] transition hover:brightness-110">
                   Request service
                 </Link>
+                <Link href="/digital-access" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/35 px-7 py-3 text-[15px] font-semibold text-parchment transition hover:border-sky/55 hover:bg-surface/55">
+                  Explore Digital Access
+                </Link>
               </div>
-              <p className="mt-5 text-sm leading-6 text-parchment-dim/85">
-                Keepwell operates the platform. Field work is performed by independent local providers.
-              </p>
             </div>
 
             <div className="overflow-hidden rounded-[34px] border border-sky/20 bg-surface-raised shadow-[0_28px_70px_rgba(3,18,37,0.32)]">
@@ -51,9 +48,9 @@ export default async function Home() {
         <section className="border-b border-line/70 bg-surface/55">
           <div className="mx-auto grid max-w-[1400px] gap-5 px-6 py-6 sm:grid-cols-3 sm:px-8 lg:px-10">
             {[
-              ["One all-in price", "Travel/service call included"],
-              ["Access first", "Try no-dispatch options before paying"],
-              ["Independent providers", "Identity appears after acceptance"],
+              ["Fixed standard price", "Know the total before you request service"],
+              ["Travel included", "No separate generic service-call fee"],
+              ["Scope before work", "Approve any additional work before it starts"],
             ].map(([title, body]) => (
               <div key={title} className="rounded-xl border border-sky/10 bg-ink/10 px-4 py-3 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0">
                 <div className="text-sm font-semibold text-parchment">{title}</div>
@@ -71,16 +68,16 @@ export default async function Home() {
             <div className="max-w-xl">
               <div className="font-mono text-xs uppercase tracking-[.14em] text-[#7d6330]">Digital Access</div>
               <h2 className="mt-4 font-display text-4xl font-medium leading-[1.04] tracking-[-.025em] text-navy-text sm:text-5xl">
-                Solve the lockout before it becomes a service call.
+                Your easiest lockout may be the one you solve yourself.
               </h2>
               <p className="mt-5 text-lg leading-8 text-[#46617f]">
-                Keep access codes, spare-key details, trusted key holders and recovery instructions attached to the property, ready when you need them.
+                Keep access codes, spare-key details, trusted key holders and recovery instructions attached to the property so your backup options are easy to find when access goes wrong.
               </p>
               <div className="mt-7 divide-y divide-[#c7d9ec] border-y border-[#c7d9ec]">
                 {[
-                  ["01", "Smart or keypad access", "Retrieve the saved instruction or code."],
+                  ["01", "Saved access", "Retrieve a keypad, smart-lock or lockbox instruction."],
                   ["02", "Trusted key holder", "Reach the person who already has a spare."],
-                  ["03", "Lockbox or spare-key note", "Find the location and retrieval instruction."],
+                  ["03", "Physical backup", "Find the spare-key location or recovery note."],
                 ].map(([n, title, body]) => (
                   <div key={n} className="grid grid-cols-[42px_1fr] gap-4 py-5">
                     <div className="font-mono text-xs text-[#8c6d31]">{n}</div>
@@ -92,7 +89,7 @@ export default async function Home() {
                 ))}
               </div>
               <Link href="/digital-access" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink shadow-[0_8px_22px_rgba(150,119,59,0.18)] transition hover:brightness-105">
-                Explore Digital Access
+                See how Digital Access works
               </Link>
             </div>
           </div>
@@ -101,9 +98,9 @@ export default async function Home() {
         <section className="border-b border-line/70 bg-surface/45 py-16 sm:py-20">
           <div className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-10">
             <div className="max-w-2xl">
-              <div className="eyebrow">If you still need a provider</div>
-              <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Know the standard price first.</h2>
-              <p className="mt-4 text-base leading-7 text-parchment-dim">No separate driving fee. Standard prices include the provider travel/service call.</p>
+              <div className="eyebrow">On-site help</div>
+              <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Need a provider? See the price before you request one.</h2>
+              <p className="mt-4 text-base leading-7 text-parchment-dim">Start with a published standard total for the job you need. Provider travel/service call is included.</p>
             </div>
 
             <div className="mt-8 grid gap-4 lg:grid-cols-3">
@@ -116,7 +113,7 @@ export default async function Home() {
                     </div>
                     <div className="font-display text-4xl text-brass">{formatServicePrice(service.customerPriceCents)}</div>
                   </div>
-                  <Link href={`/book/details?service_id=${service.id}`} className="mt-6 inline-flex text-sm font-semibold text-brass hover:underline">Request service →</Link>
+                  <Link href={`/book/details?service_id=${service.id}`} className="mt-6 inline-flex text-sm font-semibold text-brass hover:underline">Request this service →</Link>
                 </div>
               ))}
             </div>
@@ -129,8 +126,8 @@ export default async function Home() {
             <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
               <div className="max-w-lg">
                 <div className="eyebrow">Membership</div>
-                <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Useful before the emergency.</h2>
-                <p className="mt-4 text-base leading-7 text-parchment-dim">Digital Access is available immediately. One-off service remains available without membership.</p>
+                <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">A backup plan for the property, not just the emergency.</h2>
+                <p className="mt-4 text-base leading-7 text-parchment-dim">Membership adds Digital Access and trusted-access tools. You can still use Keepwell for one-off service without joining.</p>
                 <Link href="/pricing" className="mt-6 inline-flex text-sm font-semibold text-brass hover:underline">Compare membership →</Link>
               </div>
               <div className="grid gap-4 md:grid-cols-3">
@@ -143,7 +140,7 @@ export default async function Home() {
                     </div>
                     <div className="mt-4 text-sm leading-6 text-parchment-dim">
                       {plan.id === "individual" && "Digital Access + 1 trusted key holder."}
-                      {plan.id === "household" && "Household profiles + unlimited trusted contacts."}
+                      {plan.id === "household" && "Household access profiles + unlimited trusted contacts."}
                       {plan.id === "household_plus" && "Priority matching + Lock & Access Audit every 3 years."}
                     </div>
                   </div>
@@ -157,25 +154,25 @@ export default async function Home() {
           <div className="mx-auto grid max-w-[1400px] gap-4 px-6 sm:px-8 md:grid-cols-2 lg:px-10">
             <Link href="/for-property-managers" className="group rounded-2xl border border-sky/15 bg-ink/20 p-5 transition hover:border-brass/45 hover:bg-ink/30">
               <div className="font-mono text-[10px] uppercase tracking-[.14em] text-brass">Property managers</div>
-              <div className="mt-2 font-display text-2xl text-parchment">Coordinate access across multiple units →</div>
+              <div className="mt-2 font-display text-2xl text-parchment">Reduce lockout calls and standardize turnover rekeys →</div>
             </Link>
             <Link href="/for-real-estate-agents" className="group rounded-2xl border border-sky/15 bg-ink/20 p-5 transition hover:border-brass/45 hover:bg-ink/30">
-              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-brass">Real estate</div>
-              <div className="mt-2 font-display text-2xl text-parchment">Give new homeowners a useful access layer →</div>
+              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-brass">Real estate professionals</div>
+              <div className="mt-2 font-display text-2xl text-parchment">Give buyers a closing gift they can actually use →</div>
             </Link>
           </div>
         </section>
 
         <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-3xl px-6 text-center sm:px-8">
-            <div className="eyebrow">Start with one property</div>
-            <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Be ready before access becomes urgent.</h2>
+            <div className="eyebrow">Start where you are</div>
+            <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Need help now—or want to be ready next time?</h2>
             <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-parchment-dim">
-              Organize access now, or use Keepwell to request an independent local provider when you need one.
+              Request a clearly priced service today, or set up Digital Access so your backup options are ready before the next access problem.
             </p>
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/digital-access" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.14)]">Set up Digital Access</Link>
-              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/30 px-7 py-3 text-sm font-semibold text-parchment transition hover:border-sky/55">Request service</Link>
+              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.14)]">Request service</Link>
+              <Link href="/digital-access" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/30 px-7 py-3 text-sm font-semibold text-parchment transition hover:border-sky/55">Explore Digital Access</Link>
             </div>
           </div>
         </section>
