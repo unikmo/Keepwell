@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { createClient } from "@/lib/supabase/server";
@@ -37,19 +36,20 @@ export default async function ClaimProviderPage({
             <div className="eyebrow">Claim your profile</div>
             <h1 className="mt-3 font-display text-4xl text-parchment">Find your business</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">
-              Keepwell preloads public business profiles as unclaimed marketplace supply. Claim the existing profile instead of creating a duplicate.
+              Your business may already have a basic Keepwell profile built from public business information. Find it here and claim it so you can verify the details and control the provider account.
             </p>
             <div className="mt-8 divide-y divide-line rounded-2xl border border-line bg-surface">
               {(providers ?? []).map((item: any) => (
                 <Link key={item.id} href={`/providers/claim?provider=${item.id}`} className="flex items-center justify-between gap-4 px-5 py-4 hover:bg-surface-raised">
                   <span>
                     <span className="block text-sm font-medium text-parchment">{item.business_name}</span>
-                    <span className="mt-1 block text-xs text-parchment-dim">{[item.city, item.state].filter(Boolean).join(", ") || "Greater Boston"} · {item.claim_status.replaceAll("_", " ")}</span>
+                    <span className="mt-1 block text-xs text-parchment-dim">{[item.city, item.state].filter(Boolean).join(", ") || "Service area not listed"} · {item.claim_status.replaceAll("_", " ")}</span>
                   </span>
                   <span className="text-brass">Claim →</span>
                 </Link>
               ))}
             </div>
+            <p className="mt-5 text-sm text-parchment-dim">Do not see your business? <Link href="/providers/register" className="font-semibold text-brass hover:underline">Register a new provider account →</Link></p>
           </div>
         </main>
         <Footer />
@@ -69,7 +69,7 @@ export default async function ClaimProviderPage({
           <Link href="/providers/claim" className="text-xs text-parchment-dim hover:text-parchment">← All provider profiles</Link>
           <div className="mt-6 eyebrow">Profile claim</div>
           <h1 className="mt-3 font-display text-4xl text-parchment">{provider.business_name}</h1>
-          <p className="mt-2 text-sm text-parchment-dim">{[provider.city, provider.state].filter(Boolean).join(", ") || "Greater Boston"} · Status: {provider.claim_status.replaceAll("_", " ")}</p>
+          <p className="mt-2 text-sm text-parchment-dim">{[provider.city, provider.state].filter(Boolean).join(", ") || "Service area not listed"} · Status: {provider.claim_status.replaceAll("_", " ")}</p>
 
           {error && <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 p-3 text-sm text-ember">{error}</div>}
 
@@ -81,8 +81,8 @@ export default async function ClaimProviderPage({
             </div>
           ) : !user ? (
             <div className="mt-8 rounded-2xl border border-line bg-surface p-6">
-              <div className="font-medium text-parchment">Sign in before claiming this profile</div>
-              <p className="mt-2 text-sm leading-6 text-parchment-dim">Provider accounts are separate from customer membership creation.</p>
+              <div className="font-medium text-parchment">Create or sign in to a provider account</div>
+              <p className="mt-2 text-sm leading-6 text-parchment-dim">Provider accounts are separate from customer membership accounts. After signing in, you can submit the ownership claim for review.</p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <Link href={`/providers/register?provider=${provider.id}`} className="rounded-full bg-brass px-5 py-2.5 text-center text-sm font-semibold text-ink">Create provider account</Link>
                 <Link href={`/login?next=${encodeURIComponent(`/providers/claim?provider=${provider.id}`)}`} className="rounded-full border border-line px-5 py-2.5 text-center text-sm font-semibold text-parchment">Log in</Link>
@@ -101,9 +101,9 @@ export default async function ClaimProviderPage({
                   <option value="employee">Employee authorized to claim</option>
                 </select>
               </Field>
-              <Field label="Verification note (optional)"><textarea className="input min-h-24" name="notes" placeholder="Website domain, public business email, or anything that helps us verify ownership." /></Field>
+              <Field label="Verification note (optional)"><textarea className="input min-h-24" name="notes" placeholder="Website domain, public business email, or anything that helps verify your connection to the business." /></Field>
               <button className="w-full rounded-full bg-brass px-5 py-3 text-sm font-semibold text-ink">Submit profile claim</button>
-              <p className="text-xs leading-5 text-parchment-dim">Submitting a claim does not activate the profile. Keepwell reviews ownership before the provider can receive job offers.</p>
+              <p className="text-xs leading-5 text-parchment-dim">Submitting a claim does not activate the profile. Keepwell reviews the business connection before the provider can receive job offers.</p>
             </form>
           )}
         </div>
