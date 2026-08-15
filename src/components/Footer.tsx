@@ -14,7 +14,7 @@ export function Footer() {
               Keepwell
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Property access organized around Digital Sentinel, trusted access and fixed-price service requests.
+              Property access organized around Digital Access, trusted people and fixed-price service requests.
             </p>
             <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim/75">
               Keepwell operates the platform. Field work is performed by independent local providers.
@@ -24,7 +24,7 @@ export function Footer() {
           <FooterColumn
             title="Use Keepwell"
             links={[
-              { label: "Digital Sentinel", href: "/digital-sentinel" },
+              { label: "Digital Access", href: "/digital-access" },
               { label: "Request service", href: "/book" },
               { label: "Services & prices", href: "/services" },
               { label: "Membership", href: "/pricing" },
