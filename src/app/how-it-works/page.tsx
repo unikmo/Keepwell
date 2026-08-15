@@ -5,16 +5,16 @@ import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "How Keepwell works",
-  description: "See how Keepwell turns a property-access problem into a structured service request and keeps the outcome attached to the property.",
+  title: "How Keepwell Works | Lockout, Rekey & Property Access",
+  description: "See how Keepwell moves from saved access options to a clearly priced service request and a real independent provider match.",
   alternates: { canonical: "/how-it-works" },
 };
 
 const STEPS = [
-  { n: "01", title: "Choose the property and need", body: "Start a lockout, rekey or related access request. Keepwell captures the service scope and the property details needed to route it." },
-  { n: "02", title: "Check trusted access first", body: "If a registered contact or access method can solve the problem, use that path before escalating to a provider visit." },
-  { n: "03", title: "Match through the provider network", body: "When service is needed, Keepwell routes the request to participating independent providers. A provider and ETA are only shown after a real match occurs." },
-  { n: "04", title: "Keep the property record", body: "The request and outcome remain part of the property's access history, so the next event starts with context." },
+  { n: "01", title: "Check your backup access", body: "If you use Digital Access, start with saved codes, spare-key details or trusted people who may already be able to solve the problem." },
+  { n: "02", title: "Choose the service", body: "If you still need on-site help, choose a lockout, rekey, lock change or other available service and see the standard total before you continue." },
+  { n: "03", title: "Submit the request", body: "Keepwell routes the request through participating independent providers. A provider name and ETA appear only after a real provider accepts." },
+  { n: "04", title: "Keep the service record", body: "The request and outcome stay attached to the property account so the next access issue starts with more context." },
 ];
 
 export default function HowItWorksPage() {
@@ -23,9 +23,9 @@ export default function HowItWorksPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="How it works"
-          title="A clean workflow between the property owner and the provider"
-          body="Keepwell coordinates the request and property context. Independent local providers perform the field service."
+          eyebrow="How Keepwell works"
+          title="Backup access first. Clearly priced service when you still need help."
+          body="Keepwell combines Digital Access with a simple service-request flow so a lockout or rekey does not start with searching, calling and guessing at the price."
         />
         <section className="border-b border-line/70 py-20">
           <div className="mx-auto max-w-5xl px-6">
@@ -43,32 +43,32 @@ export default function HowItWorksPage() {
         <section className="py-20">
           <div className="mx-auto grid max-w-5xl gap-8 px-6 md:grid-cols-2">
             <div className="rounded-2xl border border-verdigris/25 bg-verdigris/[0.05] p-7">
-              <div className="eyebrow">Keepwell does</div>
+              <div className="eyebrow">Keepwell handles</div>
               <ul className="mt-5 space-y-3 text-sm leading-6 text-parchment-dim">
-                <li>Structure the service request and property context.</li>
-                <li>Route requests through the participating provider network.</li>
-                <li>Store trusted-access and property service records.</li>
-                <li>Support membership and marketplace rules.</li>
+                <li>Digital Access and trusted-access records.</li>
+                <li>Published standard service pricing and scope.</li>
+                <li>Request routing and provider acceptance status.</li>
+                <li>Property-level service history.</li>
               </ul>
             </div>
             <div className="rounded-2xl border border-line bg-surface p-7">
-              <div className="eyebrow">Independent providers do</div>
+              <div className="eyebrow">Independent providers handle</div>
               <ul className="mt-5 space-y-3 text-sm leading-6 text-parchment-dim">
-                <li>Accept or decline service requests.</li>
-                <li>Perform the field work using their own trade judgment.</li>
-                <li>Confirm any additional scope before work proceeds.</li>
-                <li>Remain responsible for their own credentials, insurance and workmanship.</li>
+                <li>Accepting or declining offered service requests.</li>
+                <li>Performing the field work using their trade judgment.</li>
+                <li>Confirming any additional scope before extra work begins.</li>
+                <li>Their own credentials, insurance and workmanship obligations.</li>
               </ul>
             </div>
           </div>
         </section>
         <CTABand
-          title="Start with the need you have today"
-          body="Request service once, or set up membership so access information and plan benefits are ready before the next event."
+          title="Start with the access problem you have today"
+          body="Request one-off service now, or set up Digital Access so your backup options are ready next time."
           ctaLabel="Request service"
           ctaHref="/book"
-          secondaryLabel="View membership"
-          secondaryHref="/pricing"
+          secondaryLabel="Explore Digital Access"
+          secondaryHref="/digital-access"
         />
       </main>
       <Footer />
