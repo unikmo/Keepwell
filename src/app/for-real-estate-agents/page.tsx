@@ -4,10 +4,22 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
+const metaDescription = "Give homebuyers a practical closing gift with Digital Access, trusted key-holder setup and clearly priced property-access services through Keepwell.";
+
 export const metadata: Metadata = {
-  title: "Closing Gifts for Homebuyers | Keepwell for Real Estate Professionals",
-  description: "Give homebuyers a practical closing gift with Digital Access, trusted key-holder setup and clearly priced property-access services through Keepwell.",
+  title: "Closing Gifts for Homebuyers | Digital Access",
+  description: metaDescription,
   alternates: { canonical: "/for-real-estate-agents" },
+  openGraph: {
+    title: "A closing gift homebuyers can actually use",
+    description: metaDescription,
+    url: "/for-real-estate-agents",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "A closing gift homebuyers can actually use",
+    description: metaDescription,
+  },
 };
 
 const REASONS = [
