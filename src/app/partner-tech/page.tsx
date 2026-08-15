@@ -5,11 +5,22 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
+const metaDescription = "Join Keepwell as an independent property-access provider. See job scope and fixed payout before accepting home lockout, rekey, lock-change and smart-lock requests.";
+
 export const metadata: Metadata = {
-  title: "Join the Keepwell Provider Network | Fixed-Payout Jobs",
-  description:
-    "Join Keepwell as an independent property-access provider. See the job scope and fixed payout before you accept home lockout, rekey, lock-change and smart-lock requests.",
+  title: "Provider Network | Fixed-Payout Locksmith Jobs",
+  description: metaDescription,
   alternates: { canonical: "/partner-tech" },
+  openGraph: {
+    title: "Keepwell provider network | No bidding, payout shown upfront",
+    description: metaDescription,
+    url: "/partner-tech",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Keepwell provider network | No bidding, payout shown upfront",
+    description: metaDescription,
+  },
 };
 
 export default function PartnerTechPage() {
@@ -19,7 +30,7 @@ export default function PartnerTechPage() {
       <main className="flex-1">
         <PageHero
           eyebrow="For independent providers"
-          title="More jobs. No bidding. Know your payout before you accept."
+          title="No bidding. Know your payout before you accept."
           body="Keepwell routes clearly scoped property-access requests. You control availability, see the payout up front and accept only the jobs that fit your schedule and service area."
         />
 
