@@ -18,8 +18,8 @@ export default async function ProviderRegisterPage({
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2 font-display text-lg text-parchment"><Keyhole className="h-5 w-4 text-brass" />Keepwell</Link>
           <div className="mt-7 eyebrow">Provider account</div>
-          <h1 className="mt-2 font-display text-3xl text-parchment">Create your provider login</h1>
-          <p className="mt-2 text-sm leading-6 text-parchment-dim">This is separate from customer membership signup.</p>
+          <h1 className="mt-2 font-display text-3xl text-parchment">Join the Keepwell provider network</h1>
+          <p className="mt-2 text-sm leading-6 text-parchment-dim">Create the provider login used to claim or register your business, manage availability and review fixed-payout requests.</p>
         </div>
 
         {error && <div className="mt-5 rounded-xl border border-ember/30 bg-ember/10 p-3 text-sm text-ember">{error}</div>}
@@ -32,6 +32,7 @@ export default async function ProviderRegisterPage({
           <button className="w-full rounded-full bg-brass px-5 py-3 text-sm font-semibold text-ink">Create provider account</button>
         </form>
 
+        <p className="mt-4 text-center text-[11px] leading-5 text-parchment-dim">Creating an account does not activate a provider profile. Business verification is completed before job offers are enabled.</p>
         <p className="mt-5 text-center text-xs text-parchment-dim">
           Already have an account? <Link href={`/login?next=${encodeURIComponent(provider ? `/providers/claim?provider=${provider}` : "/providers/claim")}`} className="text-brass hover:underline">Log in</Link>
         </p>
