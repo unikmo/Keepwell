@@ -4,10 +4,22 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
+const metaDescription = "Standardize resident lockouts, turnover rekeys, access records and independent-provider coordination across properties with Keepwell.";
+
 export const metadata: Metadata = {
-  title: "Property Access & Rekey Workflow for Property Managers",
-  description: "Standardize resident lockouts, turnover rekeys, access records and provider coordination across properties with Keepwell.",
+  title: "Lockout & Rekey Workflow for Property Managers",
+  description: metaDescription,
   alternates: { canonical: "/for-property-managers" },
+  openGraph: {
+    title: "Property access without the ad-hoc maintenance queue",
+    description: metaDescription,
+    url: "/for-property-managers",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Property access without the ad-hoc maintenance queue",
+    description: metaDescription,
+  },
 };
 
 const PROBLEMS = [
