@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Keyhole } from "./Keyhole";
 
 const NAV_LINKS = [
-  { label: "Services", href: "/services" },
+  { label: "Services & prices", href: "/services" },
   { label: "Digital Access", href: "/digital-access" },
   { label: "Membership", href: "/pricing" },
   { label: "Property managers", href: "/for-property-managers" },
-  { label: "Providers", href: "/partner-tech" },
+  { label: "For providers", href: "/partner-tech" },
 ];
 
 export function Nav() {
