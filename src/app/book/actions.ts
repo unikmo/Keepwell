@@ -31,7 +31,7 @@ export async function createGuestBooking(formData: FormData) {
       price_cents: service.customerPriceCents,
       discount_pct: 0,
       payment_status: "pending",
-      status: "dispatched",
+      status: "requested",
     })
     .select()
     .single();
