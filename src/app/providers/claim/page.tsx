@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { createClient } from "@/lib/supabase/server";
 import { claimProvider } from "./actions";
 
-export const metadata: Metadata = { title: "Claim a provider profile", robots: { index: false } };
+export const metadata: Metadata = { title: "Claim a locksmith provider profile", robots: { index: false } };
 
 export default async function ClaimProviderPage({
   searchParams,
@@ -34,9 +34,9 @@ export default async function ClaimProviderPage({
         <main className="flex-1 py-16">
           <div className="mx-auto max-w-4xl px-6">
             <div className="eyebrow">Claim your profile</div>
-            <h1 className="mt-3 font-display text-4xl text-parchment">Find your business</h1>
+            <h1 className="mt-3 font-display text-4xl text-parchment">Find your locksmith business</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">
-              Your business may already have a basic Keepwell profile built from public business information. Find it here and claim it so you can verify the details and control the provider account.
+              Your business may already have a basic Trusted Locksmith profile built from public business information. Find it here and claim it so you can verify the details and control the provider account.
             </p>
             <div className="mt-8 divide-y divide-line rounded-2xl border border-line bg-surface">
               {(providers ?? []).map((item: any) => (
@@ -103,7 +103,7 @@ export default async function ClaimProviderPage({
               </Field>
               <Field label="Verification note (optional)"><textarea className="input min-h-24" name="notes" placeholder="Website domain, public business email, or anything that helps verify your connection to the business." /></Field>
               <button className="w-full rounded-full bg-brass px-5 py-3 text-sm font-semibold text-ink">Submit profile claim</button>
-              <p className="text-xs leading-5 text-parchment-dim">Submitting a claim does not activate the profile. Keepwell reviews the business connection before the provider can receive job offers.</p>
+              <p className="text-xs leading-5 text-parchment-dim">Submitting a claim does not activate the profile. Trusted Locksmith reviews the business connection before the provider can receive job offers.</p>
             </form>
           )}
         </div>
