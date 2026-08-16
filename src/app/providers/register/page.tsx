@@ -16,10 +16,10 @@ export default async function ProviderRegisterPage({
     <div className="flex min-h-screen items-center justify-center bg-ink px-5 py-12">
       <div className="w-full max-w-md rounded-3xl border border-line bg-surface p-7 sm:p-8">
         <div className="text-center">
-          <Link href="/" className="inline-flex items-center gap-2 font-display text-lg text-parchment"><Keyhole className="h-5 w-4 text-brass" />Keepwell</Link>
+          <Link href="/" className="inline-flex items-center gap-2 font-display text-lg text-parchment"><Keyhole className="h-5 w-4 text-brass" />Trusted Locksmith</Link>
           <div className="mt-7 eyebrow">Provider account</div>
-          <h1 className="mt-2 font-display text-3xl text-parchment">Join the Keepwell provider network</h1>
-          <p className="mt-2 text-sm leading-6 text-parchment-dim">Create the provider login used to claim or register your business, manage availability and review fixed-payout requests.</p>
+          <h1 className="mt-2 font-display text-3xl text-parchment">Join the Trusted Locksmith Provider Network</h1>
+          <p className="mt-2 text-sm leading-6 text-parchment-dim">Create the provider login used to claim or register your locksmith business, manage availability and review fixed-payout requests.</p>
         </div>
 
         {error && <div className="mt-5 rounded-xl border border-ember/30 bg-ember/10 p-3 text-sm text-ember">{error}</div>}
