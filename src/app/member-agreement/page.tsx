@@ -2,21 +2,21 @@ import type { Metadata } from "next";
 import { LegalDoc, LegalSection } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
-  title: "Member Agreement — Keepwell",
-  description: "Terms for Keepwell membership, Digital Access, waiting periods, plan benefits and cancellation.",
+  title: "Member Agreement — Trusted Locksmith",
+  description: "Terms for Trusted Locksmith membership, Digital Access, waiting periods, plan benefits and cancellation.",
   alternates: { canonical: "/member-agreement" },
   robots: { index: false },
 };
 
 export default function MemberAgreementPage() {
   return (
-    <LegalDoc title="Member Agreement" lastUpdated="August 15, 2026">
+    <LegalDoc title="Member Agreement" lastUpdated="August 16, 2026">
       <LegalSection title="1. Membership is optional and is not insurance">
-        <p>Keepwell membership is an optional service-platform membership. It is not insurance and is not a substitute for homeowners, renters, vehicle, liability, or other insurance.</p>
+        <p>Trusted Locksmith membership is an optional service-platform membership operated by PlanetHike OÜ. It is not insurance and is not a substitute for homeowners, renters, vehicle, liability, or other insurance.</p>
       </LegalSection>
 
       <LegalSection title="2. Account creation is not payment activation">
-        <p>Creating a Keepwell account or selecting a membership plan does not by itself activate a paid membership. Paid benefits begin only after the applicable checkout confirms payment. Until payment processing is enabled, the account may store the selected plan without treating paid benefits as active.</p>
+        <p>Creating a Trusted Locksmith account or selecting a membership plan does not by itself activate a paid membership. Paid benefits begin only after the applicable checkout confirms payment. Until payment processing is enabled, the account may store the selected plan without treating paid benefits as active.</p>
       </LegalSection>
 
       <LegalSection title="3. Digital Access">
@@ -24,7 +24,7 @@ export default function MemberAgreementPage() {
       </LegalSection>
 
       <LegalSection title="4. Individual plan">
-        <p><strong className="text-parchment">Individual ($29/year):</strong> Digital Access for one member, one trusted key holder or emergency contact, access to Keepwell&apos;s published standard service prices, and any other benefits shown at checkout for that plan.</p>
+        <p><strong className="text-parchment">Individual ($29/year):</strong> Digital Access for one member, one trusted key holder or emergency contact, access to Trusted Locksmith&apos;s published standard service prices, and any other benefits shown at checkout for that plan.</p>
       </LegalSection>
 
       <LegalSection title="5. Household plan">
@@ -40,11 +40,11 @@ export default function MemberAgreementPage() {
       </LegalSection>
 
       <LegalSection title="8. Provider availability">
-        <p>Membership does not guarantee that a provider will be available at every time or location. Keepwell is a marketplace platform. Provider identity and ETA appear only after a participating independent provider actually accepts a request.</p>
+        <p>Membership does not guarantee that a provider will be available at every time or location. Trusted Locksmith is a platform. Provider identity and ETA appear only after a participating independent provider actually accepts a request.</p>
       </LegalSection>
 
       <LegalSection title="9. Lock & Access Audit">
-        <p>The Household+ audit is performed by an independent provider. The provider submits a standardized report through Keepwell. Any follow-up work should be offered separately through the platform so the scope and price are clear before approval.</p>
+        <p>The Household+ audit is performed by an independent provider. The provider submits a standardized report through Trusted Locksmith. Any follow-up work should be offered separately through the platform so the scope and price are clear before approval.</p>
       </LegalSection>
 
       <LegalSection title="10. Pricing and renewals">
@@ -52,15 +52,15 @@ export default function MemberAgreementPage() {
       </LegalSection>
 
       <LegalSection title="11. Cancellation and refunds">
-        <p>You may cancel future renewal using the cancellation method made available with the paid membership or by contacting Keepwell support. Final refund, renewal, and failed-payment terms will be shown as part of the live payment flow before paid public launch.</p>
+        <p>You may cancel future renewal using the cancellation method made available with the paid membership or by contacting Trusted Locksmith support. Final refund, renewal, and failed-payment terms will be shown as part of the live payment flow before paid public launch.</p>
       </LegalSection>
 
       <LegalSection title="12. Relationship to the Terms of Service">
-        <p>This Member Agreement works together with the <a href="/terms" className="text-brass hover:underline">Terms of Service</a>. The Terms govern general use of Keepwell; this Agreement describes membership-specific rules.</p>
+        <p>This Member Agreement works together with the <a href="/terms" className="text-brass hover:underline">Terms of Service</a>. The Terms govern general use of Trusted Locksmith; this Agreement describes membership-specific rules.</p>
       </LegalSection>
 
       <LegalSection title="13. Contact">
-        <p>Questions about membership can be submitted through the <a href="/contact" className="text-brass hover:underline">Keepwell contact page</a>.</p>
+        <p>Questions about membership can be submitted through the <a href="/contact" className="text-brass hover:underline">Trusted Locksmith contact page</a>.</p>
       </LegalSection>
     </LegalDoc>
   );
