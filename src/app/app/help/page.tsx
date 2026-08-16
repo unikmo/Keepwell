@@ -24,7 +24,7 @@ export default async function HelpPage() {
       <Keyhole className="mt-6 h-14 w-10 text-brass" />
       <div className="mt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-brass">Check your own access first</div>
       <h1 className="mt-2 font-display text-3xl font-medium text-parchment">Check Digital Access first.</h1>
-      <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim">A saved code, spare-key location or nearby key holder may resolve the problem before you need a paid service visit.</p>
+      <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim">A saved code, spare-key location or nearby key holder may resolve the problem before you need a paid locksmith visit.</p>
 
       <div className="mt-7 w-full max-w-md space-y-3">
         <Option href="/app/vault" active={(accessItems?.length ?? 0) > 0} title={(accessItems?.length ?? 0) > 0 ? `Digital Access · ${accessItems!.length} saved` : "Digital Access is empty"} body={(accessItems?.length ?? 0) > 0 ? "Review saved access instructions, codes or photos." : "Add access details now so they are ready next time."} />
@@ -33,8 +33,8 @@ export default async function HelpPage() {
 
       {keyHolders.length > 0 && <div className="mt-4 w-full max-w-md space-y-2">{keyHolders.filter((c:any)=>c.phone).map((c:any)=><a key={c.id} href={`tel:${c.phone}`} className="flex min-h-11 items-center justify-between rounded-xl border border-verdigris/25 bg-verdigris/[0.06] px-4 text-sm text-parchment"><span>Call {c.name}</span><span className="text-verdigris">{c.phone}</span></a>)}</div>}
 
-      <Link href="/book" className="mt-6 inline-flex min-h-12 w-full max-w-md items-center justify-center rounded-full bg-ember px-6 py-3 text-sm font-semibold text-ink">Still need help · see fixed price</Link>
-      <p className="mt-2 max-w-md text-[11px] leading-5 text-parchment-dim">One-off Keepwell service is available at the published standard price. A provider appears only after a real marketplace acceptance.</p>
+      <Link href="/book" className="mt-6 inline-flex min-h-12 w-full max-w-md items-center justify-center rounded-full bg-ember px-6 py-3 text-sm font-semibold text-ink">Still locked out? Find a locksmith</Link>
+      <p className="mt-2 max-w-md text-[11px] leading-5 text-parchment-dim">One-off Trusted Locksmith service is available at the published standard price. A provider appears only after a real marketplace acceptance.</p>
       {paidMembershipActive && !benefitsReady && subscription?.plan_id === "household_plus" && <p className="mt-2 max-w-md text-[11px] leading-5 text-brass">Household+ field benefits such as the included audit/priority layer begin {benefitsDate?.toLocaleDateString()}. You can still use fixed-price service now.</p>}
     </div>
   );
