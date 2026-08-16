@@ -10,26 +10,26 @@ import {
 } from "@/lib/massachusetts-seo";
 import { formatServicePrice, getServiceMenuItem } from "@/lib/service-menu";
 
-const SERVICE_CARD_META: Array<{
+const SERVICE_CARDS: Array<{
   slug: MaServiceSlug;
   title: string;
   body: string;
   priceId: string;
-  priceSuffix?: string;
+  prefix?: string;
 }> = [
   {
     slug: "emergency-locksmith",
     title: "Emergency locksmith",
     body: "Urgent residential access with weekday, evening/weekend and overnight pricing shown before the request.",
     priceId: "home_lockout_day",
-    priceSuffix: "from",
+    prefix: "from",
   },
   {
     slug: "house-lockout",
     title: "House lockout",
-    body: "Standard residential entry for a house, apartment or condo, with travel/service call included.",
+    body: "Standard residential entry for a house, apartment or condo, with provider travel/service call included.",
     priceId: "home_lockout_day",
-    priceSuffix: "from",
+    prefix: "from",
   },
   {
     slug: "car-lockout",
@@ -70,40 +70,17 @@ function cityServiceHref(city: MaCity, slug: MaServiceSlug) {
   return city.services.includes(slug) ? `/${city.slug}/${slug}` : BOOKING_HREF[slug];
 }
 
-function cityBySlug(slug: string) {
-  return MA_CITIES.find((city) => city.slug === slug);
-}
-
-function PriceCards({ service }: { service: MaServiceContent }) {
-  const rows = service.serviceIds
-    .map((id) => getServiceMenuItem(id))
-    .filter((item): item is NonNullable<typeof item> => Boolean(item));
-
-  return (
-    <div className={`grid gap-4 ${rows.length > 1 ? "md:grid-cols-3" : "max-w-xl"}`}>
-      {rows.map((item) => (
-        <div key={item.id} className="rounded-[22px] border border-sky/15 bg-ink/28 p-5">
-          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">{item.timing}</div>
-          <div className="mt-3 flex items-end justify-between gap-4">
-            <div className="font-display text-xl text-parchment">{item.title}</div>
-            <div className="font-display text-4xl text-brass">{formatServicePrice(item.customerPriceCents)}</div>
-          </div>
-          <p className="mt-3 text-sm leading-6 text-parchment-dim">Standard total · provider travel/service call included.</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function TrustStrip() {
+  const items = [
+    ["Vetted local providers", "Provider information is reviewed before network activation"],
+    ["Price shown upfront", "See the standard total before you request service"],
+    ["Extras need approval", "Additional work is priced and approved before it starts"],
+  ];
+
   return (
     <section className="border-b border-line/70 bg-surface/55">
       <div className="mx-auto grid max-w-[1400px] gap-5 px-6 py-6 sm:grid-cols-3 sm:px-8 lg:px-10">
-        {[
-          ["Vetted local providers", "Provider information is reviewed before network activation"],
-          ["Price shown upfront", "See the standard total before you request service"],
-          ["Extras need approval", "Additional work is priced and approved before it starts"],
-        ].map(([title, body]) => (
+        {items.map(([title, body]) => (
           <div key={title}>
             <div className="text-sm font-semibold text-parchment">{title}</div>
             <div className="mt-1 text-sm text-parchment-dim">{body}</div>
@@ -114,10 +91,31 @@ function TrustStrip() {
   );
 }
 
-function NearbyCities({ city }: { city: MaCity }) {
-  const nearby = city.nearby.map(cityBySlug).filter((item): item is MaCity => Boolean(item));
+function LocalAreas({ city }: { city: MaCity }) {
   return (
-    <div className="mt-8 border-t border-line/70 pt-6">
+    <div className="rounded-[24px] border border-[#c7d9ec] bg-white p-6 shadow-[0_18px_50px_rgba(28,65,105,0.08)]">
+      <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">Around {city.name}</div>
+      <div className="mt-4 flex flex-wrap gap-2">
+        {city.areas.map((area) => (
+          <span key={area} className="rounded-full border border-[#c7d9ec] bg-mist px-3 py-1.5 text-sm text-[#46617f]">
+            {area}
+          </span>
+        ))}
+      </div>
+      <p className="mt-4 text-sm leading-6 text-[#536e8a]">
+        Provider availability depends on participating provider service areas and real acceptance of the request.
+      </p>
+    </div>
+  );
+}
+
+function NearbyCities({ city }: { city: MaCity }) {
+  const nearby = city.nearby
+    .map((slug) => MA_CITIES.find((item) => item.slug === slug))
+    .filter((item): item is MaCity => Boolean(item));
+
+  return (
+    <div>
       <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Nearby Massachusetts markets</div>
       <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
         {nearby.map((item) => (
@@ -130,16 +128,23 @@ function NearbyCities({ city }: { city: MaCity }) {
   );
 }
 
-function LocalAreas({ city }: { city: MaCity }) {
+function PriceCards({ service }: { service: MaServiceContent }) {
+  const items = service.serviceIds
+    .map((id) => getServiceMenuItem(id))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+
   return (
-    <div className="rounded-[24px] border border-[#c7d9ec] bg-white p-6 shadow-[0_18px_50px_rgba(28,65,105,0.08)]">
-      <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">{city.name} area context</div>
-      <div className="mt-4 flex flex-wrap gap-2">
-        {city.areas.map((area) => (
-          <span key={area} className="rounded-full border border-[#c7d9ec] bg-mist px-3 py-1.5 text-sm text-[#46617f]">{area}</span>
-        ))}
-      </div>
-      <p className="mt-4 text-sm leading-6 text-[#536e8a]">Provider availability depends on participating provider service areas and real acceptance of the request.</p>
+    <div className={`grid gap-4 ${items.length > 1 ? "md:grid-cols-3" : "max-w-xl"}`}>
+      {items.map((item) => (
+        <div key={item.id} className="rounded-[22px] border border-sky/15 bg-ink/28 p-5">
+          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">{item.timing}</div>
+          <div className="mt-3 flex items-end justify-between gap-4">
+            <div className="font-display text-xl text-parchment">{item.title}</div>
+            <div className="font-display text-4xl text-brass">{formatServicePrice(item.customerPriceCents)}</div>
+          </div>
+          <p className="mt-3 text-sm leading-6 text-parchment-dim">Standard total · provider travel/service call included.</p>
+        </div>
+      ))}
     </div>
   );
 }
@@ -171,8 +176,8 @@ export function LocalCityPage({ city }: { city: MaCity }) {
         <section className="border-b border-[#c7d9ec] bg-mist py-14 text-navy-text sm:py-18">
           <div className="mx-auto grid max-w-[1180px] gap-8 px-6 sm:px-8 lg:grid-cols-[1.15fr_.85fr] lg:px-10">
             <div>
-              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">Local locksmith market</div>
-              <h2 className="mt-3 font-display text-4xl tracking-[-.025em]">Locksmith help built around the job, not the search phrase.</h2>
+              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">Local locksmith service</div>
+              <h2 className="mt-3 font-display text-4xl tracking-[-.025em]">The right service, with the price clear first.</h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-[#46617f]">{city.localContext}</p>
               <p className="mt-4 max-w-2xl text-base leading-7 text-[#46617f]">
                 Trusted Locksmith is a platform operated by PlanetHike OÜ. Field services are performed by participating independent local providers, and a request is not presented as accepted until a real provider accepts it.
@@ -187,17 +192,25 @@ export function LocalCityPage({ city }: { city: MaCity }) {
             <div className="max-w-2xl">
               <div className="eyebrow">Services in {city.name}</div>
               <h2 className="mt-4 font-display text-4xl tracking-[-.025em] text-parchment sm:text-5xl">Start with the service you actually need.</h2>
-              <p className="mt-4 text-base leading-7 text-parchment-dim">Dedicated local pages are created only where current demand justifies them. Other services go straight to the request flow rather than creating thin keyword pages.</p>
+              <p className="mt-4 text-base leading-7 text-parchment-dim">
+                Choose a local service page where available, or go straight to the request flow. Standard pricing and scope remain consistent either way.
+              </p>
             </div>
+
             <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {SERVICE_CARD_META.map((card) => {
+              {SERVICE_CARDS.map((card) => {
                 const item = getServiceMenuItem(card.priceId);
                 const dedicated = city.services.includes(card.slug);
                 return (
                   <Link key={card.slug} href={cityServiceHref(city, card.slug)} className="group rounded-[24px] border border-sky/15 bg-surface/48 p-6 transition hover:border-brass/45 hover:bg-surface/65">
                     <div className="flex items-start justify-between gap-4">
                       <div className="font-display text-2xl text-parchment">{card.title}</div>
-                      {item ? <div className="text-right"><div className="font-mono text-[9px] uppercase tracking-[.12em] text-parchment-dim">{card.priceSuffix}</div><div className="font-display text-3xl text-brass">{formatServicePrice(item.customerPriceCents)}</div></div> : null}
+                      {item ? (
+                        <div className="text-right">
+                          {card.prefix ? <div className="font-mono text-[9px] uppercase tracking-[.12em] text-parchment-dim">{card.prefix}</div> : null}
+                          <div className="font-display text-3xl text-brass">{formatServicePrice(item.customerPriceCents)}</div>
+                        </div>
+                      ) : null}
                     </div>
                     <p className="mt-3 text-sm leading-6 text-parchment-dim">{card.body}</p>
                     <div className="mt-5 text-sm font-semibold text-brass">{dedicated ? `${city.name} service details →` : "Request this service →"}</div>
@@ -205,7 +218,8 @@ export function LocalCityPage({ city }: { city: MaCity }) {
                 );
               })}
             </div>
-            <NearbyCities city={city} />
+
+            <div className="mt-9 border-t border-line/70 pt-6"><NearbyCities city={city} /></div>
           </div>
         </section>
 
@@ -224,7 +238,7 @@ export function LocalCityPage({ city }: { city: MaCity }) {
 }
 
 export function LocalServicePage({ city, service }: { city: MaCity; service: MaServiceContent }) {
-  const localNote = city.serviceNotes[service.slug];
+  const localNote = city.serviceNotes[service.slug] ?? city.localContext;
   const otherServices = city.services.filter((slug) => slug !== service.slug);
   const bookingHref = BOOKING_HREF[service.slug];
 
@@ -263,9 +277,9 @@ export function LocalServicePage({ city, service }: { city: MaCity; service: MaS
         <section className="border-b border-[#c7d9ec] bg-mist py-16 text-navy-text">
           <div className="mx-auto grid max-w-[1180px] gap-8 px-6 sm:px-8 lg:grid-cols-[1.1fr_.9fr] lg:px-10">
             <div>
-              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">Why this page exists</div>
-              <h2 className="mt-3 font-display text-4xl tracking-[-.025em]">A distinct {service.shortTitle.toLowerCase()} need in {city.name}.</h2>
-              <p className="mt-5 text-base leading-7 text-[#46617f]">{localNote ?? city.localContext}</p>
+              <div className="font-mono text-[10px] uppercase tracking-[.14em] text-[#7d6330]">Local service context</div>
+              <h2 className="mt-3 font-display text-4xl tracking-[-.025em]">{service.shortTitle} in {city.name}, with the scope clear first.</h2>
+              <p className="mt-5 text-base leading-7 text-[#46617f]">{localNote}</p>
               <p className="mt-4 text-base leading-7 text-[#46617f]">{service.intent}</p>
             </div>
             <LocalAreas city={city} />
@@ -314,7 +328,7 @@ export function LocalServicePage({ city, service }: { city: MaCity; service: MaS
 
         <section className="py-16">
           <div className="mx-auto max-w-[1180px] px-6 sm:px-8 lg:px-10">
-            <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
+            <div className="grid gap-8 lg:grid-cols-2">
               <div>
                 <div className="eyebrow">More in {city.name}</div>
                 <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3 text-sm">
@@ -326,6 +340,7 @@ export function LocalServicePage({ city, service }: { city: MaCity; service: MaS
               </div>
               <NearbyCities city={city} />
             </div>
+
             <div className="mt-12 rounded-[28px] border border-brass/25 bg-brass/[.07] px-6 py-8 sm:px-8">
               <div className="font-display text-3xl text-parchment">Need {service.shortTitle.toLowerCase()} help in {city.name}?</div>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">See the standard scope and price first. Submitting a request does not claim a provider has accepted until a real provider does.</p>
