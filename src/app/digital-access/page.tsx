@@ -38,7 +38,7 @@ export default function DigitalAccessPage() {
         <PageHero
           eyebrow="Digital Access"
           title="Your backup plan for getting back in."
-          body="Keep codes, spare-key details, trusted people and recovery instructions together so your first response to an access problem is not automatically a service call."
+          body="Keep codes, spare-key details, trusted people and recovery instructions together so your first response to an access problem is not automatically a locksmith call."
         />
 
         <section className="border-b border-[#c7d9ec] bg-mist py-16 text-navy-text sm:py-20">
@@ -57,16 +57,16 @@ export default function DigitalAccessPage() {
         <section className="border-b border-line/70 py-16 sm:py-20">
           <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
             <div>
-              <div className="eyebrow">Before you request service</div>
+              <div className="eyebrow">Before you find a locksmith</div>
               <h2 className="mt-3 font-display text-3xl text-parchment sm:text-4xl">Check the access you already have.</h2>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-parchment-dim">Digital Access turns scattered codes, key locations and trusted contacts into a simple backup plan. If none of those options works, you can continue into Keepwell's clearly priced service-request flow.</p>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-parchment-dim">Digital Access turns scattered codes, key locations and trusted contacts into a simple backup plan. If none of those options works, continue into Trusted Locksmith's clearly priced service flow.</p>
             </div>
             <div className="space-y-3">
               {[
                 ["01", "Check saved access", "Review keypad, lockbox, smart-lock or garage access details."],
                 ["02", "Reach a trusted key holder", "Contact the person you recorded as holding a spare."],
                 ["03", "Use physical backup access", "Follow the spare-key location or recovery instructions you saved."],
-                ["04", "Still need on-site help?", "See the standard service price and request an independent provider through Keepwell."],
+                ["04", "Still need a locksmith?", "See the standard service price and request an independent local provider through Trusted Locksmith."],
               ].map(([n, title, body]) => (
                 <div key={n} className="grid grid-cols-[42px_1fr] gap-3 rounded-2xl border border-sky/15 bg-surface/65 p-4">
                   <div className="font-mono text-xs text-brass">{n}</div>
@@ -93,10 +93,10 @@ export default function DigitalAccessPage() {
 
         <CTABand
           title="Set up the backup plan before you need it"
-          body="Digital Access is included with Keepwell membership. One-off service remains available without membership."
+          body="Digital Access is included with Trusted Locksmith membership. One-off locksmith service remains available without membership."
           ctaLabel="Compare membership"
           ctaHref="/pricing"
-          secondaryLabel="Request service"
+          secondaryLabel="Find a locksmith"
           secondaryHref="/book"
         />
       </main>
