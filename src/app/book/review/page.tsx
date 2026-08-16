@@ -4,7 +4,7 @@ import { Keyhole } from "@/components/Keyhole";
 import { createGuestBooking } from "../actions";
 import { defaultServiceForJobType, formatServicePrice, getServiceMenuItem } from "@/lib/service-menu";
 
-export const metadata: Metadata = { title: "Review service request", robots: { index: false } };
+export const metadata: Metadata = { title: "Review locksmith request", robots: { index: false } };
 
 export default async function BookReviewPage({ searchParams }: { searchParams: Promise<{ service_id?: string; job_type?: string; address?: string; phone?: string; email?: string; error?: string; }> }) {
   const { service_id, job_type, address, phone, email, error } = await searchParams;
@@ -14,9 +14,9 @@ export default async function BookReviewPage({ searchParams }: { searchParams: P
     <div className="flex min-h-screen items-center justify-center bg-ink px-5 py-12">
       <div className="w-full max-w-lg rounded-3xl border border-line bg-surface p-6 sm:p-8">
         <div className="text-center">
-          <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment"><Keyhole className="h-5 w-4 text-brass" />Keepwell</Link>
+          <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment"><Keyhole className="h-5 w-4 text-brass" />Trusted Locksmith</Link>
           <h1 className="mt-7 font-display text-3xl font-medium text-parchment">Review before you submit</h1>
-          <p className="mt-2 text-sm leading-6 text-parchment-dim">Check the service, address and standard total. A provider is shown only after a participating independent provider accepts the request.</p>
+          <p className="mt-2 text-sm leading-6 text-parchment-dim">Check the service, address and standard total. A locksmith is shown only after a participating independent local provider accepts the request.</p>
         </div>
         {error && <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 px-4 py-3 text-sm text-ember">{error}</div>}
 
@@ -38,7 +38,7 @@ export default async function BookReviewPage({ searchParams }: { searchParams: P
           <input type="hidden" name="address" value={address ?? ""} />
           <input type="hidden" name="phone" value={phone ?? ""} />
           <input type="hidden" name="email" value={email ?? ""} />
-          <button type="submit" className="w-full rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink">Submit service request</button>
+          <button type="submit" className="w-full rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink">Find a locksmith</button>
         </form>
         <p className="mt-3 text-center text-[11px] leading-5 text-parchment-dim">Submitting a request does not guarantee provider availability.</p>
         <p className="mt-4 text-center text-xs text-parchment-dim"><Link href={`/book/details?service_id=${service.id}`} className="hover:text-parchment">← Edit details</Link></p>
