@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { completeGuestBooking } from "../actions";
 import { defaultServiceForJobType, formatServicePrice, getServiceMenuItem } from "@/lib/service-menu";
 
-export const metadata: Metadata = { title: "Service request status", robots: { index: false } };
+export const metadata: Metadata = { title: "Locksmith request status", robots: { index: false } };
 
 export default async function BookStatusPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -32,28 +32,28 @@ export default async function BookStatusPage({ params }: { params: Promise<{ id:
     <div className="flex min-h-screen items-center justify-center bg-ink px-5 py-12">
       <div className="w-full max-w-lg rounded-3xl border border-line bg-surface p-6 text-center sm:p-8">
         <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment">
-          <Keyhole className="h-5 w-4 text-brass" />Keepwell
+          <Keyhole className="h-5 w-4 text-brass" />Trusted Locksmith
         </Link>
 
         <div className="mt-7 font-mono text-[10px] uppercase tracking-[0.14em] text-verdigris">
-          {completed ? "Request completed" : matched ? "Provider accepted" : "Request submitted"}
+          {completed ? "Request completed" : matched ? "Locksmith accepted" : "Request submitted"}
         </div>
         <h1 className="mt-2 font-display text-3xl font-medium text-parchment">
-          {completed ? "The service request is closed" : matched ? "Your provider has accepted" : "Keepwell is matching your request"}
+          {completed ? "The service request is closed" : matched ? "Your locksmith has accepted" : "We’re finding a local locksmith"}
         </h1>
         <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-parchment-dim">
           {completed
             ? "The request remains in the service record."
             : matched
-              ? "This provider accepted the job through Keepwell. Arrival timing below is the provider's accepted ETA."
-              : "Keepwell will show a provider only after a real independent provider accepts the request."}
+              ? "This independent provider accepted the job through Trusted Locksmith. Arrival timing below is the provider's accepted ETA."
+              : "Trusted Locksmith will show a locksmith only after a real independent provider accepts the request."}
         </p>
 
         <div className="mt-6 rounded-2xl border border-line bg-ink/35 p-5 text-left text-sm">
           <Row label="Service" value={service.title} />
           <Row label="Fixed standard price" value={formatServicePrice(booking.price_cents || service.customerPriceCents)} />
           <Row label="Request ID" value={booking.id.slice(0, 8).toUpperCase()} />
-          <Row label="Provider" value={matched ? match.business_name : "Matching in progress"} />
+          <Row label="Locksmith" value={matched ? match.business_name : "Matching in progress"} />
           {matched && match.eta_minutes ? <Row label="Accepted ETA" value={`${match.eta_minutes} min`} /> : null}
           <Row
             label="Payment"
@@ -63,7 +63,7 @@ export default async function BookStatusPage({ params }: { params: Promise<{ id:
 
         {!matched && !completed && (
           <p className="mt-5 text-xs leading-5 text-parchment-dim">
-            No fabricated technician, rating or ETA is shown. The provider network dashboard controls the real offer and acceptance state.
+            No fabricated locksmith, rating or ETA is shown. A name and arrival estimate appear only after a real provider accepts.
           </p>
         )}
 
@@ -77,7 +77,7 @@ export default async function BookStatusPage({ params }: { params: Promise<{ id:
         )}
 
         <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
-          <Link href="/" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-parchment">Back to Keepwell</Link>
+          <Link href="/" className="inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-parchment">Back to Trusted Locksmith</Link>
           <Link href="/pricing" className="inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">See prices & membership</Link>
         </div>
       </div>
