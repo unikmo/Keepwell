@@ -15,10 +15,10 @@ export default async function LoginPage({
         <div className="flex flex-col items-center text-center">
           <Link href="/" className="flex items-center gap-2 font-display text-lg font-medium text-parchment">
             <Keyhole className="h-5 w-4 text-brass" />
-            Keepwell
+            Trusted Locksmith
           </Link>
           <h1 className="mt-6 font-display text-2xl font-medium text-parchment">Welcome back</h1>
-          <p className="mt-1 text-sm text-parchment-dim">Log in to your Keepwell account</p>
+          <p className="mt-1 text-sm text-parchment-dim">Log in to your Trusted Locksmith account</p>
         </div>
 
         {notice && (
@@ -62,7 +62,7 @@ export default async function LoginPage({
 
         <div className="mt-6 grid gap-2 text-center text-xs text-parchment-dim">
           <p>New customer? <Link href="/signup" className="text-brass hover:underline">Create a membership account</Link></p>
-          <p>Provider? <Link href="/providers/register" className="text-brass hover:underline">Create a provider account</Link></p>
+          <p>Locksmith provider? <Link href="/providers/register" className="text-brass hover:underline">Create a provider account</Link></p>
         </div>
       </div>
     </div>
