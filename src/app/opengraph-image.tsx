@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Keepwell — property access without the scramble";
+export const alt = "Trusted Locksmith — vetted local locksmiths with upfront prices";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -49,16 +49,16 @@ export default function OpenGraphImage() {
           >
             ●
           </div>
-          <span>Keepwell</span>
+          <span>Trusted Locksmith</span>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 900 }}>
-          <div style={{ display: "flex", flexWrap: "wrap", fontSize: 72, lineHeight: 1.02, letterSpacing: "-2.2px", fontWeight: 650 }}>
-            <span>Property access,</span>
-            <span style={{ color: "#D6AD57", marginLeft: 14 }}>without the scramble.</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 930 }}>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 70, lineHeight: 1.02, letterSpacing: "-2.2px", fontWeight: 650 }}>
+            <span>Find a trusted locksmith</span>
+            <span style={{ color: "#D6AD57" }}>near you.</span>
           </div>
-          <div style={{ display: "flex", fontSize: 27, lineHeight: 1.4, color: "#B8C7DA" }}>
-            <span>Upfront locksmith prices · Digital Access · Trusted people</span>
+          <div style={{ display: "flex", fontSize: 28, lineHeight: 1.4, color: "#B8C7DA" }}>
+            <span>Vetted local locksmiths. Upfront prices.</span>
           </div>
         </div>
 
