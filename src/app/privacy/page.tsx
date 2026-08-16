@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalDoc, LegalSection } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Trusted Locksmith",
+  title: "Privacy Policy",
   description: "How PlanetHike OÜ and Trusted Locksmith handle account, Digital Access, property-access, marketplace, and provider information.",
   alternates: { canonical: "/privacy" },
   robots: { index: false },
