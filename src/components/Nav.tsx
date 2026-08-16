@@ -17,7 +17,7 @@ export function Nav() {
           <span className="grid h-9 w-9 place-items-center rounded-xl border border-sky/25 bg-surface-raised/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
             <Keyhole className="h-4 w-3 text-brass" />
           </span>
-          <span>Keepwell</span>
+          <span>Trusted Locksmith</span>
         </Link>
 
         <nav className="hidden items-center gap-7 text-[15px] text-parchment-dim xl:flex" aria-label="Primary navigation">
@@ -36,7 +36,7 @@ export function Nav() {
             href="/book"
             className="inline-flex min-h-11 items-center rounded-full bg-brass px-5 py-2.5 text-[15px] font-semibold text-ink shadow-[0_8px_22px_rgba(214,173,87,0.16)] transition hover:brightness-110"
           >
-            Request service
+            Find a locksmith
           </Link>
         </div>
 
@@ -63,7 +63,7 @@ export function Nav() {
                 Log in
               </Link>
               <Link href="/book" className="mt-2 rounded-xl bg-brass px-4 py-3 text-center text-[15px] font-semibold text-ink">
-                Request service
+                Find a locksmith
               </Link>
             </nav>
           </div>
