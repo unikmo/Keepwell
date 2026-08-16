@@ -4,20 +4,20 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
-const metaDescription = "Standardize resident lockouts, turnover rekeys, access records and independent-provider coordination across properties with Keepwell.";
+const metaDescription = "Standardize resident lockouts, turnover rekeys, access records and independent-locksmith coordination across properties with Trusted Locksmith.";
 
 export const metadata: Metadata = {
   title: "Lockout & Rekey Workflow for Property Managers",
   description: metaDescription,
   alternates: { canonical: "/for-property-managers" },
   openGraph: {
-    title: "Property access without the ad-hoc maintenance queue",
+    title: "Trusted Locksmith for property managers",
     description: metaDescription,
     url: "/for-property-managers",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Property access without the ad-hoc maintenance queue",
+    title: "Trusted Locksmith for property managers",
     description: metaDescription,
   },
 };
@@ -31,7 +31,7 @@ const PROBLEMS = [
 const WORKFLOWS = [
   { title: "Resident requests", body: "Capture the property, access issue and service need through a consistent intake flow." },
   { title: "Turnover rekeys", body: "Request the same clearly scoped rekey service across units with transparent standard pricing." },
-  { title: "Provider coordination", body: "Route work through participating independent providers instead of rebuilding the vendor search for every job." },
+  { title: "Locksmith coordination", body: "Route work through participating independent local providers instead of rebuilding the vendor search for every job." },
   { title: "Portfolio history", body: "Keep the access-service record at property and unit level so future requests start with context." },
 ];
 
@@ -41,9 +41,9 @@ export default function PropertyManagersPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="For property managers"
+          eyebrow="Trusted Locksmith for property managers"
           title="Fewer lockout calls. Cleaner turnover rekeys. One access workflow."
-          body="Keepwell gives property teams a consistent way to handle resident access requests, rekeys, provider coordination and property-level service history."
+          body="Give property teams a consistent way to handle resident access requests, rekeys, independent locksmith coordination and property-level service history."
         />
 
         <section className="border-b border-line/70 py-20">
@@ -64,7 +64,7 @@ export default function PropertyManagersPage() {
             <div className="max-w-2xl">
               <div className="eyebrow">One repeatable workflow</div>
               <h2 className="mt-3 font-display text-3xl text-parchment">From resident request to completed property record.</h2>
-              <p className="mt-4 leading-7 text-parchment-dim">Your team keeps one intake and approval path while independent providers perform the field work. Request status and completed service stay attached to the property account.</p>
+              <p className="mt-4 leading-7 text-parchment-dim">Your team keeps one intake and approval path while independent local locksmiths perform the field work. Request status and completed service stay attached to the property account.</p>
             </div>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {WORKFLOWS.map((item) => (
@@ -82,17 +82,17 @@ export default function PropertyManagersPage() {
             <div className="rounded-3xl border border-brass/25 bg-brass/[0.06] p-8">
               <div className="eyebrow">Start narrow</div>
               <h2 className="mt-3 font-display text-3xl text-parchment">Begin with the access jobs that create the most friction.</h2>
-              <p className="mt-4 leading-7 text-parchment-dim">Set up a small property group, route repeat lockouts and turnover rekeys through Keepwell, then expand once the workflow is working for your team and provider network.</p>
+              <p className="mt-4 leading-7 text-parchment-dim">Set up a small property group, route repeat lockouts and turnover rekeys through Trusted Locksmith, then expand once the workflow is working for your team and provider network.</p>
             </div>
           </div>
         </section>
 
         <CTABand
-          title="Standardize access work across your properties"
+          title="Standardize locksmith work across your properties"
           body="Create a property-manager workspace and start with a focused property set."
           ctaLabel="Start property-manager setup"
           ctaHref="/property-manager"
-          secondaryLabel="See service pricing"
+          secondaryLabel="See locksmith pricing"
           secondaryHref="/services"
         />
       </main>
