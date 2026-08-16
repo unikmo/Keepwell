@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <Keyhole className="h-4 w-3 text-brass" />
             </span>
             <span>
-              <span className="block font-display text-base font-medium leading-none">Keepwell</span>
+              <span className="block font-display text-base font-medium leading-none">Trusted Locksmith</span>
               <span className="mt-1 block font-mono text-[9px] uppercase tracking-[.14em] text-parchment-dim">Digital Access</span>
             </span>
           </Link>
