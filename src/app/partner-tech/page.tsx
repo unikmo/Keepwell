@@ -5,20 +5,20 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
-const metaDescription = "Join Keepwell as an independent property-access provider. See job scope and fixed payout before accepting home lockout, rekey, lock-change and smart-lock requests.";
+const metaDescription = "Join the Trusted Locksmith Provider Network as an independent local locksmith. See job scope and fixed payout before accepting lockout, rekey, lock-change and smart-lock requests.";
 
 export const metadata: Metadata = {
   title: "Provider Network | Fixed-Payout Locksmith Jobs",
   description: metaDescription,
   alternates: { canonical: "/partner-tech" },
   openGraph: {
-    title: "Keepwell provider network | No bidding, payout shown upfront",
+    title: "Trusted Locksmith Provider Network | No bidding, payout shown upfront",
     description: metaDescription,
     url: "/partner-tech",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Keepwell provider network | No bidding, payout shown upfront",
+    title: "Trusted Locksmith Provider Network | No bidding, payout shown upfront",
     description: metaDescription,
   },
 };
@@ -29,9 +29,9 @@ export default function PartnerTechPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="For independent providers"
+          eyebrow="Trusted Locksmith Provider Network"
           title="No bidding. Know your payout before you accept."
-          body="Keepwell routes clearly scoped property-access requests. You control availability, see the payout up front and accept only the jobs that fit your schedule and service area."
+          body="Trusted Locksmith routes clearly scoped locksmith requests from local customers. You control availability, see the payout up front and accept only the jobs that fit your schedule and service area."
         />
 
         <section className="border-b border-line/70 py-16">
@@ -39,7 +39,7 @@ export default function PartnerTechPage() {
             {[
               ["01", "Transparent payout", "See the service scope and fixed payout before you accept. No guessing what the job is worth."],
               ["02", "You stay in control", "Set availability and service area, then accept or decline each request based on your schedule."],
-              ["03", "Cleaner customer expectations", "Keepwell shows the standard customer price and scope before the request, reducing avoidable pricing friction at the door."],
+              ["03", "Cleaner customer expectations", "Trusted Locksmith shows the standard customer price and scope before the request, reducing avoidable pricing friction at the door."],
             ].map(([n, title, body]) => (
               <div key={n} className="rounded-2xl border border-line bg-surface p-6">
                 <div className="font-mono text-xs text-brass">{n}</div>
@@ -63,7 +63,7 @@ export default function PartnerTechPage() {
 
         <section className="border-b border-line/70 bg-surface/15 py-16">
           <div className="mx-auto max-w-6xl px-6">
-            <div className="eyebrow">Example provider economics</div>
+            <div className="eyebrow">Provider economics</div>
             <h2 className="mt-3 max-w-2xl font-display text-3xl text-parchment">See what the customer pays—and what you earn.</h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-parchment-dim">
               The current payout schedule is shown transparently. Availability and live request volume vary by service area and time.
@@ -86,11 +86,11 @@ export default function PartnerTechPage() {
         <section className="py-16">
           <div className="mx-auto max-w-4xl px-6 text-center">
             <div className="eyebrow">Provider standards</div>
-            <h2 className="mt-3 font-display text-3xl text-parchment">A credible profile before the first job.</h2>
+            <h2 className="mt-3 font-display text-3xl text-parchment">Trust starts before the first job.</h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-parchment-dim">
-              Provider activation is based on business ownership, service area and the credentials or insurance relevant to the work and jurisdiction. Keepwell only displays verification claims supported by the provider record.
+              Provider activation is based on business ownership, service area and the credentials or insurance relevant to the work and jurisdiction. Trusted Locksmith only displays verification claims supported by the provider record.
             </p>
-            <Link href="/providers/register" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink">Join the provider network</Link>
+            <Link href="/providers/register" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-6 py-2.5 text-sm font-semibold text-ink">Join Trusted Locksmith</Link>
           </div>
         </section>
       </main>
