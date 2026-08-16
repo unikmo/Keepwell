@@ -7,32 +7,32 @@ import { CTABand } from "@/components/CTABand";
 import { getPlans, planDisplay, formatUsd } from "@/lib/plans";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
-const metaDescription = "Compare upfront Keepwell prices for home lockouts, rekeys, lock changes and smart-lock installation with optional Digital Access memberships.";
+const metaDescription = "Compare upfront Trusted Locksmith prices for home lockouts, rekeys, lock changes and smart-lock installation with optional Digital Access memberships.";
 
 export const metadata: Metadata = {
   title: "Pricing | Locksmith Services & Digital Access Membership",
   description: metaDescription,
   alternates: { canonical: "/pricing" },
   openGraph: {
-    title: "Keepwell pricing | One-off service or optional membership",
+    title: "Trusted Locksmith pricing | One-off service or optional membership",
     description: metaDescription,
     url: "/pricing",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Keepwell pricing | One-off service or optional membership",
+    title: "Trusted Locksmith pricing | One-off service or optional membership",
     description: metaDescription,
   },
 };
 
 const FAQ = [
-  { q: "Do I need a membership to use Keepwell?", a: "No. You can request one-off service without membership. Membership adds Digital Access, trusted-access tools and tier-specific benefits." },
-  { q: "Does the price shown include the provider's trip?", a: "Yes. Every standard Keepwell price shown here includes the provider travel/service call. We do not add a second generic drive or call-out fee." },
+  { q: "Do I need a membership to use Trusted Locksmith?", a: "No. You can find one-off locksmith service without membership. Membership adds Digital Access, trusted-access tools and tier-specific benefits." },
+  { q: "Does the price shown include the provider's trip?", a: "Yes. Every standard Trusted Locksmith price shown here includes the provider travel/service call. We do not add a second generic drive or call-out fee." },
   { q: "Can the price change after the provider arrives?", a: "Only if the actual job needs work outside the stated standard scope. Any additional work and price must be shown and approved before that work starts." },
   { q: "What is the 14-day waiting period?", a: "Digital Access is available with the account. Paid field-service membership benefits, including the Household+ Lock & Access Audit, become eligible 14 days after paid membership activation. One-off fixed-price service remains available at any time." },
   { q: "What does Household+ include?", a: "Household+ is $89/year and includes Digital Access, household/trusted-access tools, priority matching when supply is available, and one included Lock & Access Audit every three years." },
-  { q: "Can the provider sell work during the audit?", a: "The audit provider submits a standardized report to Keepwell. Any follow-up work is offered separately through the platform so scope and price are clear before approval." },
-  { q: "Who performs the service?", a: "Participating independent local providers perform field service. Keepwell handles the customer flow, published standard pricing, access records and marketplace request workflow." },
+  { q: "Can the provider sell work during the audit?", a: "The audit provider submits a standardized report to Trusted Locksmith. Any follow-up work is offered separately through the platform so scope and price are clear before approval." },
+  { q: "Who performs the service?", a: "Participating independent local providers perform field service. Trusted Locksmith handles the customer flow, published standard pricing, access records and request workflow." },
 ];
 
 export default async function PricingPage() {
@@ -42,20 +42,20 @@ export default async function PricingPage() {
       <Nav />
       <main className="flex-1">
         <PageHero
-          eyebrow="Transparent pricing"
-          title="Know the standard price before you book."
-          body="Lockout, rekey and lock-change pricing is shown before you request a provider. Provider travel/service call is included in the standard total."
+          eyebrow="Transparent locksmith pricing"
+          title="Know the standard price before you choose a locksmith."
+          body="Lockout, rekey and lock-change pricing is shown before you request a local provider. Provider travel/service call is included in the standard total."
         />
 
         <section className="border-b border-line/70 py-16 sm:py-20">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
-                <div className="eyebrow">One-off services</div>
-                <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">Use Keepwell once. Membership is optional.</h2>
+                <div className="eyebrow">One-off locksmith services</div>
+                <h2 className="mt-3 font-display text-3xl font-medium text-parchment sm:text-4xl">Use Trusted Locksmith once. Membership is optional.</h2>
                 <p className="mt-4 text-sm leading-6 text-parchment-dim">Each standard price includes provider travel/service call. Hardware and genuinely out-of-scope work are separate only when stated and require your approval before work begins.</p>
               </div>
-              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink shadow-[0_8px_22px_rgba(214,173,87,0.14)]">Request one-off service</Link>
+              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink shadow-[0_8px_22px_rgba(214,173,87,0.14)]">Find a locksmith</Link>
             </div>
 
             <div className="mt-10 overflow-hidden rounded-3xl border border-sky/15 bg-surface shadow-[0_20px_55px_rgba(3,18,37,0.14)]">
@@ -114,14 +114,14 @@ export default async function PricingPage() {
             </div>
 
             <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-[#c7d9ec] bg-white/70 p-6 text-sm leading-6 text-[#536e8a]">
-              <strong className="text-navy-text">Before payment is connected:</strong> choosing a plan creates your Keepwell account and saves the selected tier. It does not charge a card or activate paid field-service benefits.
+              <strong className="text-navy-text">Before payment is connected:</strong> choosing a plan creates your Trusted Locksmith account and saves the selected tier. It does not charge a card or activate paid field-service benefits.
             </div>
           </div>
         </section>
 
         <section className="py-20"><div className="mx-auto max-w-3xl px-6"><h2 className="text-center font-display text-3xl font-medium text-parchment">Pricing questions</h2><div className="mt-10 space-y-6">{FAQ.map((item) => <div key={item.q} className="border-b border-line/70 pb-6"><h3 className="font-medium text-parchment">{item.q}</h3><p className="mt-2 text-sm leading-6 text-parchment-dim">{item.a}</p></div>)}</div></div></section>
 
-        <CTABand title="Need help now? Start with the service." body="No membership required. Choose the job, see the standard total and continue only if the price and scope work for you." ctaLabel="Request service" ctaHref="/book" secondaryLabel="Explore Digital Access" secondaryHref="/digital-access" />
+        <CTABand title="Need a locksmith now? Start with the service." body="No membership required. Choose the job, see the standard total and continue only if the price and scope work for you." ctaLabel="Find a locksmith" ctaHref="/book" secondaryLabel="Explore Digital Access" secondaryHref="/digital-access" />
       </main>
       <Footer />
     </div>
