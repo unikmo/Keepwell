@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalDoc, LegalSection } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
-  title: "Member Agreement — Trusted Locksmith",
+  title: "Member Agreement",
   description: "Terms for Trusted Locksmith membership, Digital Access, waiting periods, plan benefits and cancellation.",
   alternates: { canonical: "/member-agreement" },
   robots: { index: false },
