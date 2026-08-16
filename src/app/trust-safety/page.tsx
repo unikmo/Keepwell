@@ -5,7 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "Trust & Safety | Trusted Locksmith",
+  title: "Trust & Safety",
   description: "How Trusted Locksmith vets provider information, separates platform responsibilities from independent provider responsibilities and handles property-access information.",
   alternates: { canonical: "/trust-safety" },
 };
