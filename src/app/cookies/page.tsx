@@ -3,7 +3,7 @@ import { LegalDoc, LegalSection } from "@/components/LegalDoc";
 import { CookiePreferences } from "@/components/CookiePreferences";
 
 export const metadata: Metadata = {
-  title: "Cookie Preferences — Trusted Locksmith",
+  title: "Cookie Preferences",
   description: "What cookies Trusted Locksmith uses and how to control them.",
   alternates: { canonical: "/cookies" },
   robots: { index: false },
