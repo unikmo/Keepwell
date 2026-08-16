@@ -5,20 +5,20 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
-const metaDescription = "See upfront standard prices for home lockouts, rekeys, lock changes and smart-lock installation before you request an independent local provider through Keepwell.";
+const metaDescription = "See upfront standard prices for home lockouts, rekeys, lock changes and smart-lock installation before you find an independent local locksmith through Trusted Locksmith.";
 
 export const metadata: Metadata = {
   title: "Locksmith Prices | Home Lockout, Rekey & Lock Change",
   description: metaDescription,
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Locksmith service prices without the call-out surprise",
+    title: "Trusted Locksmith prices | No call-out surprise",
     description: metaDescription,
     url: "/services",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Locksmith service prices without the call-out surprise",
+    title: "Trusted Locksmith prices | No call-out surprise",
     description: metaDescription,
   },
 };
@@ -31,7 +31,7 @@ export default function ServicesPage() {
         <PageHero
           eyebrow="Locksmith services & prices"
           title="Clear prices for common locksmith services."
-          body="See the standard total and service scope before you request an independent provider. Provider travel/service call is included in every standard price shown."
+          body="See the standard total and service scope before you find a local provider. Provider travel/service call is included in every standard price shown."
         />
 
         <section className="border-b border-line/70 py-16 sm:py-20">
@@ -50,14 +50,14 @@ export default function ServicesPage() {
                     href={`/book/details?service_id=${service.id}`}
                     className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-parchment hover:border-brass/50"
                   >
-                    Request this service
+                    Find this service
                   </Link>
                 </div>
               ))}
             </div>
 
             <div className="mt-8 rounded-2xl border border-line bg-surface/50 p-6 text-sm leading-6 text-parchment-dim">
-              <strong className="text-parchment">What happens after you request:</strong> Keepwell routes the request through participating independent providers. A provider name and ETA appear only after a real provider accepts. If the job needs work outside the published standard scope, you see and approve the additional price before that work begins.
+              <strong className="text-parchment">What happens next:</strong> Trusted Locksmith routes your request through participating independent local providers. A provider name and ETA appear only after a real provider accepts. If the job needs work outside the published standard scope, you see and approve the additional price before that work begins.
             </div>
           </div>
         </section>
@@ -69,7 +69,7 @@ export default function ServicesPage() {
               Make the next access problem easier before it happens.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl leading-7 text-parchment-dim">
-              Membership adds Digital Access for codes, spare-key details and trusted people. One-off service remains available without membership.
+              Membership adds Digital Access for codes, spare-key details and trusted people. One-off locksmith service remains available without membership.
             </p>
             <Link href="/pricing" className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink">
               Compare membership
