@@ -1,6 +1,22 @@
 import Link from "next/link";
 import { Keyhole } from "./Keyhole";
 
+const MASSACHUSETTS_MARKETS = [
+  ["Boston", "/boston-ma"],
+  ["Cambridge", "/cambridge-ma"],
+  ["Newton", "/newton-ma"],
+  ["Somerville", "/somerville-ma"],
+  ["Medford", "/medford-ma"],
+  ["Watertown", "/watertown-ma"],
+  ["Waltham", "/waltham-ma"],
+  ["Quincy", "/quincy-ma"],
+  ["Lynn", "/lynn-ma"],
+  ["Malden", "/malden-ma"],
+  ["Revere", "/revere-ma"],
+  ["Braintree", "/braintree-ma"],
+  ["Chelsea", "/chelsea-ma"],
+] as const;
+
 export function Footer() {
   return (
     <footer className="border-t border-line/70 bg-void">
@@ -43,7 +59,16 @@ export function Footer() {
           />
         </div>
 
-        <div className="mt-8 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 border-t border-line/70 pt-6">
+          <div className="font-mono text-[10px] uppercase tracking-[.14em] text-parchment-dim">Massachusetts service areas</div>
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            {MASSACHUSETTS_MARKETS.map(([label, href]) => (
+              <Link key={href} href={href} className="text-parchment-dim transition hover:text-parchment">{label}</Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-7 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
           <span>&copy; {new Date().getFullYear()} PlanetHike OÜ</span>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-parchment">Privacy</Link>
