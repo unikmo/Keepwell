@@ -12,7 +12,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mykeepwell.vercel.a
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Keepwell",
+  name: "Trusted Locksmith",
   url: siteUrl,
 };
 
@@ -30,20 +30,20 @@ export default async function Home() {
         <section className="border-b border-line/70">
           <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-14 sm:px-8 sm:py-18 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-16 lg:px-10 lg:py-20">
             <div className="max-w-2xl">
-              <div className="eyebrow">Lockouts · rekeys · lock changes · smart locks</div>
+              <div className="eyebrow">Vetted local locksmiths. Upfront prices.</div>
               <h1 className="mt-5 font-display text-5xl font-medium leading-[.98] tracking-[-.035em] text-parchment sm:text-6xl lg:text-[72px]">
-                Property access,
-                <span className="block italic text-brass">without the scramble.</span>
+                Find a trusted locksmith
+                <span className="block italic text-brass">near you.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-parchment-dim">
-                See the standard price before you request a provider. Travel is included. Digital Access keeps codes, spare keys and trusted people ready for problems you may be able to solve without a service call.
+                Get help with lockouts, rekeys, lock changes and smart locks without the pricing scramble. See the standard price before you request a local provider. Travel is included.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-[15px] font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.16)] transition hover:brightness-110">
-                  Request service
+                  Find a locksmith
                 </Link>
-                <Link href="/digital-access" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/35 px-7 py-3 text-[15px] font-semibold text-parchment transition hover:border-sky/55 hover:bg-surface/55">
-                  Explore Digital Access
+                <Link href="/services" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/35 px-7 py-3 text-[15px] font-semibold text-parchment transition hover:border-sky/55 hover:bg-surface/55">
+                  See prices
                 </Link>
               </div>
             </div>
@@ -57,8 +57,8 @@ export default async function Home() {
         <section className="border-b border-line/70 bg-surface/55">
           <div className="mx-auto grid max-w-[1400px] gap-5 px-6 py-6 sm:grid-cols-3 sm:px-8 lg:px-10">
             {[
+              ["Vetted local providers", "Provider information is reviewed before activation"],
               ["Price shown upfront", "Know the standard total before you request service"],
-              ["Travel included", "No separate travel or service-call fee"],
               ["Extras need approval", "Approve additional work before it starts"],
             ].map(([title, body]) => (
               <div key={title} className="rounded-xl border border-sky/10 bg-ink/10 px-4 py-3 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0">
@@ -107,8 +107,8 @@ export default async function Home() {
         <section className="border-b border-line/70 bg-surface/45 py-16 sm:py-20">
           <div className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-10">
             <div className="max-w-2xl">
-              <div className="eyebrow">On-site help</div>
-              <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Need a locksmith? See the price before you request one.</h2>
+              <div className="eyebrow">Locksmith services</div>
+              <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Need a locksmith near you? See the price first.</h2>
               <p className="mt-4 text-base leading-7 text-parchment-dim">Start with a published standard total for the job you need. Provider travel/service call is included.</p>
             </div>
 
@@ -122,7 +122,7 @@ export default async function Home() {
                     </div>
                     <div className="font-display text-4xl text-brass">{formatServicePrice(service.customerPriceCents)}</div>
                   </div>
-                  <Link href={`/book/details?service_id=${service.id}`} className="mt-6 inline-flex text-sm font-semibold text-brass hover:underline">Request this service →</Link>
+                  <Link href={`/book/details?service_id=${service.id}`} className="mt-6 inline-flex text-sm font-semibold text-brass hover:underline">Choose this service →</Link>
                 </div>
               ))}
             </div>
@@ -136,7 +136,7 @@ export default async function Home() {
               <div className="max-w-lg">
                 <div className="eyebrow">Membership</div>
                 <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">A backup plan for the property, not just the emergency.</h2>
-                <p className="mt-4 text-base leading-7 text-parchment-dim">Membership adds Digital Access and trusted-access tools. You can still use Keepwell for one-off service without joining.</p>
+                <p className="mt-4 text-base leading-7 text-parchment-dim">Membership adds Digital Access and trusted-access tools. You can still use Trusted Locksmith for one-off service without joining.</p>
                 <Link href="/pricing" className="mt-6 inline-flex text-sm font-semibold text-brass hover:underline">Compare membership →</Link>
               </div>
               <div className="grid gap-4 md:grid-cols-3">
@@ -174,13 +174,13 @@ export default async function Home() {
 
         <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-3xl px-6 text-center sm:px-8">
-            <div className="eyebrow">Start where you are</div>
-            <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Need help now—or want to be ready next time?</h2>
+            <div className="eyebrow">Ready when you need it</div>
+            <h2 className="mt-4 font-display text-4xl font-medium tracking-[-.025em] text-parchment sm:text-5xl">Need a locksmith now—or want to be ready next time?</h2>
             <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-parchment-dim">
-              Request a clearly priced service today, or set up Digital Access so your backup options are ready before the next access problem.
+              Find a clearly priced local locksmith today, or set up Digital Access so your backup options are ready before the next access problem.
             </p>
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.14)]">Request service</Link>
+              <Link href="/book" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brass px-7 py-3 text-sm font-semibold text-ink shadow-[0_10px_28px_rgba(214,173,87,0.14)]">Find a locksmith</Link>
               <Link href="/digital-access" className="inline-flex min-h-12 items-center justify-center rounded-full border border-sky/30 bg-surface/30 px-7 py-3 text-sm font-semibold text-parchment transition hover:border-sky/55">Explore Digital Access</Link>
             </div>
           </div>
