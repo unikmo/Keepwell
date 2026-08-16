@@ -18,11 +18,11 @@ export default async function SignupPage({ searchParams }: { searchParams: Promi
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment">
             <span className="grid h-8 w-8 place-items-center rounded-xl border border-sky/25 bg-surface-raised"><Keyhole className="h-4 w-3 text-brass" /></span>
-            Keepwell
+            Trusted Locksmith
           </Link>
           <div className="mt-7 font-mono text-[10px] uppercase tracking-[0.14em] text-brass">{PLAN_LABELS[planId]}</div>
-          <h1 className="mt-2 font-display text-3xl font-medium text-parchment">Create your Keepwell account</h1>
-          <p className="mt-2 text-sm leading-6 text-parchment-dim">Set up the account that keeps your Digital Access details, trusted people and selected membership plan together.</p>
+          <h1 className="mt-2 font-display text-3xl font-medium text-parchment">Create your Trusted Locksmith account</h1>
+          <p className="mt-2 text-sm leading-6 text-parchment-dim">Keep Digital Access details, trusted people and your selected membership plan together in one account.</p>
         </div>
 
         {error && <div className="mt-6 rounded-xl border border-ember/30 bg-ember/10 px-4 py-3 text-sm text-ember">{error}</div>}
