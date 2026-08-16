@@ -11,20 +11,20 @@ export function Footer() {
               <span className="grid h-9 w-9 place-items-center rounded-xl border border-sky/20 bg-surface-raised/70">
                 <Keyhole className="h-4 w-3 text-brass" />
               </span>
-              Keepwell
+              Trusted Locksmith
             </Link>
             <p className="mt-4 max-w-sm text-[15px] leading-6 text-parchment-dim">
-              Clear prices when you need property-access help. Digital Access when you want a backup plan before you need it.
+              Vetted local locksmiths. Upfront prices. Digital Access helps keep backup options ready before an access problem becomes urgent.
             </p>
             <p className="mt-3 max-w-md text-sm leading-6 text-parchment-dim/75">
-              Keepwell operates the platform. Field work is performed by independent local providers.
+              Trusted Locksmith is operated by PlanetHike OÜ. Field work is performed by independent local providers.
             </p>
           </div>
 
           <FooterColumn
-            title="Use Keepwell"
+            title="Use Trusted Locksmith"
             links={[
-              { label: "Request service", href: "/book" },
+              { label: "Find a locksmith", href: "/book" },
               { label: "Services & prices", href: "/services" },
               { label: "Digital Access", href: "/digital-access" },
               { label: "Membership", href: "/pricing" },
@@ -44,11 +44,11 @@ export function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-line/70 pt-5 text-sm text-parchment-dim sm:flex-row sm:items-center sm:justify-between">
-          <span>&copy; {new Date().getFullYear()} Keepwell</span>
+          <span>&copy; {new Date().getFullYear()} PlanetHike OÜ</span>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-parchment">Privacy</Link>
             <Link href="/member-agreement" className="hover:text-parchment">Member agreement</Link>
-            <span>Platform membership, not insurance.</span>
+            <span>Trusted Locksmith membership is not insurance.</span>
           </div>
         </div>
       </div>
