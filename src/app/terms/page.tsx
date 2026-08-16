@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalDoc, LegalSection } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Trusted Locksmith",
+  title: "Terms of Service",
   description: "Terms governing use of the Trusted Locksmith platform, locksmith marketplace and membership features.",
   alternates: { canonical: "/terms" },
   robots: { index: false },
