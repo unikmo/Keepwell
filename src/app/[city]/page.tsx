@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   const city = getMaCity(citySlug);
   if (!city) return {};
 
-  const title = `${city.name}, MA Locksmith | Upfront Prices & Vetted Local Providers`;
+  const title = `${city.name}, MA Locksmith | Upfront Prices`;
   const description = `Find a trusted locksmith in ${city.name}, Massachusetts for lockouts, rekeys, lock changes and smart-lock installation. See standard prices before you request service.`;
   const canonical = `${siteUrl}/${city.slug}`;
 
