@@ -4,9 +4,9 @@ import { Keyhole } from "@/components/Keyhole";
 import { SERVICE_MENU, formatServicePrice } from "@/lib/service-menu";
 
 export const metadata: Metadata = {
-  title: "Request Home Lockout, Rekey or Lock Service",
+  title: "Find a Locksmith | Lockout, Rekey or Lock Service",
   description:
-    "Choose a home lockout, rekey, lock change or smart-lock service and see the standard Keepwell price before you submit a request.",
+    "Choose a home lockout, rekey, lock change or smart-lock service and see the standard Trusted Locksmith price before you submit a request.",
   alternates: { canonical: "/book" },
 };
 
@@ -19,9 +19,9 @@ export default function BookPage() {
             <span className="grid h-8 w-8 place-items-center rounded-xl border border-brass/30 bg-brass/10">
               <Keyhole className="h-4 w-3 text-brass" />
             </span>
-            Keepwell
+            Trusted Locksmith
           </Link>
-          <div className="mt-7 eyebrow">Request service</div>
+          <div className="mt-7 eyebrow">Find a locksmith</div>
           <h1 className="mt-2 font-display text-4xl font-medium text-parchment">What do you need help with?</h1>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-parchment-dim">
             Choose the service to see the standard total before you continue. Provider travel/service call is included. No membership required.
@@ -49,11 +49,11 @@ export default function BookPage() {
         </div>
 
         <div className="mt-6 rounded-2xl border border-line bg-surface/50 p-4 text-xs leading-5 text-parchment-dim">
-          Availability varies by location and time. A provider name and ETA appear only after a participating independent provider accepts your request.
+          Availability varies by location and time. A locksmith name and ETA appear only after a participating independent local provider accepts your request.
         </div>
 
         <p className="mt-6 text-center text-xs text-parchment-dim">
-          Already have a Keepwell account? <Link href="/login" className="text-brass hover:underline">Log in</Link> ·{" "}
+          Already have a Trusted Locksmith account? <Link href="/login" className="text-brass hover:underline">Log in</Link> ·{" "}
           <Link href="/digital-access" className="text-brass hover:underline">Explore Digital Access</Link>
         </p>
       </div>
