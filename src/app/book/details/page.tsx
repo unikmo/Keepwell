@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Keyhole } from "@/components/Keyhole";
 import { defaultServiceForJobType, formatServicePrice, getServiceMenuItem } from "@/lib/service-menu";
 
-export const metadata: Metadata = { title: "Service request details", robots: { index: false } };
+export const metadata: Metadata = { title: "Locksmith request details", robots: { index: false } };
 
 export default async function BookDetailsPage({
   searchParams,
@@ -18,7 +18,7 @@ export default async function BookDetailsPage({
       <div className="w-full max-w-lg rounded-3xl border border-line bg-surface p-6 sm:p-8">
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2.5 font-display text-lg font-medium text-parchment">
-            <Keyhole className="h-5 w-4 text-brass" />Keepwell
+            <Keyhole className="h-5 w-4 text-brass" />Trusted Locksmith
           </Link>
           <div className="mt-7 font-mono text-[10px] uppercase tracking-[0.14em] text-brass">{service.timing}</div>
           <h1 className="mt-2 font-display text-3xl font-medium text-parchment">{service.title}</h1>
@@ -38,7 +38,7 @@ export default async function BookDetailsPage({
           <Field label="Email (optional)">
             <input type="email" name="email" autoComplete="email" placeholder="you@email.com" className="input" />
           </Field>
-          <button type="submit" className="w-full rounded-full bg-brass px-5 py-3 text-sm font-semibold text-ink">Review request</button>
+          <button type="submit" className="w-full rounded-full bg-brass px-5 py-3 text-sm font-semibold text-ink">Review locksmith request</button>
         </form>
         <p className="mt-4 text-center text-[11px] leading-5 text-parchment-dim">You will review the service, address and standard total before submitting the request.</p>
         <p className="mt-4 text-center text-xs text-parchment-dim"><Link href="/book" className="hover:text-parchment">← Change service</Link></p>
