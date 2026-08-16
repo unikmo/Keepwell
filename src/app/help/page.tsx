@@ -6,25 +6,25 @@ import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
   title: "Help Center",
-  description: "Answers about Keepwell Digital Access, service requests, provider matching, membership and trusted access.",
+  description: "Answers about Trusted Locksmith, Digital Access, locksmith requests, provider matching, membership and trusted access.",
   alternates: { canonical: "/help" },
 };
 
 const SECTIONS = [
   {
-    title: "Service requests",
+    title: "Locksmith requests",
     items: [
       {
-        q: "Do I need a membership to request service?",
-        a: "No. One-off service requests are available without membership. Keepwell shows the standard service price before you submit the request.",
+        q: "Do I need a membership to find a locksmith?",
+        a: "No. One-off locksmith requests are available without membership. Trusted Locksmith shows the standard service price before you submit the request.",
       },
       {
-        q: "Does submitting a request mean a provider is already assigned?",
-        a: "No. A request is submitted first. A provider name and ETA appear only after a participating independent provider actually accepts the request.",
+        q: "Does submitting a request mean a locksmith is already assigned?",
+        a: "No. A request is submitted first. A provider name and ETA appear only after a participating independent local provider actually accepts the request.",
       },
       {
         q: "Who performs the field work?",
-        a: "Independent local providers perform field service. Keepwell operates the platform, request flow, pricing rules and property-access records.",
+        a: "Independent local providers perform field service. Trusted Locksmith, operated by PlanetHike OÜ, manages the platform, request flow, pricing rules and property-access records.",
       },
       {
         q: "Can a provider add charges after arriving?",
@@ -45,7 +45,7 @@ const SECTIONS = [
       },
       {
         q: "How are sensitive access details stored?",
-        a: "Sensitive text is stored as server-encrypted ciphertext. Reference photos use private storage with time-limited signed access. Keepwell does not describe this as zero-knowledge or end-to-end encryption.",
+        a: "Sensitive text is stored as server-encrypted ciphertext. Reference photos use private storage with time-limited signed access. Trusted Locksmith does not describe this as zero-knowledge or end-to-end encryption.",
       },
     ],
   },
@@ -75,8 +75,8 @@ export default function HelpCenterPage() {
       <main className="flex-1">
         <PageHero
           eyebrow="Help center"
-          title="Clear answers before you request help"
-          body="Understand Digital Access, provider matching, pricing and membership without having to decode marketplace jargon."
+          title="Clear answers before you find a locksmith"
+          body="Understand Digital Access, local provider matching, pricing and membership without having to decode marketplace jargon."
         />
 
         <section className="py-16 sm:py-20">
@@ -100,9 +100,9 @@ export default function HelpCenterPage() {
         <CTABand
           title="Still need help?"
           body="Use the contact form for account, provider, privacy or general support questions."
-          ctaLabel="Contact Keepwell"
+          ctaLabel="Contact Trusted Locksmith"
           ctaHref="/contact"
-          secondaryLabel="View services"
+          secondaryLabel="View locksmith services"
           secondaryHref="/services"
         />
       </main>
